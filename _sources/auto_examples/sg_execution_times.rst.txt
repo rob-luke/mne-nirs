@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:02.328** total execution time for **auto_examples** files:
+**00:02.725** total execution time for **auto_examples** files:
 
 +-----------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_mne_objects_from_arrays.py` (``plot_mne_objects_from_arrays.py``) | 00:02.154 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_mne_objects_from_arrays.py` (``plot_mne_objects_from_arrays.py``) | 00:02.526 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_sine.py` (``plot_sine.py``)                                       | 00:00.174 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_sine.py` (``plot_sine.py``)                                       | 00:00.199 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------+-----------+--------+
