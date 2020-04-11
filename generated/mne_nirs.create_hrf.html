@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>General examples &mdash; mne-nirs 0.0.1 documentation</title>
+  <title>mne_nirs.create_hrf &mdash; mne-nirs 0.0.1 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Plot experiment expected haemodynamic response" href="plot_hrf.html" />
-    <link rel="prev" title="mne_nirs.create_hrf" href="../generated/mne_nirs.create_hrf.html" /> 
+    <link rel="next" title="General examples" href="../auto_examples/index.html" />
+    <link rel="prev" title="mne_nirs.create_boxcar" href="mne_nirs.create_boxcar.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -93,16 +93,24 @@
 <li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started with MNE-NIRS</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User guide: Basic MNE-NIRS functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">MNE-NIRS API</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Tutorial - Examples</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">General examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="plot_hrf.html">Plot experiment expected haemodynamic response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User guide: Basic MNE-NIRS functionality</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">MNE-NIRS API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#experimental-design">Experimental Design</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="mne_nirs.create_boxcar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mne_nirs</span></code>.create_boxcar</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mne_nirs</span></code>.create_hrf</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-mne-nirs-create-hrf">Examples using <code class="docutils literal notranslate"><span class="pre">mne_nirs.create_hrf</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#plotting">Plotting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorial - Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">General examples</a></li>
 </ul>
 
             
@@ -148,13 +156,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>General examples</li>
+          <li><a href="../api.html">MNE-NIRS API</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">mne_nirs</span></code>.create_hrf</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/auto_examples/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/generated/mne_nirs.create_hrf.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,24 +177,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="general-examples">
-<span id="sphx-glr-auto-examples"></span><span id="id1"></span><h1>General examples<a class="headerlink" href="#general-examples" title="Permalink to this headline">¶</a></h1>
-<p>Introductory examples.</p>
-<div class="sphx-glr-thumbcontainer" tooltip="Plot experiment expected haemodynamic response"><div class="figure align-default" id="id2">
+  <div class="section" id="mne-nirs-create-hrf">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">mne_nirs</span></code>.create_hrf<a class="headerlink" href="#mne-nirs-create-hrf" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mne_nirs.create_hrf">
+<code class="sig-prename descclassname">mne_nirs.</code><code class="sig-name descname">create_hrf</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">event_id=None</em>, <em class="sig-param">stim_dur=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/_experimental_design.html#create_hrf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.create_hrf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate expected haemodynamic response function.</p>
+<p><strong>NOTE:</strong> This is just a holder function while I figure out
+how to get github actions working.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>array
+Returns an array for each trigger channel.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="examples-using-mne-nirs-create-hrf">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">mne_nirs.create_hrf</span></code><a class="headerlink" href="#examples-using-mne-nirs-create-hrf" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Plot experiment expected haemodynamic response"><div class="figure align-default" id="id1">
 <img alt="../_images/sphx_glr_plot_hrf_thumb.png" src="../_images/sphx_glr_plot_hrf_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_hrf.html#sphx-glr-auto-examples-plot-hrf-py"><span class="std std-ref">Plot experiment expected haemodynamic response</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_hrf.html#sphx-glr-auto-examples-plot-hrf-py"><span class="std std-ref">Plot experiment expected haemodynamic response</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-</div><div class="toctree-wrapper compound">
-</div>
-<div class="sphx-glr-clear"></div><div class="sphx-glr-footer class sphx-glr-footer-gallery docutils container">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/5fe6efdcd455459c7e9ee824347a4db5/auto_examples_python.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">auto_examples_python.zip</span></code></a></p>
-</div>
-<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/5351279b0de8c63f1e0ef75a93e6dfdb/auto_examples_jupyter.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">auto_examples_jupyter.zip</span></code></a></p>
-</div>
-</div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div><div style='clear:both'></div></div>
 </div>
 
 
@@ -195,10 +210,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="plot_hrf.html" class="btn btn-neutral float-right" title="Plot experiment expected haemodynamic response" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../auto_examples/index.html" class="btn btn-neutral float-right" title="General examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../generated/mne_nirs.create_hrf.html" class="btn btn-neutral float-left" title="mne_nirs.create_hrf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mne_nirs.create_boxcar.html" class="btn btn-neutral float-left" title="mne_nirs.create_boxcar" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

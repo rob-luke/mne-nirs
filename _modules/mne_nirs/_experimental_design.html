@@ -169,7 +169,7 @@
 <span class="kn">import</span> <span class="nn">mne</span>
 
 
-<div class="viewcode-block" id="foo"><a class="viewcode-back" href="../../generated/mne_nirs.foo.html#mne_nirs.foo">[docs]</a><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Just a test.</span>
 
@@ -177,7 +177,7 @@
 <span class="sd">        Return foo</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s1">&#39;foo&#39;</span></div>
+    <span class="k">return</span> <span class="s1">&#39;foo&#39;</span>
 
 
 <div class="viewcode-block" id="create_boxcar"><a class="viewcode-back" href="../../generated/mne_nirs.create_boxcar.html#mne_nirs.create_boxcar">[docs]</a><span class="k">def</span> <span class="nf">create_boxcar</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -191,18 +191,35 @@
 <span class="sd">        Returns an array for each trigger channel.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
-    <span class="kn">from</span> <span class="nn">bids.analysis</span> <span class="kn">import</span> <span class="n">hrf</span>
     <span class="n">bc</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">boxcar</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">stim_dur</span><span class="p">))</span>
     <span class="n">events</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">events_from_annotations</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="n">event_id</span><span class="p">)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">times</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ids</span><span class="p">)))</span>
-    <span class="n">h0</span> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">_gamma_difference_hrf</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span> <span class="n">time_length</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ids</span><span class="p">):</span>
         <span class="n">id_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">events</span><span class="p">]</span>
         <span class="n">id_evt</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">id_idx</span><span class="p">]</span>
         <span class="n">event_samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">id_evt</span><span class="p">]</span>
         <span class="n">s</span><span class="p">[</span><span class="n">event_samples</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
         <span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">bc</span><span class="p">)[:</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">times</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">s</span></div>
+
+
+<div class="viewcode-block" id="create_hrf"><a class="viewcode-back" href="../../generated/mne_nirs.create_hrf.html#mne_nirs.create_hrf">[docs]</a><span class="k">def</span> <span class="nf">create_hrf</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate expected haemodynamic response function.</span>
+
+<span class="sd">    **NOTE:** This is just a holder function while I figure out</span>
+<span class="sd">    how to get github actions working.</span>
+
+<span class="sd">    :return: array</span>
+<span class="sd">        Returns an array for each trigger channel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">bids.analysis</span> <span class="kn">import</span> <span class="n">hrf</span>
+    <span class="n">h0</span> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">_gamma_difference_hrf</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span> <span class="n">time_length</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">create_boxcar</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="n">event_id</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="n">stim_dur</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
         <span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">h0</span><span class="p">)[:</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">times</span><span class="p">)]</span>
+
     <span class="k">return</span> <span class="n">s</span></div>
 </pre></div>
 
