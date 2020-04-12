@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Plot experiment expected haemodynamic response &#8212; MNE-NIRS 0.0.1 documentation</title>
+    <title>Examine the effect of signal enhancement approaches &#8212; MNE-NIRS 0.0.1 documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -84,10 +84,10 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Plot experiment expected haemodynamic response</a><ul>
-<li><a class="reference internal" href="#selecting-channels-appropriate-for-detecting-neural-responses">Selecting channels appropriate for detecting neural responses</a></li>
-<li><a class="reference internal" href="#extract-epochs">Extract epochs</a></li>
-<li><a class="reference internal" href="#apply-anti-correlation">Apply anti correlation</a></li>
+<li><a class="reference internal" href="#">Examine the effect of signal enhancement approaches</a><ul>
+<li><a class="reference internal" href="#import-and-preprocess-data">Import and preprocess data</a></li>
+<li><a class="reference internal" href="#extract-epochs-with-no-additional-processing">Extract epochs with no additional processing</a></li>
+<li><a class="reference internal" href="#apply-negative-correlation-enhancment-algorithm">Apply negative correlation enhancment algorithm</a></li>
 <li><a class="reference internal" href="#plot-two-approaches-for-comparison">Plot two approaches for comparison</a></li>
 </ul>
 </li>
@@ -130,14 +130,14 @@
 <p class="admonition-title">Note</p>
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-20-cui-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="plot-experiment-expected-haemodynamic-response">
-<span id="tut-fnirs-cui"></span><span id="sphx-glr-auto-examples-plot-20-cui-py"></span><h1>Plot experiment expected haemodynamic response<a class="headerlink" href="#plot-experiment-expected-haemodynamic-response" title="Permalink to this headline">¶</a></h1>
+<div class="sphx-glr-example-title section" id="examine-the-effect-of-signal-enhancement-approaches">
+<span id="tut-fnirs-cui"></span><span id="sphx-glr-auto-examples-plot-20-cui-py"></span><h1>Examine the effect of signal enhancement approaches<a class="headerlink" href="#examine-the-effect-of-signal-enhancement-approaches" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="page-contents">
 <p class="topic-title">Page contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#selecting-channels-appropriate-for-detecting-neural-responses" id="id1">Selecting channels appropriate for detecting neural responses</a></p></li>
-<li><p><a class="reference internal" href="#extract-epochs" id="id2">Extract epochs</a></p></li>
-<li><p><a class="reference internal" href="#apply-anti-correlation" id="id3">Apply anti correlation</a></p></li>
+<li><p><a class="reference internal" href="#import-and-preprocess-data" id="id1">Import and preprocess data</a></p></li>
+<li><p><a class="reference internal" href="#extract-epochs-with-no-additional-processing" id="id2">Extract epochs with no additional processing</a></p></li>
+<li><p><a class="reference internal" href="#apply-negative-correlation-enhancment-algorithm" id="id3">Apply negative correlation enhancment algorithm</a></p></li>
 <li><p><a class="reference internal" href="#plot-two-approaches-for-comparison" id="id4">Plot two approaches for comparison</a></p></li>
 </ul>
 </div>
@@ -147,23 +147,15 @@
 
 <span class="kn">import</span> <span class="nn">mne</span>
 <span class="kn">import</span> <span class="nn">mne_nirs</span>
-
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_data_folder</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fnirs_motor</span><span class="o">.</span><span class="n">data_path</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="import-and-preprocess-data">
+<h2><a class="toc-backref" href="#id1">Import and preprocess data</a><a class="headerlink" href="#import-and-preprocess-data" title="Permalink to this headline">¶</a></h2>
+<p>This code is exactly the same as the first sections in the MNE tutorial.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_data_folder</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fnirs_motor</span><span class="o">.</span><span class="n">data_path</span><span class="p">()</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_raw_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="os.path.join" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_data_folder</span></a><span class="p">,</span> <span class="s1">&#39;Participant-1&#39;</span><span class="p">)</span>
 <span class="n">raw_intensity</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_raw_nirx</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_raw_dir</span></a><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-</pre></div>
-</div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
-Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
-</pre></div>
-</div>
-<div class="section" id="selecting-channels-appropriate-for-detecting-neural-responses">
-<h2><a class="toc-backref" href="#id1">Selecting channels appropriate for detecting neural responses</a><a class="headerlink" href="#selecting-channels-appropriate-for-detecting-neural-responses" title="Permalink to this headline">¶</a></h2>
-<p>First we remove channels that are too close together (short channels) to
-detect a neural response (less than 1 cm distance between optodes).
-To achieve this we pick all the channels that are not considered to be short.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">picks</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">pick_types</span><span class="p">(</span><span class="n">raw_intensity</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">meg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fnirs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">picks</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">pick_types</span><span class="p">(</span><span class="n">raw_intensity</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">meg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fnirs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dists</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">nirs</span><span class="o">.</span><span class="n">source_detector_distances</span><span class="p">(</span>
     <span class="n">raw_intensity</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">picks</span></a><span class="o">=</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">picks</span></a><span class="p">)</span>
 <span class="n">raw_intensity</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">picks</span></a><span class="p">[</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dists</span></a> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">])</span>
@@ -171,10 +163,16 @@ To achieve this we pick all the channels that are not considered to be short.</p
 <span class="n">raw_haemo</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">nirs</span><span class="o">.</span><span class="n">beer_lambert_law</span><span class="p">(</span><span class="n">raw_od</span><span class="p">)</span>
 <span class="n">raw_haemo</span> <span class="o">=</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">h_trans_bandwidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                              <span class="n">l_trans_bandwidth</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">_</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">events_from_annotations</span><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;1.0&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                                             <span class="s1">&#39;2.0&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                                                             <span class="s1">&#39;3.0&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">event_dict</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Control&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Tapping/Left&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Tapping/Right&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Filtering raw data in 1 contiguous segment
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
+Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
+Filtering raw data in 1 contiguous segment
 Setting up band-pass filter from 0.05 - 0.7 Hz
 
 FIR filter parameters
@@ -187,29 +185,15 @@ Designing a one-pass, zero-phase, non-causal bandpass filter:
 - Upper passband edge: 0.70 Hz
 - Upper transition bandwidth: 0.20 Hz (-6 dB cutoff frequency: 0.80 Hz)
 - Filter length: 1289 samples (164.992 sec)
+
+Used Annotations descriptions: [&#39;1.0&#39;, &#39;2.0&#39;, &#39;3.0&#39;]
 </pre></div>
 </div>
 </div>
-<div class="section" id="extract-epochs">
-<h2><a class="toc-backref" href="#id2">Extract epochs</a><a class="headerlink" href="#extract-epochs" title="Permalink to this headline">¶</a></h2>
-<p>Now that the signal has been converted to relative haemoglobin concentration,
-and the unwanted heart rate component has been removed, we can extract epochs
-related to each of the experimental conditions.</p>
-<p>First we extract the events of interest and visualise them to ensure they are
-correct.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">_</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">events_from_annotations</span><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;1.0&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-                                                             <span class="s1">&#39;2.0&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-                                                             <span class="s1">&#39;3.0&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">event_dict</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Control&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Tapping/Left&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Tapping/Right&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-</pre></div>
-</div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Used Annotations descriptions: [&#39;1.0&#39;, &#39;2.0&#39;, &#39;3.0&#39;]
-</pre></div>
-</div>
-<p>Next we define the range of our epochs, the rejection criteria,
-baseline correction, and extract the epochs. We visualise the log of which
-epochs were dropped.</p>
+<div class="section" id="extract-epochs-with-no-additional-processing">
+<h2><a class="toc-backref" href="#id2">Extract epochs with no additional processing</a><a class="headerlink" href="#extract-epochs-with-no-additional-processing" title="Permalink to this headline">¶</a></h2>
+<p>First we extract the epochs with no additional processing
+this result should be the same as the MNE tutorial.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">reject_criteria</span></a> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">hbo</span><span class="o">=</span><span class="mf">80e-6</span><span class="p">)</span>
 <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmin</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmax</span></a> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span>
 
@@ -245,16 +229,16 @@ Loading data for 90 events and 157 original time points ...
 </pre></div>
 </div>
 </div>
-<div class="section" id="apply-anti-correlation">
-<h2><a class="toc-backref" href="#id3">Apply anti correlation</a><a class="headerlink" href="#apply-anti-correlation" title="Permalink to this headline">¶</a></h2>
-<p>Apply Cui et. al. 2010</p>
+<div class="section" id="apply-negative-correlation-enhancment-algorithm">
+<h2><a class="toc-backref" href="#id3">Apply negative correlation enhancment algorithm</a><a class="headerlink" href="#apply-negative-correlation-enhancment-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Apply Cui et. al. 2010 and extract epochs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">raw_anti</span> <span class="o">=</span> <a href="../generated/mne_nirs.signal_enhancement.enhance_negative_correlation.html#mne_nirs.signal_enhancement.enhance_negative_correlation" title="mne_nirs.signal_enhancement.enhance_negative_correlation" class="sphx-glr-backref-module-mne_nirs-signal_enhancement sphx-glr-backref-type-py-function"><span class="n">mne_nirs</span><span class="o">.</span><span class="n">signal_enhancement</span><span class="o">.</span><span class="n">enhance_negative_correlation</span></a><span class="p">(</span><span class="n">raw_haemo</span><span class="p">)</span>
 
 <span class="n">epochs_anti</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">Epochs</span><span class="p">(</span><span class="n">raw_anti</span><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">event_dict</span></a><span class="p">,</span>
                          <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmin</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmin</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmax</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmax</span></a><span class="p">,</span>
                          <span class="n">reject</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">reject_criteria</span></a><span class="p">,</span> <span class="n">reject_by_annotation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">proj</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                         <span class="n">detrend</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                         <span class="n">detrend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">evoked_dict_anti</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Tapping/HbO&#39;</span><span class="p">:</span> <span class="n">epochs_anti</span><span class="p">[</span><span class="s1">&#39;Tapping&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">picks</span></a><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">),</span>
                     <span class="s1">&#39;Tapping/HbR&#39;</span><span class="p">:</span> <span class="n">epochs_anti</span><span class="p">[</span><span class="s1">&#39;Tapping&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">picks</span></a><span class="o">=</span><span class="s1">&#39;hbr&#39;</span><span class="p">),</span>
@@ -278,7 +262,7 @@ Loading data for 90 events and 157 original time points ...
 </div>
 <div class="section" id="plot-two-approaches-for-comparison">
 <h2><a class="toc-backref" href="#id4">Plot two approaches for comparison</a><a class="headerlink" href="#plot-two-approaches-for-comparison" title="Permalink to this headline">¶</a></h2>
-<p>Plot figures</p>
+<p>Plot the average epochs with and without Cui 2010 applied.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">color_dict</span></a> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">HbO</span><span class="o">=</span><span class="s1">&#39;#AA3377&#39;</span><span class="p">,</span> <span class="n">HbR</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
@@ -310,7 +294,7 @@ combining channels using &quot;mean&quot;
 combining channels using &quot;mean&quot;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.240 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.406 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-20-cui-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/8004bd8d0571541b1596a2bb003de455/plot_20_cui.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_20_cui.py</span></code></a></p>
