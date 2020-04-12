@@ -19,9 +19,9 @@ Introductory examples.
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_hrf_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_10_hrf_thumb.png
 
-     :ref:`sphx_glr_auto_examples_plot_hrf.py`
+     :ref:`sphx_glr_auto_examples_plot_10_hrf.py`
 
 .. raw:: html
 
@@ -31,7 +31,27 @@ Introductory examples.
 .. toctree::
    :hidden:
 
-   /auto_examples/plot_hrf
+   /auto_examples/plot_10_hrf
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot experiment expected haemodynamic response">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_20_cui_thumb.png
+
+     :ref:`sphx_glr_auto_examples_plot_20_cui.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_20_cui
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

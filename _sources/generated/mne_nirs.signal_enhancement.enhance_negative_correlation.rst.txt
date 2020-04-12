@@ -1,0 +1,6 @@
+mne\_nirs.signal\_enhancement.enhance\_negative\_correlation
+============================================================
+
+.. currentmodule:: mne_nirs.signal_enhancement
+
+.. autofunction:: enhance_negative_correlation
