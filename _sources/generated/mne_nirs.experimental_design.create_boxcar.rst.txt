@@ -1,0 +1,6 @@
+mne\_nirs.experimental\_design.create\_boxcar
+=============================================
+
+.. currentmodule:: mne_nirs.experimental_design
+
+.. autofunction:: create_boxcar

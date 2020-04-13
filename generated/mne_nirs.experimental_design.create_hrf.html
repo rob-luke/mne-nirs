@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>General examples &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>mne_nirs.experimental_design.create_hrf &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -17,8 +17,8 @@
     <script type="text/javascript" src="../_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Plot experiment expected haemodynamic response" href="plot_10_hrf.html" />
-    <link rel="prev" title="mne_nirs.signal_enhancement.enhance_negative_correlation" href="../generated/mne_nirs.signal_enhancement.enhance_negative_correlation.html" />
+    <link rel="next" title="mne_nirs.signal_enhancement.enhance_negative_correlation" href="mne_nirs.signal_enhancement.enhance_negative_correlation.html" />
+    <link rel="prev" title="mne_nirs.experimental_design.create_boxcar" href="mne_nirs.experimental_design.create_boxcar.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -47,7 +47,7 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="#">Examples</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../quick_start.html">Getting started</a></li>
                 <li><a href="../api.html">API</a></li>
                 <li><a href="https://github.com/rob-luke/mne-nirs">GitHub</a></li>
@@ -66,12 +66,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started with MNE-NIRS</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Module API</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Module API</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorial - Examples</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">General examples</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">General examples</a></li>
 </ul>
 </ul>
 </li>
@@ -85,9 +85,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">General examples</a><ul>
-</ul>
-</li>
+<li><a class="reference internal" href="#">mne_nirs.experimental_design.create_hrf</a></li>
 </ul>
 </ul>
 </li>
@@ -99,7 +97,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="../_sources/auto_examples/index.rst.txt"
+  <a href="../_sources/generated/mne_nirs.experimental_design.create_hrf.rst.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -123,22 +121,27 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="general-examples">
-<span id="sphx-glr-auto-examples"></span><span id="id1"></span><h1>General examples<a class="headerlink" href="#general-examples" title="Permalink to this headline">¶</a></h1>
-<p>Introductory examples.</p>
-<div class="sphx-glr-thumbcontainer" tooltip="Plot experiment expected haemodynamic response"><div class="figure align-default" id="id2">
-<img alt="../_images/sphx_glr_plot_10_hrf_thumb.png" src="../_images/sphx_glr_plot_10_hrf_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_10_hrf.html#sphx-glr-auto-examples-plot-10-hrf-py"><span class="std std-ref">Plot experiment expected haemodynamic response</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+  <div class="section" id="mne-nirs-experimental-design-create-hrf">
+<h1>mne_nirs.experimental_design.create_hrf<a class="headerlink" href="#mne-nirs-experimental-design-create-hrf" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mne_nirs.experimental_design.create_hrf">
+<code class="sig-prename descclassname">mne_nirs.experimental_design.</code><code class="sig-name descname">create_hrf</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">event_id=None</em>, <em class="sig-param">stim_dur=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/experimental_design/_experimental_design.html#create_hrf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.experimental_design.create_hrf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate expected haemodynamic response function.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The naming of this function may change. Use with caution.
+This is just a place holder while I get the documentation                   up and running.</p>
 </div>
-</div><div class="toctree-wrapper compound">
-</div>
-<div class="sphx-glr-thumbcontainer" tooltip="Examine the effect of signal enhancement approaches"><div class="figure align-default" id="id3">
-<img alt="../_images/sphx_glr_plot_20_cui_thumb.png" src="../_images/sphx_glr_plot_20_cui_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_20_cui.html#sphx-glr-auto-examples-plot-20-cui-py"><span class="std std-ref">Examine the effect of signal enhancement approaches</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div><div class="toctree-wrapper compound">
-</div>
-<div class="sphx-glr-clear"></div><p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>array
+Returns an array for each trigger channel.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
