@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:15.401** total execution time for **auto_examples** files:
+**00:06.534** total execution time for **auto_examples** files:
 
 +-------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_10_hrf.py` (``plot_10_hrf.py``) | 00:12.863 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_10_hrf.py` (``plot_10_hrf.py``) | 00:04.591 | 0.0 MB |
 +-------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_20_cui.py` (``plot_20_cui.py``) | 00:02.538 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_20_cui.py` (``plot_20_cui.py``) | 00:01.943 | 0.0 MB |
 +-------------------------------------------------------------------+-----------+--------+

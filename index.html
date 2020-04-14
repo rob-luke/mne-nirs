@@ -17,7 +17,6 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting started with MNE-NIRS" href="quick_start.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -47,7 +46,6 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="auto_examples/index.html">Examples</a></li>
-                <li><a href="quick_start.html">Getting started</a></li>
                 <li><a href="api.html">API</a></li>
                 <li><a href="https://github.com/rob-luke/mne-nirs">GitHub</a></li>
             
@@ -60,19 +58,7 @@
      href="#">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Getting Started</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started with MNE-NIRS</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">Module API</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Tutorial - Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">General examples</a></li>
-</ul>
-</ul>
+      aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
                 <li class="dropdown">
@@ -85,9 +71,8 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">MNE-NIRS</a><ul>
-<li><a class="reference internal" href="#id1">Getting started</a></li>
-<li><a class="reference internal" href="#id2">API Documentation</a></li>
-<li><a class="reference internal" href="#id3">Examples</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -99,11 +84,7 @@
             
             
             
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="_sources/index.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -128,23 +109,22 @@
   <div class="section" id="mne-nirs">
 <h1>MNE-NIRS<a class="headerlink" href="#mne-nirs" title="Permalink to this headline">¶</a></h1>
 <p>This is a library to assist in processing near-infrared spectroscopy data with MNE.</p>
-<div class="toctree-wrapper compound">
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>This package is not registered. Run the code below to install the latest
+version from github.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; pip install https://codeload.github.com/rob-luke/mne-nirs/zip/master
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+<p>To load MNE-NIRS add these lines to your script.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mne</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mne_nirs</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
 </div>
-<div class="section" id="id1">
-<h2><a class="reference external" href="quick_start.html">Getting started</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>How to install and verify MNE-NIRS is working.</p>
-</div>
-<div class="section" id="id2">
-<h2><a class="reference external" href="api.html">API Documentation</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>MNE-NIRS API documentation.</p>
-</div>
-<div class="section" id="id3">
-<h2><a class="reference external" href="auto_examples/index.html">Examples</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>A set of examples.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>See the <a class="reference external" href="auto_examples/index.html">examples</a> and <a class="reference external" href="api.html">API documentation</a>.</p>
 </div>
 </div>
 

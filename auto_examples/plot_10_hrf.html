@@ -17,8 +17,6 @@
     <script type="text/javascript" src="../_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Examine the effect of signal enhancement approaches" href="plot_20_cui.html" />
-    <link rel="prev" title="General examples" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -48,7 +46,6 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="index.html">Examples</a></li>
-                <li><a href="../quick_start.html">Getting started</a></li>
                 <li><a href="../api.html">API</a></li>
                 <li><a href="https://github.com/rob-luke/mne-nirs">GitHub</a></li>
             
@@ -61,19 +58,7 @@
      href="../index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Getting Started</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started with MNE-NIRS</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Module API</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Tutorial - Examples</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">General examples</a></li>
-</ul>
-</ul>
+      aria-labelledby="dLabelGlobalToc"></ul>
 </li>
               
                 <li class="dropdown">
@@ -99,11 +84,7 @@
             
             
             
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="../_sources/auto_examples/plot_10_hrf.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -157,53 +138,27 @@ Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
 Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&amp;action=download&amp;direct (17.1 MB)
 
   0%|          | Downloading : 0.00/17.1M [00:00&lt;?,        ?B/s]
-  1%|1         | Downloading : 248k/17.1M [00:00&lt;00:01,    11.5MB/s]
-  4%|4         | Downloading : 760k/17.1M [00:00&lt;00:01,    12.0MB/s]
-  9%|8         | Downloading : 1.49M/17.1M [00:00&lt;00:00,    24.3MB/s]
- 12%|#1        | Downloading : 1.99M/17.1M [00:00&lt;00:00,    21.2MB/s]
- 15%|#4        | Downloading : 2.49M/17.1M [00:00&lt;00:00,    28.9MB/s]
- 18%|#7        | Downloading : 2.99M/17.1M [00:00&lt;00:00,    27.4MB/s]
- 20%|##        | Downloading : 3.49M/17.1M [00:00&lt;00:00,    26.1MB/s]
- 26%|##6       | Downloading : 4.49M/17.1M [00:00&lt;00:00,    36.6MB/s]
- 29%|##9       | Downloading : 4.99M/17.1M [00:00&lt;00:00,    24.3MB/s]
- 32%|###2      | Downloading : 5.49M/17.1M [00:00&lt;00:01,    11.1MB/s]
- 35%|###5      | Downloading : 5.99M/17.1M [00:00&lt;00:04,    2.82MB/s]
- 38%|###8      | Downloading : 6.49M/17.1M [00:00&lt;00:01,    10.1MB/s]
- 40%|###9      | Downloading : 6.74M/17.1M [00:00&lt;00:03,    3.44MB/s]
- 41%|####1     | Downloading : 6.99M/17.1M [00:00&lt;00:02,    3.82MB/s]
- 42%|####2     | Downloading : 7.24M/17.1M [00:00&lt;00:01,    6.64MB/s]
- 44%|####3     | Downloading : 7.49M/17.1M [00:00&lt;00:01,    6.02MB/s]
- 45%|####5     | Downloading : 7.74M/17.1M [00:00&lt;00:05,    1.75MB/s]
- 49%|####9     | Downloading : 8.37M/17.1M [00:00&lt;00:00,    10.2MB/s]
- 53%|#####3    | Downloading : 9.12M/17.1M [00:00&lt;00:00,    15.7MB/s]
- 56%|#####6    | Downloading : 9.62M/17.1M [00:01&lt;00:01,    5.57MB/s]
- 58%|#####7    | Downloading : 9.87M/17.1M [00:02&lt;00:36,     204kB/s]
- 59%|#####8    | Downloading : 9.99M/17.1M [00:02&lt;00:05,    1.39MB/s]
- 59%|#####9    | Downloading : 10.1M/17.1M [00:02&lt;00:16,     446kB/s]
- 60%|######    | Downloading : 10.3M/17.1M [00:02&lt;00:02,    3.20MB/s]
- 61%|######1   | Downloading : 10.4M/17.1M [00:03&lt;00:10,     657kB/s]
- 64%|######3   | Downloading : 10.9M/17.1M [00:03&lt;00:03,    1.92MB/s]
- 66%|######5   | Downloading : 11.2M/17.1M [00:03&lt;00:00,    8.30MB/s]
- 67%|######7   | Downloading : 11.5M/17.1M [00:03&lt;00:01,    3.60MB/s]
- 69%|######8   | Downloading : 11.7M/17.1M [00:03&lt;00:03,    1.81MB/s]
- 70%|######9   | Downloading : 11.9M/17.1M [00:03&lt;00:01,    4.10MB/s]
- 72%|#######1  | Downloading : 12.2M/17.1M [00:03&lt;00:00,    5.83MB/s]
- 73%|#######3  | Downloading : 12.5M/17.1M [00:04&lt;00:15,     308kB/s]
- 75%|#######5  | Downloading : 12.9M/17.1M [00:05&lt;00:08,     535kB/s]
- 76%|#######6  | Downloading : 13.0M/17.1M [00:05&lt;00:01,    2.78MB/s]
- 78%|#######8  | Downloading : 13.4M/17.1M [00:05&lt;00:00,    5.46MB/s]
- 81%|########1 | Downloading : 13.9M/17.1M [00:05&lt;00:01,    2.48MB/s]
- 82%|########2 | Downloading : 14.0M/17.1M [00:05&lt;00:01,    2.01MB/s]
- 83%|########2 | Downloading : 14.1M/17.1M [00:05&lt;00:02,    1.04MB/s]
- 85%|########5 | Downloading : 14.6M/17.1M [00:05&lt;00:00,    7.08MB/s]
- 90%|########9 | Downloading : 15.3M/17.1M [00:05&lt;00:00,    6.24MB/s]
- 91%|#########1| Downloading : 15.6M/17.1M [00:06&lt;00:00,    1.65MB/s]
- 93%|#########3| Downloading : 15.9M/17.1M [00:06&lt;00:00,    7.42MB/s]
- 95%|#########4| Downloading : 16.2M/17.1M [00:06&lt;00:00,    6.87MB/s]
- 96%|#########6| Downloading : 16.4M/17.1M [00:06&lt;00:00,    1.43MB/s]
- 99%|#########8| Downloading : 16.8M/17.1M [00:06&lt;00:00,    7.12MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:06&lt;00:00,    11.0MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:06&lt;00:00,    2.79MB/s]
+  1%|          | Downloading : 120k/17.1M [00:00&lt;00:02,    7.48MB/s]
+  6%|5         | Downloading : 0.99M/17.1M [00:00&lt;00:00,    24.1MB/s]
+ 12%|#1        | Downloading : 1.99M/17.1M [00:00&lt;00:03,    5.24MB/s]
+ 16%|#6        | Downloading : 2.74M/17.1M [00:00&lt;00:03,    3.89MB/s]
+ 20%|##        | Downloading : 3.49M/17.1M [00:00&lt;00:01,    7.42MB/s]
+ 23%|##3       | Downloading : 3.99M/17.1M [00:00&lt;00:00,    20.2MB/s]
+ 26%|##6       | Downloading : 4.49M/17.1M [00:00&lt;00:00,    16.1MB/s]
+ 29%|##9       | Downloading : 4.99M/17.1M [00:00&lt;00:04,    2.78MB/s]
+ 34%|###3      | Downloading : 5.74M/17.1M [00:00&lt;00:00,    12.7MB/s]
+ 42%|####2     | Downloading : 7.24M/17.1M [00:00&lt;00:00,    29.7MB/s]
+ 48%|####8     | Downloading : 8.24M/17.1M [00:00&lt;00:00,    29.5MB/s]
+ 54%|#####4    | Downloading : 9.24M/17.1M [00:00&lt;00:00,    28.8MB/s]
+ 60%|######    | Downloading : 10.2M/17.1M [00:01&lt;00:00,    27.7MB/s]
+ 66%|######5   | Downloading : 11.2M/17.1M [00:01&lt;00:00,    27.4MB/s]
+ 72%|#######1  | Downloading : 12.2M/17.1M [00:01&lt;00:00,    29.9MB/s]
+ 78%|#######7  | Downloading : 13.2M/17.1M [00:01&lt;00:00,    32.4MB/s]
+ 84%|########3 | Downloading : 14.2M/17.1M [00:01&lt;00:00,    30.3MB/s]
+ 89%|########9 | Downloading : 15.2M/17.1M [00:01&lt;00:00,    33.2MB/s]
+ 95%|#########5| Downloading : 16.2M/17.1M [00:01&lt;00:00,    30.3MB/s]
+100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    25.6MB/s]
+100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    14.2MB/s]
 Verifying hash c4935d19ddab35422a69f3326a01fef8.
 Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
 (please be patient, this can take some time)
@@ -245,7 +200,7 @@ Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
 (0.0, 3000.0)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.863 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.591 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-10-hrf-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5d7784c7a4d7e581cc48ca0671986fdb/plot_10_hrf.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_10_hrf.py</span></code></a></p>
