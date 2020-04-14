@@ -50,7 +50,7 @@ Plot experiment expected haemodynamic response
     Creating ~/mne_data
     Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
     Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
-      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      1%|          | Downloading : 88.0k/17.1M [00:00<00:04,    3.89MB/s]      1%|1         | Downloading : 216k/17.1M [00:00<00:13,    1.31MB/s]       4%|3         | Downloading : 664k/17.1M [00:00<00:04,    3.60MB/s]      5%|5         | Downloading : 920k/17.1M [00:00<00:15,    1.07MB/s]      7%|7         | Downloading : 1.27M/17.1M [00:00<00:08,    2.02MB/s]     10%|9         | Downloading : 1.65M/17.1M [00:00<00:08,    1.84MB/s]     12%|#1        | Downloading : 2.02M/17.1M [00:00<00:02,    7.79MB/s]     13%|#3        | Downloading : 2.27M/17.1M [00:00<00:04,    3.82MB/s]     15%|#4        | Downloading : 2.52M/17.1M [00:01<00:26,     567kB/s]     16%|#5        | Downloading : 2.65M/17.1M [00:04<04:40,    53.8kB/s]     18%|#8        | Downloading : 3.09M/17.1M [00:04<00:31,     461kB/s]     19%|#8        | Downloading : 3.21M/17.1M [00:04<00:18,     795kB/s]     20%|#9        | Downloading : 3.40M/17.1M [00:04<00:07,    1.92MB/s]     22%|##2       | Downloading : 3.77M/17.1M [00:04<00:02,    6.22MB/s]     24%|##3       | Downloading : 4.02M/17.1M [00:04<00:12,    1.11MB/s]     26%|##5       | Downloading : 4.40M/17.1M [00:04<00:02,    4.56MB/s]     27%|##7       | Downloading : 4.65M/17.1M [00:06<00:51,     253kB/s]     29%|##9       | Downloading : 5.02M/17.1M [00:06<00:07,    1.78MB/s]     31%|###       | Downloading : 5.27M/17.1M [00:06<00:19,     619kB/s]     33%|###3      | Downloading : 5.65M/17.1M [00:06<00:02,    4.99MB/s]     36%|###6      | Downloading : 6.15M/17.1M [00:06<00:00,    18.5MB/s]     39%|###8      | Downloading : 6.65M/17.1M [00:06<00:00,    15.0MB/s]     42%|####1     | Downloading : 7.15M/17.1M [00:06<00:01,    8.61MB/s]     45%|####4     | Downloading : 7.65M/17.1M [00:07<00:10,     964kB/s]     46%|####6     | Downloading : 7.90M/17.1M [00:07<00:04,    2.22MB/s]     47%|####7     | Downloading : 8.02M/17.1M [00:07<00:05,    1.82MB/s]     48%|####7     | Downloading : 8.15M/17.1M [00:07<00:15,     600kB/s]     49%|####8     | Downloading : 8.34M/17.1M [00:07<00:07,    1.24MB/s]     50%|####9     | Downloading : 8.52M/17.1M [00:08<00:05,    1.68MB/s]     51%|#####1    | Downloading : 8.71M/17.1M [00:08<00:04,    1.99MB/s]     52%|#####1    | Downloading : 8.84M/17.1M [00:08<00:05,    1.52MB/s]     54%|#####4    | Downloading : 9.21M/17.1M [00:08<00:04,    1.86MB/s]     56%|#####6    | Downloading : 9.59M/17.1M [00:08<00:02,    3.84MB/s]     58%|#####7    | Downloading : 9.84M/17.1M [00:09<00:29,     259kB/s]     58%|#####8    | Downloading : 9.96M/17.1M [00:09<00:07,    1.04MB/s]     61%|######    | Downloading : 10.3M/17.1M [00:10<00:11,     592kB/s]     62%|######2   | Downloading : 10.6M/17.1M [00:10<00:14,     483kB/s]     65%|######4   | Downloading : 11.0M/17.1M [00:11<00:03,    1.65MB/s]     67%|######6   | Downloading : 11.4M/17.1M [00:11<00:01,    3.90MB/s]     68%|######8   | Downloading : 11.6M/17.1M [00:11<00:01,    3.06MB/s]     70%|######9   | Downloading : 11.9M/17.1M [00:11<00:04,    1.12MB/s]     72%|#######1  | Downloading : 12.3M/17.1M [00:11<00:03,    1.43MB/s]     74%|#######4  | Downloading : 12.6M/17.1M [00:11<00:01,    3.49MB/s]     76%|#######5  | Downloading : 12.9M/17.1M [00:12<00:03,    1.16MB/s]     76%|#######6  | Downloading : 13.0M/17.1M [00:12<00:02,    1.60MB/s]     79%|#######8  | Downloading : 13.4M/17.1M [00:12<00:05,     758kB/s]     79%|#######9  | Downloading : 13.5M/17.1M [00:12<00:03,    1.02MB/s]     80%|########  | Downloading : 13.7M/17.1M [00:13<00:03,    1.02MB/s]     81%|########1 | Downloading : 13.9M/17.1M [00:13<00:02,    1.46MB/s]     84%|########4 | Downloading : 14.3M/17.1M [00:13<00:01,    2.41MB/s]     85%|########4 | Downloading : 14.5M/17.1M [00:14<00:22,     123kB/s]     86%|########5 | Downloading : 14.6M/17.1M [00:14<00:03,     711kB/s]     88%|########8 | Downloading : 15.1M/17.1M [00:15<00:01,    1.04MB/s]     89%|########9 | Downloading : 15.2M/17.1M [00:15<00:00,    3.62MB/s]     91%|#########1| Downloading : 15.6M/17.1M [00:15<00:00,    1.71MB/s]     94%|#########3| Downloading : 16.0M/17.1M [00:15<00:00,    2.01MB/s]     96%|#########5| Downloading : 16.3M/17.1M [00:15<00:00,    1.97MB/s]     98%|#########7| Downloading : 16.7M/17.1M [00:16<00:00,     967kB/s]    100%|##########| Downloading : 17.1M/17.1M [00:16<00:00,    2.82MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:16<00:00,    1.09MB/s]
+      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      3%|2         | Downloading : 504k/17.1M [00:00<00:00,    25.7MB/s]     13%|#3        | Downloading : 2.24M/17.1M [00:00<00:00,    54.4MB/s]     31%|###       | Downloading : 5.24M/17.1M [00:00<00:00,    89.0MB/s]     42%|####2     | Downloading : 7.24M/17.1M [00:00<00:00,    66.3MB/s]     54%|#####4    | Downloading : 9.24M/17.1M [00:00<00:00,    16.8MB/s]     72%|#######1  | Downloading : 12.2M/17.1M [00:00<00:00,    78.9MB/s]     95%|#########5| Downloading : 16.2M/17.1M [00:00<00:00,     132MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    58.4MB/s]
     Verifying hash c4935d19ddab35422a69f3326a01fef8.
     Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
     (please be patient, this can take some time)
@@ -108,7 +108,7 @@ Add some text here.
     s = mne_nirs.experimental_design.create_hrf(raw_intensity)
     plt.plot(s)
     plt.xlim(0, 3000)
-
+    plt.show()
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_10_hrf_002.png
@@ -123,14 +123,13 @@ Add some text here.
 
     Used Annotations descriptions: ['1.0', '15.0', '2.0', '3.0']
 
-    (0.0, 3000.0)
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  26.873 seconds)
+   **Total running time of the script:** ( 0 minutes  4.631 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
