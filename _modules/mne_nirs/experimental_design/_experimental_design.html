@@ -101,11 +101,190 @@
       
   <h1>Source code for mne_nirs.experimental_design._experimental_design</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This is a module to be used as a reference for building other modules</span>
+<span class="sd">Experimental design and analysis.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">mne</span>
+
+
+<div class="viewcode-block" id="create_first_level_design_matrix"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix">[docs]</a><span class="k">def</span> <span class="nf">create_first_level_design_matrix</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                                     <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;glover&#39;</span><span class="p">,</span> <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+                                     <span class="n">high_pass</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                     <span class="n">fir_delays</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">add_regs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                     <span class="n">add_reg_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_onset</span><span class="o">=-</span><span class="mi">24</span><span class="p">,</span>
+                                     <span class="n">oversampling</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a design matrix for the experiment.</span>
+
+<span class="sd">    This is a wrapper function for</span>
+<span class="sd">    nistats.design_matrix.make_first_level_design_matrix.</span>
+
+<span class="sd">      .. warning:: Work in progress: I am trying to think on the best API.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    raw : instance of Raw</span>
+<span class="sd">        Haemoglobin data.</span>
+<span class="sd">    stim_dur : Number</span>
+<span class="sd">        The length of your stimulus.</span>
+<span class="sd">        TODO: Make this be independent per event id</span>
+<span class="sd">    hrf_model : As specified in Nistats</span>
+<span class="sd">    drift_model : As specified in Nistats</span>
+<span class="sd">    high_pass : As specified in Nistats. Actually its not documented there.</span>
+<span class="sd">    drift_order : As specified in Nistats</span>
+<span class="sd">    fir_delays : As specified in Nistats</span>
+<span class="sd">    add_regs : As specified in Nistats</span>
+<span class="sd">    min_onset : As specified in Nistats</span>
+<span class="sd">    oversampling : As specified in Nistats</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dm : Design matrix</span>
+<span class="sd">        As specified in Nistats.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">nistats.design_matrix</span> <span class="kn">import</span> <span class="n">make_first_level_design_matrix</span>
+    <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+
+    <span class="n">frame_times</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">times</span>
+
+    <span class="c1"># Create events for nistats</span>
+    <span class="n">conditions</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">description</span>
+    <span class="n">onsets</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">onset</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">stim_dur</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conditions</span><span class="p">))</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;trial_type&#39;</span><span class="p">:</span> <span class="n">conditions</span><span class="p">,</span>
+                        <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">onsets</span><span class="p">,</span>
+                        <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="n">duration</span><span class="p">})</span>
+
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">make_first_level_design_matrix</span><span class="p">(</span><span class="n">frame_times</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span>
+                                        <span class="n">drift_model</span><span class="o">=</span><span class="n">drift_model</span><span class="p">,</span>
+                                        <span class="n">drift_order</span><span class="o">=</span><span class="n">drift_order</span><span class="p">,</span>
+                                        <span class="n">hrf_model</span><span class="o">=</span><span class="n">hrf_model</span><span class="p">,</span>
+                                        <span class="n">min_onset</span><span class="o">=</span><span class="n">min_onset</span><span class="p">,</span>
+                                        <span class="n">high_pass</span><span class="o">=</span><span class="n">high_pass</span><span class="p">,</span>
+                                        <span class="n">add_regs</span><span class="o">=</span><span class="n">add_regs</span><span class="p">,</span>
+                                        <span class="n">oversampling</span><span class="o">=</span><span class="n">oversampling</span><span class="p">,</span>
+                                        <span class="n">add_reg_names</span><span class="o">=</span><span class="n">add_reg_names</span><span class="p">,</span>
+                                        <span class="n">fir_delays</span><span class="o">=</span><span class="n">fir_delays</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dm</span></div>
+
+
+<div class="viewcode-block" id="run_GLM"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.run_GLM.html#mne_nirs.experimental_design.run_GLM">[docs]</a><span class="k">def</span> <span class="nf">run_GLM</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">design_matrix</span><span class="p">,</span> <span class="n">noise_model</span><span class="o">=</span><span class="s1">&#39;ar1&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run GLM on data using supplied design matrix.</span>
+
+<span class="sd">    This is a wrapper function for nistats.first_level_model.run_glm.</span>
+
+<span class="sd">      .. warning:: Work in progress: I am trying to think on the best API.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    raw : instance of Raw</span>
+<span class="sd">        Haemoglobin data.</span>
+<span class="sd">    design_matrix : as specified in nistats</span>
+<span class="sd">        Design matrix of experiment.</span>
+<span class="sd">    noise_model : As specified in Nistats</span>
+<span class="sd">    bins : As specified in Nistats</span>
+<span class="sd">    n_jobs : As specified in Nistats</span>
+<span class="sd">    verbose : As specified in Nistats</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    labels : array</span>
+<span class="sd">        A map of values on voxels used to identify the corresponding model.</span>
+<span class="sd">    glm_estimates : dict</span>
+<span class="sd">        Keys correspond to the different labels values values are</span>
+<span class="sd">        RegressionResults instances corresponding to the voxels.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">nistats.first_level_model</span> <span class="kn">import</span> <span class="n">run_glm</span>
+
+    <span class="n">labels</span><span class="p">,</span> <span class="n">glm_estimates</span> <span class="o">=</span> <span class="n">run_glm</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">design_matrix</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                    <span class="n">noise_model</span><span class="o">=</span><span class="n">noise_model</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span>
+                                    <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">labels</span><span class="p">,</span> <span class="n">glm_estimates</span></div>
+
+
+<div class="viewcode-block" id="plot_GLM_topo"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.plot_GLM_topo.html#mne_nirs.experimental_design.plot_GLM_topo">[docs]</a><span class="k">def</span> <span class="nf">plot_GLM_topo</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">glm_estimates</span><span class="p">,</span> <span class="n">design_matrix</span><span class="p">,</span>
+                  <span class="n">requested_conditions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">sphere</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot topomap of NIRS GLM data.</span>
+
+<span class="sd">      .. warning:: Work in progress: I am trying to think on the best API.</span>
+
+<span class="sd">      .. warning:: TODO: best method for plotting on specified components?</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    raw : instance of Raw</span>
+<span class="sd">        Haemoglobin data.</span>
+<span class="sd">    labels : array</span>
+<span class="sd">        A map of values on voxels used to identify the corresponding model.</span>
+<span class="sd">    glm_estimates : dict</span>
+<span class="sd">        Keys correspond to the different labels values values are</span>
+<span class="sd">        RegressionResults instances corresponding to the voxels.</span>
+<span class="sd">    design_matrix : DataFrame</span>
+<span class="sd">        As specified in Nistats</span>
+<span class="sd">    figsize : TODO: Remove this, how does MNE ususally deal with this?</span>
+<span class="sd">    sphere : As specified in MNE</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : Figure of each design matrix componenent for hbo (top row)</span>
+<span class="sd">          and hbr (bottom row).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+    <span class="n">estimates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+        <span class="n">matching_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(([</span><span class="n">lab</span> <span class="o">==</span> <span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]))</span>
+        <span class="n">matching_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">([</span><span class="n">idx</span> <span class="o">==</span> <span class="n">ml</span> <span class="k">for</span> <span class="n">ml</span> <span class="ow">in</span> <span class="n">matching_labels</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">estimates</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">glm_estimates</span><span class="p">[</span><span class="n">lab</span><span class="p">]</span><span class="o">.</span><span class="n">theta</span><span class="p">[:,</span> <span class="n">matching_idx</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get_channel_types</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">requested_conditions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">requested_conditions</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">),</span>
+                             <span class="n">ncols</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">requested_conditions</span><span class="p">),</span>
+                             <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+    <span class="n">estimates</span> <span class="o">=</span> <span class="n">estimates</span><span class="p">[:,</span> <span class="p">[</span><span class="n">c</span> <span class="ow">in</span> <span class="n">requested_conditions</span>
+                              <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">]]</span>
+
+    <span class="n">design_matrix</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">[</span><span class="n">requested_conditions</span><span class="p">]</span>
+
+    <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">estimates</span><span class="p">))</span>
+    <span class="n">vmin</span> <span class="o">=</span> <span class="n">vmax</span> <span class="o">*</span> <span class="o">-</span><span class="mf">1.</span>
+
+    <span class="k">for</span> <span class="n">t_idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">types</span><span class="p">):</span>
+
+        <span class="n">picks</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">pick</span><span class="o">.</span><span class="n">_picks_to_idx</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[],</span>
+                                          <span class="n">allow_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">raw_subset</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="n">picks</span><span class="p">)</span>
+
+        <span class="n">_</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">merge_channels</span><span class="p">,</span> <span class="n">ch_names</span><span class="p">,</span> <span class="n">ch_type</span><span class="p">,</span> <span class="n">sphere</span><span class="p">,</span> <span class="n">clip_origin</span> <span class="o">=</span> \
+            <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">topomap</span><span class="o">.</span><span class="n">_prepare_topomap_plot</span><span class="p">(</span><span class="n">raw_subset</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">requested_conditions</span><span class="p">:</span>
+                <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">topomap</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">estimates</span><span class="p">[</span><span class="n">picks</span><span class="p">,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">pos</span><span class="p">,</span>
+                                             <span class="n">extrapolate</span><span class="o">=</span><span class="s1">&#39;local&#39;</span><span class="p">,</span>
+                                             <span class="n">names</span><span class="o">=</span><span class="n">ch_names</span><span class="p">,</span>
+                                             <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+                                             <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+                                             <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">t_idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">],</span>
+                                             <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                             <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">)</span>
+                <span class="n">axes</span><span class="p">[</span><span class="n">t_idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span></div>
 
 
 <div class="viewcode-block" id="create_boxcar"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.create_boxcar.html#mne_nirs.experimental_design.create_boxcar">[docs]</a><span class="k">def</span> <span class="nf">create_boxcar</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -140,38 +319,6 @@
         <span class="n">event_samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">id_evt</span><span class="p">]</span>
         <span class="n">s</span><span class="p">[</span><span class="n">event_samples</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
         <span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">bc</span><span class="p">)[:</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">times</span><span class="p">)]</span>
-    <span class="k">return</span> <span class="n">s</span></div>
-
-
-<div class="viewcode-block" id="create_hrf"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.create_hrf.html#mne_nirs.experimental_design.create_hrf">[docs]</a><span class="k">def</span> <span class="nf">create_hrf</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate expected haemodynamic response function.</span>
-
-<span class="sd">      .. warning:: The naming of this function may change. Use with caution.</span>
-<span class="sd">                   This is just a place holder while I get the documentation\</span>
-<span class="sd">                   up and running.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    raw : instance of Raw</span>
-<span class="sd">        Haemoglobin data.</span>
-<span class="sd">    event_id : as specified in MNE</span>
-<span class="sd">        Information about events.</span>
-<span class="sd">    stim_dur : Number</span>
-<span class="sd">        The length of your stimulus.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    s : array</span>
-<span class="sd">        Returns an array for each trigger channel.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">bids.analysis</span> <span class="kn">import</span> <span class="n">hrf</span>
-    <span class="n">h0</span> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">_gamma_difference_hrf</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span> <span class="n">time_length</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-
-    <span class="n">s</span> <span class="o">=</span> <span class="n">create_boxcar</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="n">event_id</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="n">stim_dur</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-        <span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">h0</span><span class="p">)[:</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">times</span><span class="p">)]</span>
-
     <span class="k">return</span> <span class="n">s</span></div>
 </pre></div>
 

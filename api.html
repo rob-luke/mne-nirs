@@ -71,7 +71,7 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Module API</a><ul>
-<li><a class="reference internal" href="#module-mne_nirs.experimental_design">Experimental Design</a></li>
+<li><a class="reference internal" href="#module-mne_nirs.experimental_design">Experimental Design and Analysis</a></li>
 <li><a class="reference internal" href="#module-mne_nirs.signal_enhancement">Signal Enhancment</a></li>
 </ul>
 </li>
@@ -108,8 +108,10 @@
       
   <div class="section" id="module-api">
 <h1>Module API<a class="headerlink" href="#module-api" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
 <div class="section" id="module-mne_nirs.experimental_design">
-<span id="experimental-design"></span><h2>Experimental Design<a class="headerlink" href="#module-mne_nirs.experimental_design" title="Permalink to this headline">¶</a></h2>
+<span id="experimental-design-and-analysis"></span><h2>Experimental Design and Analysis<a class="headerlink" href="#module-mne_nirs.experimental_design" title="Permalink to this headline">¶</a></h2>
 <p>Experimental design and analysis.</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -117,11 +119,17 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.create_boxcar.html#mne_nirs.experimental_design.create_boxcar" title="mne_nirs.experimental_design.create_boxcar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_boxcar</span></code></a>(raw[, event_id, stim_dur])</p></td>
-<td><p>Create a boxcar of the experiment.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_first_level_design_matrix</span></code></a>(raw[, …])</p></td>
+<td><p>Generate a design matrix for the experiment.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.create_hrf.html#mne_nirs.experimental_design.create_hrf" title="mne_nirs.experimental_design.create_hrf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_hrf</span></code></a>(raw[, event_id, stim_dur])</p></td>
-<td><p>Calculate expected haemodynamic response function.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.run_GLM.html#mne_nirs.experimental_design.run_GLM" title="mne_nirs.experimental_design.run_GLM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_GLM</span></code></a>(raw, design_matrix[, noise_model, …])</p></td>
+<td><p>Run GLM on data using supplied design matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.plot_GLM_topo.html#mne_nirs.experimental_design.plot_GLM_topo" title="mne_nirs.experimental_design.plot_GLM_topo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_GLM_topo</span></code></a>(raw, labels, glm_estimates, …)</p></td>
+<td><p>Plot topomap of NIRS GLM data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.create_boxcar.html#mne_nirs.experimental_design.create_boxcar" title="mne_nirs.experimental_design.create_boxcar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_boxcar</span></code></a>(raw[, event_id, stim_dur])</p></td>
+<td><p>Create a boxcar of the experiment.</p></td>
 </tr>
 </tbody>
 </table>

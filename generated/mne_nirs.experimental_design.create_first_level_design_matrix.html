@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Computation times &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>mne_nirs.experimental_design.create_first_level_design_matrix &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="index.html">Examples</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../api.html">API</a></li>
                 <li><a href="https://github.com/mne-tools/mne-nirs">GitHub</a></li>
             
@@ -70,7 +70,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Computation times</a></li>
+<li><a class="reference internal" href="#">mne_nirs.experimental_design.create_first_level_design_matrix</a></li>
 </ul>
 </ul>
 </li>
@@ -102,26 +102,47 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="computation-times">
-<span id="sphx-glr-auto-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
-<p><strong>01:45.347</strong> total execution time for <strong>auto_examples</strong> files:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 78%" />
-<col style="width: 13%" />
-<col style="width: 9%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_10_hrf.html#sphx-glr-auto-examples-plot-10-hrf-py"><span class="std std-ref">Haeomodynamic response analsys</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_10_hrf.py</span></code>)</p></td>
-<td><p>01:42.548</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_20_cui.html#sphx-glr-auto-examples-plot-20-cui-py"><span class="std std-ref">Examine the effect of signal enhancement approaches</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_20_cui.py</span></code>)</p></td>
-<td><p>00:02.799</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-</tbody>
-</table>
+  <div class="section" id="mne-nirs-experimental-design-create-first-level-design-matrix">
+<h1>mne_nirs.experimental_design.create_first_level_design_matrix<a class="headerlink" href="#mne-nirs-experimental-design-create-first-level-design-matrix" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mne_nirs.experimental_design.create_first_level_design_matrix">
+<code class="sig-prename descclassname">mne_nirs.experimental_design.</code><code class="sig-name descname">create_first_level_design_matrix</code><span class="sig-paren">(</span><em class="sig-param">raw, stim_dur=1.0, hrf_model='glover', drift_model='cosine', high_pass=0.01, drift_order=1, fir_delays=[0], add_regs=None, add_reg_names=None, min_onset=-24, oversampling=50</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/experimental_design/_experimental_design.html#create_first_level_design_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.experimental_design.create_first_level_design_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a design matrix for the experiment.</p>
+<p>This is a wrapper function for
+nistats.design_matrix.make_first_level_design_matrix.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Work in progress: I am trying to think on the best API.</p>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>Haemoglobin data.</p>
+</dd>
+<dt><strong>stim_dur</strong><span class="classifier">Number</span></dt><dd><p>The length of your stimulus.
+TODO: Make this be independent per event id</p>
+</dd>
+<dt><strong>hrf_model</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+<dt><strong>drift_model</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+<dt><strong>high_pass</strong><span class="classifier">As specified in Nistats. Actually its not documented there.</span></dt><dd></dd>
+<dt><strong>drift_order</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+<dt><strong>fir_delays</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+<dt><strong>add_regs</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+<dt><strong>min_onset</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+<dt><strong>oversampling</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>dm</strong><span class="classifier">Design matrix</span></dt><dd><p>As specified in Nistats.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
