@@ -118,7 +118,7 @@
 <span class="sd">    Generate a design matrix for the experiment.</span>
 
 <span class="sd">    This is a wrapper function for</span>
-<span class="sd">    nistats.design_matrix.make_first_level_design_matrix.</span>
+<span class="sd">    nilearn.stats.first_level_model.make_first_level_design_matrix.</span>
 
 <span class="sd">      .. warning:: Work in progress: I am trying to think on the best API.</span>
 
@@ -129,26 +129,26 @@
 <span class="sd">    stim_dur : Number</span>
 <span class="sd">        The length of your stimulus.</span>
 <span class="sd">        TODO: Make this be independent per event id</span>
-<span class="sd">    hrf_model : As specified in Nistats</span>
-<span class="sd">    drift_model : As specified in Nistats</span>
-<span class="sd">    high_pass : As specified in Nistats. Actually its not documented there.</span>
-<span class="sd">    drift_order : As specified in Nistats</span>
-<span class="sd">    fir_delays : As specified in Nistats</span>
-<span class="sd">    add_regs : As specified in Nistats</span>
-<span class="sd">    min_onset : As specified in Nistats</span>
-<span class="sd">    oversampling : As specified in Nistats</span>
+<span class="sd">    hrf_model : As specified in Nilearn</span>
+<span class="sd">    drift_model : As specified in Nilearn</span>
+<span class="sd">    high_pass : As specified in Nilearn. Actually its not documented there.</span>
+<span class="sd">    drift_order : As specified in Nilearn</span>
+<span class="sd">    fir_delays : As specified in Nilearn</span>
+<span class="sd">    add_regs : As specified in Nilearn</span>
+<span class="sd">    min_onset : As specified in Nilearn</span>
+<span class="sd">    oversampling : As specified in Nilearn</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    dm : Design matrix</span>
-<span class="sd">        As specified in Nistats.</span>
+<span class="sd">        As specified in Nilearn.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">nistats.design_matrix</span> <span class="kn">import</span> <span class="n">make_first_level_design_matrix</span>
+    <span class="kn">from</span> <span class="nn">nilearn.stats.first_level_model</span> <span class="kn">import</span> <span class="n">make_first_level_design_matrix</span>
     <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
 
     <span class="n">frame_times</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">times</span>
 
-    <span class="c1"># Create events for nistats</span>
+    <span class="c1"># Create events for nilearn</span>
     <span class="n">conditions</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">description</span>
     <span class="n">onsets</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">onset</span>
     <span class="n">duration</span> <span class="o">=</span> <span class="n">stim_dur</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conditions</span><span class="p">))</span>
@@ -175,7 +175,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run GLM on data using supplied design matrix.</span>
 
-<span class="sd">    This is a wrapper function for nistats.first_level_model.run_glm.</span>
+<span class="sd">    This is a wrapper function for nilearn.stats.first_level_model.run_glm.</span>
 
 <span class="sd">      .. warning:: Work in progress: I am trying to think on the best API.</span>
 
@@ -183,12 +183,12 @@
 <span class="sd">    ----------</span>
 <span class="sd">    raw : instance of Raw</span>
 <span class="sd">        Haemoglobin data.</span>
-<span class="sd">    design_matrix : as specified in nistats</span>
+<span class="sd">    design_matrix : as specified in Nilearn</span>
 <span class="sd">        Design matrix of experiment.</span>
-<span class="sd">    noise_model : As specified in Nistats</span>
-<span class="sd">    bins : As specified in Nistats</span>
-<span class="sd">    n_jobs : As specified in Nistats</span>
-<span class="sd">    verbose : As specified in Nistats</span>
+<span class="sd">    noise_model : As specified in Nilearn</span>
+<span class="sd">    bins : As specified in Nilearn</span>
+<span class="sd">    n_jobs : As specified in Nilearn</span>
+<span class="sd">    verbose : As specified in Nilearn</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -198,7 +198,7 @@
 <span class="sd">        Keys correspond to the different labels values values are</span>
 <span class="sd">        RegressionResults instances corresponding to the voxels.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">nistats.first_level_model</span> <span class="kn">import</span> <span class="n">run_glm</span>
+    <span class="kn">from</span> <span class="nn">nilearn.stats.first_level_model</span> <span class="kn">import</span> <span class="n">run_glm</span>
 
     <span class="n">labels</span><span class="p">,</span> <span class="n">glm_estimates</span> <span class="o">=</span> <span class="n">run_glm</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">design_matrix</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
                                     <span class="n">noise_model</span><span class="o">=</span><span class="n">noise_model</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span>
@@ -227,7 +227,7 @@
 <span class="sd">        Keys correspond to the different labels values values are</span>
 <span class="sd">        RegressionResults instances corresponding to the voxels.</span>
 <span class="sd">    design_matrix : DataFrame</span>
-<span class="sd">        As specified in Nistats</span>
+<span class="sd">        As specified in Nilearn</span>
 <span class="sd">    figsize : TODO: Remove this, how does MNE ususally deal with this?</span>
 <span class="sd">    sphere : As specified in MNE</span>
 

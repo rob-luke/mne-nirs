@@ -109,7 +109,7 @@
 <code class="sig-prename descclassname">mne_nirs.experimental_design.</code><code class="sig-name descname">create_first_level_design_matrix</code><span class="sig-paren">(</span><em class="sig-param">raw, stim_dur=1.0, hrf_model='glover', drift_model='cosine', high_pass=0.01, drift_order=1, fir_delays=[0], add_regs=None, add_reg_names=None, min_onset=-24, oversampling=50</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/experimental_design/_experimental_design.html#create_first_level_design_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.experimental_design.create_first_level_design_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a design matrix for the experiment.</p>
 <p>This is a wrapper function for
-nistats.design_matrix.make_first_level_design_matrix.</p>
+nilearn.stats.first_level_model.make_first_level_design_matrix.</p>
 <blockquote>
 <div><div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -124,19 +124,19 @@ nistats.design_matrix.make_first_level_design_matrix.</p>
 <dt><strong>stim_dur</strong><span class="classifier">Number</span></dt><dd><p>The length of your stimulus.
 TODO: Make this be independent per event id</p>
 </dd>
-<dt><strong>hrf_model</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
-<dt><strong>drift_model</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
-<dt><strong>high_pass</strong><span class="classifier">As specified in Nistats. Actually its not documented there.</span></dt><dd></dd>
-<dt><strong>drift_order</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
-<dt><strong>fir_delays</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
-<dt><strong>add_regs</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
-<dt><strong>min_onset</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
-<dt><strong>oversampling</strong><span class="classifier">As specified in Nistats</span></dt><dd></dd>
+<dt><strong>hrf_model</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>drift_model</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>high_pass</strong><span class="classifier">As specified in Nilearn. Actually its not documented there.</span></dt><dd></dd>
+<dt><strong>drift_order</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>fir_delays</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>add_regs</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>min_onset</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>oversampling</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>dm</strong><span class="classifier">Design matrix</span></dt><dd><p>As specified in Nistats.</p>
+<dt><strong>dm</strong><span class="classifier">Design matrix</span></dt><dd><p>As specified in Nilearn.</p>
 </dd>
 </dl>
 </dd>
