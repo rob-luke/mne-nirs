@@ -109,7 +109,8 @@
 
 
 <div class="viewcode-block" id="create_first_level_design_matrix"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix">[docs]</a><span class="k">def</span> <span class="nf">create_first_level_design_matrix</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
-                                     <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;glover&#39;</span><span class="p">,</span> <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+                                     <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;glover&#39;</span><span class="p">,</span>
+                                     <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span>
                                      <span class="n">high_pass</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                                      <span class="n">fir_delays</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">add_regs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                      <span class="n">add_reg_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_onset</span><span class="o">=-</span><span class="mi">24</span><span class="p">,</span>
@@ -215,8 +216,6 @@
 
 <span class="sd">      .. warning:: Work in progress: I am trying to think on the best API.</span>
 
-<span class="sd">      .. warning:: TODO: best method for plotting on specified components?</span>
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    raw : instance of Raw</span>
@@ -228,6 +227,8 @@
 <span class="sd">        RegressionResults instances corresponding to the voxels.</span>
 <span class="sd">    design_matrix : DataFrame</span>
 <span class="sd">        As specified in Nilearn</span>
+<span class="sd">    requested_conditions : array</span>
+<span class="sd">        Which conditions should be displayed.</span>
 <span class="sd">    figsize : TODO: Remove this, how does MNE ususally deal with this?</span>
 <span class="sd">    sphere : As specified in MNE</span>
 
