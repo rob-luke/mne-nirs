@@ -9,12 +9,12 @@
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
@@ -72,7 +72,8 @@
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Module API</a><ul>
 <li><a class="reference internal" href="#module-mne_nirs.experimental_design">Experimental Design and Analysis</a></li>
-<li><a class="reference internal" href="#module-mne_nirs.signal_enhancement">Signal Enhancment</a></li>
+<li><a class="reference internal" href="#module-mne_nirs.signal_enhancement">Signal Enhancement</a></li>
+<li><a class="reference internal" href="#module-mne_nirs.visualisation">Visualisation</a></li>
 </ul>
 </li>
 </ul>
@@ -135,7 +136,7 @@
 </table>
 </div>
 <div class="section" id="module-mne_nirs.signal_enhancement">
-<span id="signal-enhancment"></span><h2>Signal Enhancment<a class="headerlink" href="#module-mne_nirs.signal_enhancement" title="Permalink to this headline">¶</a></h2>
+<span id="signal-enhancement"></span><h2>Signal Enhancement<a class="headerlink" href="#module-mne_nirs.signal_enhancement" title="Permalink to this headline">¶</a></h2>
 <p>Signal enhancement techniques.</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -145,6 +146,21 @@
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.signal_enhancement.enhance_negative_correlation.html#mne_nirs.signal_enhancement.enhance_negative_correlation" title="mne_nirs.signal_enhancement.enhance_negative_correlation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enhance_negative_correlation</span></code></a>(raw)</p></td>
 <td><p>Apply method to enhance negative correlation between HbO and HbR.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-mne_nirs.visualisation">
+<span id="visualisation"></span><h2>Visualisation<a class="headerlink" href="#module-mne_nirs.visualisation" title="Permalink to this headline">¶</a></h2>
+<p>NIRS specific plotting functions.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.visualisation.plot_nirs_source_detector.html#mne_nirs.visualisation.plot_nirs_source_detector" title="mne_nirs.visualisation.plot_nirs_source_detector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_nirs_source_detector</span></code></a>(data[, info, …])</p></td>
+<td><p>Plot NIRS activity between sources and detectors in 3D.</p></td>
 </tr>
 </tbody>
 </table>
@@ -164,7 +180,7 @@
     </p>
     <p>
         &copy; Copyright 2020, Robert Luke.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
     </p>
   </div>
 </footer>
