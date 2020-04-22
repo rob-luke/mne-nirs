@@ -73,6 +73,7 @@
 <li><a class="reference internal" href="#">Module API</a><ul>
 <li><a class="reference internal" href="#module-mne_nirs.experimental_design">Experimental Design and Analysis</a></li>
 <li><a class="reference internal" href="#module-mne_nirs.signal_enhancement">Signal Enhancement</a></li>
+<li><a class="reference internal" href="#module-mne_nirs.statistics">Statistics</a></li>
 <li><a class="reference internal" href="#module-mne_nirs.visualisation">Visualisation</a></li>
 </ul>
 </li>
@@ -123,12 +124,6 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_first_level_design_matrix</span></code></a>(raw[, …])</p></td>
 <td><p>Generate a design matrix for the experiment.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.run_GLM.html#mne_nirs.experimental_design.run_GLM" title="mne_nirs.experimental_design.run_GLM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_GLM</span></code></a>(raw, design_matrix[, noise_model, …])</p></td>
-<td><p>Run GLM on data using supplied design matrix.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.plot_GLM_topo.html#mne_nirs.experimental_design.plot_GLM_topo" title="mne_nirs.experimental_design.plot_GLM_topo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_GLM_topo</span></code></a>(raw, labels, glm_estimates, …)</p></td>
-<td><p>Plot topomap of NIRS GLM data.</p></td>
-</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/mne_nirs.experimental_design.create_boxcar.html#mne_nirs.experimental_design.create_boxcar" title="mne_nirs.experimental_design.create_boxcar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_boxcar</span></code></a>(raw[, event_id, stim_dur])</p></td>
 <td><p>Create a boxcar of the experiment.</p></td>
 </tr>
@@ -150,6 +145,21 @@
 </tbody>
 </table>
 </div>
+<div class="section" id="module-mne_nirs.statistics">
+<span id="statistics"></span><h2>Statistics<a class="headerlink" href="#module-mne_nirs.statistics" title="Permalink to this headline">¶</a></h2>
+<p>Statistical analysis.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.statistics.run_GLM.html#mne_nirs.statistics.run_GLM" title="mne_nirs.statistics.run_GLM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_GLM</span></code></a>(raw, design_matrix[, noise_model, …])</p></td>
+<td><p>Run GLM on data using supplied design matrix.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="module-mne_nirs.visualisation">
 <span id="visualisation"></span><h2>Visualisation<a class="headerlink" href="#module-mne_nirs.visualisation" title="Permalink to this headline">¶</a></h2>
 <p>NIRS specific plotting functions.</p>
@@ -161,6 +171,9 @@
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/mne_nirs.visualisation.plot_nirs_source_detector.html#mne_nirs.visualisation.plot_nirs_source_detector" title="mne_nirs.visualisation.plot_nirs_source_detector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_nirs_source_detector</span></code></a>(data[, info, …])</p></td>
 <td><p>Plot NIRS activity between sources and detectors in 3D.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mne_nirs.visualisation.plot_GLM_topo.html#mne_nirs.visualisation.plot_GLM_topo" title="mne_nirs.visualisation.plot_GLM_topo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_GLM_topo</span></code></a>(raw, labels, glm_estimates, …)</p></td>
+<td><p>Plot topomap of NIRS GLM data.</p></td>
 </tr>
 </tbody>
 </table>

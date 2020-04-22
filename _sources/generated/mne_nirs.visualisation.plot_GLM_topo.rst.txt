@@ -1,0 +1,6 @@
+mne\_nirs.visualisation.plot\_GLM\_topo
+=======================================
+
+.. currentmodule:: mne_nirs.visualisation
+
+.. autofunction:: plot_GLM_topo

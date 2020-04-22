@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Computation times &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>mne_nirs.statistics.run_GLM &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="index.html">Examples</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../api.html">API</a></li>
                 <li><a href="https://github.com/mne-tools/mne-nirs">GitHub</a></li>
             
@@ -70,7 +70,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Computation times</a></li>
+<li><a class="reference internal" href="#">mne_nirs.statistics.run_GLM</a></li>
 </ul>
 </ul>
 </li>
@@ -102,26 +102,44 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="computation-times">
-<span id="sphx-glr-auto-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
-<p><strong>01:45.781</strong> total execution time for <strong>auto_examples</strong> files:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 78%" />
-<col style="width: 13%" />
-<col style="width: 9%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_10_hrf.html#sphx-glr-auto-examples-plot-10-hrf-py"><span class="std std-ref">Haeomodynamic response analysis</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_10_hrf.py</span></code>)</p></td>
-<td><p>01:42.935</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_20_cui.html#sphx-glr-auto-examples-plot-20-cui-py"><span class="std std-ref">Examine the effect of signal enhancement approaches</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_20_cui.py</span></code>)</p></td>
-<td><p>00:02.846</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-</tbody>
-</table>
+  <div class="section" id="mne-nirs-statistics-run-glm">
+<h1>mne_nirs.statistics.run_GLM<a class="headerlink" href="#mne-nirs-statistics-run-glm" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mne_nirs.statistics.run_GLM">
+<code class="sig-prename descclassname">mne_nirs.statistics.</code><code class="sig-name descname">run_GLM</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">design_matrix</em>, <em class="sig-param">noise_model='ar1'</em>, <em class="sig-param">bins=100</em>, <em class="sig-param">n_jobs=1</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/statistics/_run_GLM.html#run_GLM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.statistics.run_GLM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run GLM on data using supplied design matrix.</p>
+<p>This is a wrapper function for nilearn.stats.first_level_model.run_glm.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Work in progress: I am trying to think on the best API.</p>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>Haemoglobin data.</p>
+</dd>
+<dt><strong>design_matrix</strong><span class="classifier">as specified in Nilearn</span></dt><dd><p>Design matrix of experiment.</p>
+</dd>
+<dt><strong>noise_model</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>bins</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>n_jobs</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>verbose</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>labels</strong><span class="classifier">array</span></dt><dd><p>A map of values on voxels used to identify the corresponding model.</p>
+</dd>
+<dt><strong>glm_estimates</strong><span class="classifier">dict</span></dt><dd><p>Keys correspond to the different labels values values are
+RegressionResults instances corresponding to the voxels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 

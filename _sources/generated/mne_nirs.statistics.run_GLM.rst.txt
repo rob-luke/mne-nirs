@@ -1,0 +1,6 @@
+mne\_nirs.statistics.run\_GLM
+=============================
+
+.. currentmodule:: mne_nirs.statistics
+
+.. autofunction:: run_GLM
