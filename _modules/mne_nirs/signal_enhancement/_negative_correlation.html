@@ -140,6 +140,9 @@
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;enhance_negative_correlation should &#39;</span>
                            <span class="s1">&#39;be run on haemoglobin data.&#39;</span><span class="p">)</span>
 
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hbo_channels</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hbr_channels</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Same number of hbo and hbr channels required.&#39;</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hbo_channels</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;chs&#39;</span><span class="p">][</span><span class="n">hbo_channels</span><span class="p">[</span><span class="n">idx</span><span class="p">]][</span><span class="s1">&#39;ch_name&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> \
                 <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;chs&#39;</span><span class="p">][</span><span class="n">hbr_channels</span><span class="p">[</span><span class="n">idx</span><span class="p">]][</span><span class="s1">&#39;ch_name&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">4</span><span class="p">]:</span>
