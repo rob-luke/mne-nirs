@@ -72,7 +72,7 @@
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">NIRS Frequency and Filter Commentary</a><ul>
 <li><a class="reference internal" href="#import-and-preprocess-data">Import and preprocess data</a></li>
-<li><a class="reference internal" href="#expected-haemodynamic-response">Expected haemodynamic response</a></li>
+<li><a class="reference internal" href="#model-neural-response">Model neural response</a></li>
 <li><a class="reference internal" href="#plot-raw-measured-data">Plot raw measured data</a></li>
 <li><a class="reference internal" href="#plot-epoched-data">Plot epoched data</a></li>
 <li><a class="reference internal" href="#plot-filter-response">Plot filter response</a></li>
@@ -122,11 +122,13 @@ We examine the interplay between the expected brain response based
 on experimental design and our model of how the brain reacts to stimuli:,
 the actual data measured during an experiment, and the filtering
 that is applied to the data.</p>
+<p>This is a work in progress. I am just getting the figures correct
+before I fill in the text.</p>
 <div class="contents local topic" id="page-contents">
 <p class="topic-title">Page contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#import-and-preprocess-data" id="id1">Import and preprocess data</a></p></li>
-<li><p><a class="reference internal" href="#expected-haemodynamic-response" id="id2">Expected haemodynamic response</a></p></li>
+<li><p><a class="reference internal" href="#model-neural-response" id="id2">Model neural response</a></p></li>
 <li><p><a class="reference internal" href="#plot-raw-measured-data" id="id3">Plot raw measured data</a></p></li>
 <li><p><a class="reference internal" href="#plot-epoched-data" id="id4">Plot epoched data</a></p></li>
 <li><p><a class="reference internal" href="#plot-filter-response" id="id5">Plot filter response</a></p></li>
@@ -175,10 +177,18 @@ Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
 </pre></div>
 </div>
 </div>
-<div class="section" id="expected-haemodynamic-response">
-<h2><a class="toc-backref" href="#id2">Expected haemodynamic response</a><a class="headerlink" href="#expected-haemodynamic-response" title="Permalink to this headline">¶</a></h2>
-<p>First we extract the expected HRF function from
-the data. See <a class="reference internal" href="plot_10_hrf.html#tut-fnirs-hrf"><span class="std std-ref">Haeomodynamic response function analysis</span></a> for more details on this analysis.</p>
+<div class="section" id="model-neural-response">
+<h2><a class="toc-backref" href="#id2">Model neural response</a><a class="headerlink" href="#model-neural-response" title="Permalink to this headline">¶</a></h2>
+<p>We know the when each stimulus was presented to the lister (see Annotations)
+and we have a model of how we expect the brain to react to each
+stimulus presentation (add wikipedia HRF link).
+From this information we can build a model of how we expect the brain
+to be active during this experiment.
+See <a class="reference internal" href="plot_10_hrf.html#tut-fnirs-hrf"><span class="std std-ref">Haeomodynamic response function analysis</span></a> for more details on this analysis.</p>
+<p>Here we create the expected model neural response function using the data
+and plot the frequency spectrum.</p>
+<p>We note there is a peak at 0.03 which corresponds to approximately 30 seconds
+which is the average inter stimulus interval for this experiment.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># This is a bit of a hack.</span>
@@ -202,8 +212,10 @@ the data. See <a class="reference internal" href="plot_10_hrf.html#tut-fnirs-hrf
 </div>
 <div class="section" id="plot-raw-measured-data">
 <h2><a class="toc-backref" href="#id3">Plot raw measured data</a><a class="headerlink" href="#plot-raw-measured-data" title="Permalink to this headline">¶</a></h2>
-<p>Next we plot the PSD of the raw data.
-Here we rescale the data to fit in the final figure.</p>
+<p>Next we plot the PSD of the raw data.</p>
+<p>Here we rescale the data to fit in the final figure.</p>
+<p>TODO: I would like to find a nicer way to fit everything in one plot.
+Could I use a left y axis for the real data?</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_haemo</span><span class="o">.</span><span class="n">_data</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_haemo</span><span class="o">.</span><span class="n">_data</span></a> <span class="o">*</span> <span class="mf">1e-2</span>
 <span class="n">raw_haemo</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 </pre></div>
@@ -295,7 +307,7 @@ different components relate.</p>
                           <span class="n">plot</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">leg_lines</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">get_linestyle</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">]</span>
-<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.legend" title="matplotlib.figure.Figure.legend" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">legend</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">leg_lines</span></a><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Theoretical HRF&#39;</span><span class="p">,</span> <span class="s1">&#39;Measured Data&#39;</span><span class="p">,</span>
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.legend" title="matplotlib.figure.Figure.legend" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">legend</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">leg_lines</span></a><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Model Response&#39;</span><span class="p">,</span> <span class="s1">&#39;Measured Data&#39;</span><span class="p">,</span>
                        <span class="s1">&#39;Epoched Data&#39;</span><span class="p">,</span> <span class="s1">&#39;Filter Response&#39;</span><span class="p">])</span>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Filter Magnitude (dB) [invalid for other lines]&#39;</span><span class="p">)</span>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -310,7 +322,7 @@ Effective window size : 262.144 (s)
 Text(0.5, 1.0, &#39;&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.183 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.892 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-30-frequency-summary-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/716799dfb1f4812dbf7a7ab6e7d18e47/plot_30_frequency_summary.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_30_frequency_summary.py</span></code></a></p>
