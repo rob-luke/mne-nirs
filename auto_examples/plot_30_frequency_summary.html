@@ -140,7 +140,6 @@ that is applied to the data.</p>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">mne</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mne_nirs.experimental_design</span> <span class="kn">import</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a>
 </pre></div>
 </div>
@@ -171,87 +170,7 @@ convert to haemoglobin concentration. See
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Using default location ~/mne_data for fnirs_motor...
-Creating ~/mne_data
-Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
-Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&amp;action=download&amp;direct (17.1 MB)
-
-  0%|          | Downloading : 0.00/17.1M [00:00&lt;?,        ?B/s]
-  1%|          | Downloading : 120k/17.1M [00:00&lt;00:11,    1.58MB/s]
-  1%|1         | Downloading : 248k/17.1M [00:00&lt;00:10,    1.64MB/s]
-  2%|2         | Downloading : 376k/17.1M [00:00&lt;00:10,    1.69MB/s]
-  3%|2         | Downloading : 504k/17.1M [00:00&lt;00:09,    1.75MB/s]
-  4%|3         | Downloading : 632k/17.1M [00:00&lt;00:09,    1.81MB/s]
-  5%|4         | Downloading : 824k/17.1M [00:00&lt;00:09,    1.88MB/s]
-  7%|6         | Downloading : 1.18M/17.1M [00:00&lt;00:08,    1.96MB/s]
-  8%|8         | Downloading : 1.43M/17.1M [00:00&lt;00:07,    2.05MB/s]
- 10%|9         | Downloading : 1.68M/17.1M [00:00&lt;00:07,    2.14MB/s]
- 13%|#2        | Downloading : 2.18M/17.1M [00:00&lt;00:06,    2.24MB/s]
- 14%|#4        | Downloading : 2.43M/17.1M [00:00&lt;00:07,    2.15MB/s]
- 16%|#5        | Downloading : 2.68M/17.1M [00:00&lt;00:06,    2.24MB/s]
- 17%|#7        | Downloading : 2.93M/17.1M [00:00&lt;00:06,    2.34MB/s]
- 19%|#8        | Downloading : 3.18M/17.1M [00:00&lt;00:05,    2.44MB/s]
- 20%|##        | Downloading : 3.43M/17.1M [00:00&lt;00:05,    2.54MB/s]
- 22%|##1       | Downloading : 3.68M/17.1M [00:00&lt;00:05,    2.64MB/s]
- 23%|##3       | Downloading : 3.93M/17.1M [00:00&lt;00:05,    2.75MB/s]
- 25%|##4       | Downloading : 4.18M/17.1M [00:00&lt;00:04,    2.87MB/s]
- 26%|##5       | Downloading : 4.43M/17.1M [00:00&lt;00:04,    2.98MB/s]
- 27%|##7       | Downloading : 4.68M/17.1M [00:00&lt;00:04,    3.11MB/s]
- 29%|##8       | Downloading : 4.93M/17.1M [00:00&lt;00:03,    3.22MB/s]
- 30%|###       | Downloading : 5.18M/17.1M [00:00&lt;00:03,    3.35MB/s]
- 32%|###1      | Downloading : 5.43M/17.1M [00:00&lt;00:03,    3.48MB/s]
- 33%|###3      | Downloading : 5.68M/17.1M [00:00&lt;00:03,    3.62MB/s]
- 35%|###4      | Downloading : 5.93M/17.1M [00:00&lt;00:03,    3.75MB/s]
- 36%|###6      | Downloading : 6.18M/17.1M [00:00&lt;00:02,    3.90MB/s]
- 38%|###7      | Downloading : 6.43M/17.1M [00:00&lt;00:02,    4.03MB/s]
- 39%|###9      | Downloading : 6.68M/17.1M [00:00&lt;00:02,    4.18MB/s]
- 41%|####      | Downloading : 6.93M/17.1M [00:00&lt;00:02,    4.33MB/s]
- 42%|####2     | Downloading : 7.18M/17.1M [00:00&lt;00:02,    4.47MB/s]
- 44%|####3     | Downloading : 7.43M/17.1M [00:00&lt;00:02,    4.62MB/s]
- 45%|####5     | Downloading : 7.68M/17.1M [00:00&lt;00:02,    4.75MB/s]
- 46%|####6     | Downloading : 7.93M/17.1M [00:00&lt;00:01,    4.89MB/s]
- 49%|####9     | Downloading : 8.43M/17.1M [00:01&lt;00:01,    5.07MB/s]
- 51%|#####     | Downloading : 8.68M/17.1M [00:01&lt;00:01,    5.24MB/s]
- 52%|#####2    | Downloading : 8.93M/17.1M [00:01&lt;00:01,    5.42MB/s]
- 54%|#####3    | Downloading : 9.18M/17.1M [00:01&lt;00:01,    5.57MB/s]
- 55%|#####5    | Downloading : 9.43M/17.1M [00:01&lt;00:01,    5.75MB/s]
- 57%|#####6    | Downloading : 9.68M/17.1M [00:01&lt;00:01,    5.93MB/s]
- 58%|#####8    | Downloading : 9.93M/17.1M [00:01&lt;00:01,    6.12MB/s]
- 60%|#####9    | Downloading : 10.2M/17.1M [00:01&lt;00:01,    6.28MB/s]
- 61%|######1   | Downloading : 10.4M/17.1M [00:01&lt;00:01,    6.45MB/s]
- 63%|######2   | Downloading : 10.7M/17.1M [00:01&lt;00:01,    6.63MB/s]
- 64%|######4   | Downloading : 10.9M/17.1M [00:01&lt;00:00,    6.81MB/s]
- 66%|######5   | Downloading : 11.2M/17.1M [00:01&lt;00:00,    7.00MB/s]
- 67%|######7   | Downloading : 11.4M/17.1M [00:01&lt;00:00,    7.16MB/s]
- 68%|######8   | Downloading : 11.7M/17.1M [00:01&lt;00:00,    7.35MB/s]
- 70%|######9   | Downloading : 11.9M/17.1M [00:01&lt;00:00,    7.54MB/s]
- 71%|#######1  | Downloading : 12.2M/17.1M [00:01&lt;00:00,    7.72MB/s]
- 73%|#######2  | Downloading : 12.4M/17.1M [00:01&lt;00:00,    7.86MB/s]
- 74%|#######4  | Downloading : 12.7M/17.1M [00:01&lt;00:00,    8.06MB/s]
- 76%|#######5  | Downloading : 12.9M/17.1M [00:01&lt;00:00,    8.18MB/s]
- 77%|#######7  | Downloading : 13.2M/17.1M [00:01&lt;00:00,    8.38MB/s]
- 79%|#######8  | Downloading : 13.4M/17.1M [00:01&lt;00:00,    8.56MB/s]
- 80%|########  | Downloading : 13.7M/17.1M [00:01&lt;00:00,    8.73MB/s]
- 82%|########1 | Downloading : 13.9M/17.1M [00:01&lt;00:00,    8.86MB/s]
- 83%|########3 | Downloading : 14.2M/17.1M [00:01&lt;00:00,    9.00MB/s]
- 85%|########4 | Downloading : 14.4M/17.1M [00:01&lt;00:00,    9.16MB/s]
- 86%|########6 | Downloading : 14.7M/17.1M [00:01&lt;00:00,    9.29MB/s]
- 88%|########7 | Downloading : 14.9M/17.1M [00:01&lt;00:00,    9.40MB/s]
- 89%|########9 | Downloading : 15.2M/17.1M [00:01&lt;00:00,    9.59MB/s]
- 90%|######### | Downloading : 15.4M/17.1M [00:01&lt;00:00,    9.67MB/s]
- 92%|#########1| Downloading : 15.7M/17.1M [00:01&lt;00:00,    9.85MB/s]
- 93%|#########3| Downloading : 15.9M/17.1M [00:01&lt;00:00,    9.78MB/s]
- 96%|#########6| Downloading : 16.4M/17.1M [00:01&lt;00:00,    9.98MB/s]
- 98%|#########7| Downloading : 16.7M/17.1M [00:01&lt;00:00,    10.1MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    10.4MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    10.7MB/s]
-Verifying hash c4935d19ddab35422a69f3326a01fef8.
-Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
-(please be patient, this can take some time)
-Successfully extracted to: [&#39;/github/home/mne_data/MNE-fNIRS-motor-data&#39;]
-Attempting to create new mne-python configuration file:
-/github/home/.mne/mne-python.json
-Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
 Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
 </pre></div>
 </div>
@@ -286,12 +205,19 @@ Here we rescale the data to fit in the figure.</p>
 <p>TODO: Find a nice way to show this data with correct scale, perhaps a left
 y axis scale.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_haemo</span><span class="o">.</span><span class="n">_data</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_haemo</span><span class="o">.</span><span class="n">_data</span></a> <span class="o">*</span> <span class="mf">1e-2</span>
-<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">raw_haemo</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                            <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+<img alt="../_images/sphx_glr_plot_30_frequency_summary_002.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_30_frequency_summary_002.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Effective window size : 262.144 (s)
+Effective window size : 262.144 (s)
+
+&lt;Figure size 640x480 with 1 Axes&gt;
 </pre></div>
 </div>
 </div>
@@ -307,10 +233,17 @@ y axis scale.</p>
                     <span class="n">reject</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">reject_criteria</span></a><span class="p">,</span> <span class="n">reject_by_annotation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">proj</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">detrend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span>
+
+
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">raw_haemo</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                           <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">epochs</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span>
                                         <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<img alt="../_images/sphx_glr_plot_30_frequency_summary_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_30_frequency_summary_003.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Used Annotations descriptions: [&#39;Tapping/Left&#39;, &#39;Tapping/Right&#39;]
 60 matching events found
@@ -319,7 +252,11 @@ Not setting metadata
 0 projection items activated
 Loading data for 60 events and 157 original time points ...
 0 bad epochs dropped
+Effective window size : 262.144 (s)
+Effective window size : 262.144 (s)
     Using multitaper spectrum estimation with 7 DPSS windows
+
+&lt;Figure size 640x480 with 1 Axes&gt;
 </pre></div>
 </div>
 </div>
@@ -330,12 +267,20 @@ Loading data for 60 events and 157 original time points ...
     <span class="n">raw_haemo</span><span class="o">.</span><span class="n">get_data</span><span class="p">(),</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
     <span class="n">l_freq</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
     <span class="n">h_trans_bandwidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">l_trans_bandwidth</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
-<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_filter</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filter_params</span></a><span class="p">,</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
+
+
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">raw_haemo</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                           <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">epochs</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span>
+                                        <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_filter</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filter_params</span></a><span class="p">,</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
                           <span class="n">flim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">fscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                           <span class="n">plot</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/sphx_glr_plot_30_frequency_summary_002.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_30_frequency_summary_002.png" />
+<img alt="../_images/sphx_glr_plot_30_frequency_summary_004.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_30_frequency_summary_004.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Setting up band-pass filter from 0.01 - 0.4 Hz
 
@@ -349,22 +294,45 @@ Designing a one-pass, zero-phase, non-causal bandpass filter:
 - Upper passband edge: 0.40 Hz
 - Upper transition bandwidth: 0.20 Hz (-6 dB cutoff frequency: 0.50 Hz)
 - Filter length: 5157 samples (660.096 sec)
+
+Effective window size : 262.144 (s)
+Effective window size : 262.144 (s)
+    Using multitaper spectrum estimation with 7 DPSS windows
+
+&lt;Figure size 640x480 with 1 Axes&gt;
 </pre></div>
 </div>
 </div>
 <div class="section" id="discussion">
 <h2><a class="toc-backref" href="#id6">Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
 <p>Next we plot the filter response.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">leg_lines</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">get_linestyle</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">raw_haemo</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                           <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">epochs</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span>
+                                        <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_filter</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filter_params</span></a><span class="p">,</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
+                          <span class="n">flim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">fscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">plot</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">leg_lines</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">get_linestyle</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">]</span>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.legend" title="matplotlib.figure.Figure.legend" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">legend</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">leg_lines</span></a><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Theoretical HRF&#39;</span><span class="p">,</span> <span class="s1">&#39;Measured Data&#39;</span><span class="p">,</span>
                        <span class="s1">&#39;Epoched Data&#39;</span><span class="p">,</span> <span class="s1">&#39;Filter Response&#39;</span><span class="p">])</span>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Filter Magnitude (dB) [invalid for other lines]&#39;</span><span class="p">)</span>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.131 seconds)</p>
+<img alt="../_images/sphx_glr_plot_30_frequency_summary_005.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_30_frequency_summary_005.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Effective window size : 262.144 (s)
+Effective window size : 262.144 (s)
+    Using multitaper spectrum estimation with 7 DPSS windows
+
+Text(0.5, 1.0, &#39;&#39;)
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.154 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-30-frequency-summary-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/716799dfb1f4812dbf7a7ab6e7d18e47/plot_30_frequency_summary.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_30_frequency_summary.py</span></code></a></p>
