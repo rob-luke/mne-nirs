@@ -110,8 +110,8 @@ See :ref:`tut-fnirs-hrf` for more details on this analysis.
 Here we create the expected model neural response function using the data
 and plot the frequency spectrum.
 
-We note there is a peak at 0.03 which corresponds to approximately 30 seconds
-which is the average inter stimulus interval for this experiment.
+We note there is a peak at 0.03 which corresponds approximately to
+the repetition rate of the experiment.
 
 
 .. code-block:: default
@@ -154,15 +154,20 @@ Plot raw measured data
 
 Next we plot the PSD of the raw data.
 
-Here we rescale the data to fit in the final figure.
+Note the increased activity around 1 Hz. .... Heart rate ....
+
+Discuss low frequency....
 
 TODO: I would like to find a nicer way to fit everything in one plot.
 Could I use a left y axis for the real data?
+
+TODO: Find a way not to have to rescale the data to fit in plot
 
 
 .. code-block:: default
 
 
+    # rescale data to fit in plot. TODO: fix this
     raw_haemo._data = raw_haemo._data * 1e-2
     raw_haemo.pick(picks='hbo').plot_psd(average=True, fmax=2, xscale='log')
 
@@ -239,6 +244,10 @@ Plot filter response
 
 Next we plot the filter response.
 
+Basic description of filters and link to MNE tut...
+
+Discuss with specific relation to NIRS.
+
 
 .. code-block:: default
 
@@ -290,6 +299,10 @@ Discussion
 Next we overlay all figures on the same figure to see how the
 different components relate.
 
+We note that the heart rate...
+
+We see that ...
+
 
 .. code-block:: default
 
@@ -334,7 +347,7 @@ different components relate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.892 seconds)
+   **Total running time of the script:** ( 0 minutes  12.884 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency_summary.py:
