@@ -90,7 +90,7 @@ Crop to meet github memory constraints.
     Creating ~/mne_data
     Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
     Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
-      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      0%|          | Downloading : 24.0k/17.1M [00:00<00:16,    1.07MB/s]      0%|          | Downloading : 72.0k/17.1M [00:00<00:16,    1.09MB/s]      1%|          | Downloading : 136k/17.1M [00:00<00:15,    1.13MB/s]       2%|1         | Downloading : 264k/17.1M [00:00<00:15,    1.17MB/s]      3%|2         | Downloading : 456k/17.1M [00:00<00:14,    1.23MB/s]      5%|4         | Downloading : 840k/17.1M [00:00<00:13,    1.29MB/s]      9%|9         | Downloading : 1.57M/17.1M [00:00<00:12,    1.35MB/s]     18%|#8        | Downloading : 3.07M/17.1M [00:00<00:10,    1.42MB/s]     24%|##3       | Downloading : 4.07M/17.1M [00:00<00:09,    1.49MB/s]     30%|##9       | Downloading : 5.07M/17.1M [00:00<00:08,    1.56MB/s]     36%|###5      | Downloading : 6.07M/17.1M [00:00<00:07,    1.63MB/s]     41%|####1     | Downloading : 7.07M/17.1M [00:00<00:06,    1.70MB/s]     47%|####7     | Downloading : 8.07M/17.1M [00:00<00:05,    1.78MB/s]     53%|#####3    | Downloading : 9.07M/17.1M [00:00<00:04,    1.87MB/s]     59%|#####9    | Downloading : 10.1M/17.1M [00:00<00:03,    1.95MB/s]     65%|######4   | Downloading : 11.1M/17.1M [00:00<00:03,    2.04MB/s]     71%|#######   | Downloading : 12.1M/17.1M [00:00<00:02,    2.13MB/s]     77%|#######6  | Downloading : 13.1M/17.1M [00:00<00:01,    2.22MB/s]     83%|########2 | Downloading : 14.1M/17.1M [00:00<00:01,    2.32MB/s]     88%|########8 | Downloading : 15.1M/17.1M [00:01<00:00,    2.43MB/s]     94%|#########4| Downloading : 16.1M/17.1M [00:01<00:00,    2.54MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:01<00:00,    2.65MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:01<00:00,    15.0MB/s]
+      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      2%|1         | Downloading : 312k/17.1M [00:00<00:01,    13.1MB/s]      5%|4         | Downloading : 824k/17.1M [00:00<00:01,    13.4MB/s]     14%|#3        | Downloading : 2.30M/17.1M [00:00<00:01,    14.0MB/s]     19%|#9        | Downloading : 3.30M/17.1M [00:00<00:00,    14.5MB/s]     25%|##5       | Downloading : 4.30M/17.1M [00:00<00:00,    14.9MB/s]     31%|###1      | Downloading : 5.30M/17.1M [00:00<00:00,    15.4MB/s]     37%|###6      | Downloading : 6.30M/17.1M [00:00<00:00,    15.8MB/s]     43%|####2     | Downloading : 7.30M/17.1M [00:00<00:00,    16.3MB/s]     49%|####8     | Downloading : 8.30M/17.1M [00:00<00:00,    16.8MB/s]     55%|#####4    | Downloading : 9.30M/17.1M [00:00<00:00,    17.2MB/s]     60%|######    | Downloading : 10.3M/17.1M [00:00<00:00,    17.7MB/s]     66%|######6   | Downloading : 11.3M/17.1M [00:00<00:00,    18.2MB/s]     72%|#######2  | Downloading : 12.3M/17.1M [00:00<00:00,    18.6MB/s]     78%|#######8  | Downloading : 13.3M/17.1M [00:00<00:00,    19.0MB/s]     84%|########3 | Downloading : 14.3M/17.1M [00:00<00:00,    19.5MB/s]     90%|########9 | Downloading : 15.3M/17.1M [00:00<00:00,    20.0MB/s]     96%|#########5| Downloading : 16.3M/17.1M [00:00<00:00,    20.5MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    21.0MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    36.9MB/s]
     Verifying hash c4935d19ddab35422a69f3326a01fef8.
     Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
     (please be patient, this can take some time)
@@ -302,7 +302,7 @@ using standard Nilearn reporting functions.
  .. code-block:: none
 
 
-    <matplotlib.axes._subplots.AxesSubplot object at 0x7f7153243100>
+    <matplotlib.axes._subplots.AxesSubplot object at 0x7f7feb171a60>
 
 
 
@@ -430,7 +430,7 @@ negative sof HbO as expected.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  45.285 seconds)
+   **Total running time of the script:** ( 1 minutes  48.327 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
