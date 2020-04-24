@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>NIRS Frequency and Filter Commentary &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>Frequency and Filter Commentary &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -70,7 +70,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">NIRS Frequency and Filter Commentary</a><ul>
+<li><a class="reference internal" href="#">Frequency and Filter Commentary</a><ul>
 <li><a class="reference internal" href="#import-and-preprocess-data">Import and preprocess data</a></li>
 <li><a class="reference internal" href="#model-neural-response">Model neural response</a></li>
 <li><a class="reference internal" href="#plot-raw-measured-data">Plot raw measured data</a></li>
@@ -114,8 +114,8 @@
 <p class="admonition-title">Note</p>
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-30-frequency-summary-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="nirs-frequency-and-filter-commentary">
-<span id="tut-fnirs-freq"></span><span id="sphx-glr-auto-examples-plot-30-frequency-summary-py"></span><h1>NIRS Frequency and Filter Commentary<a class="headerlink" href="#nirs-frequency-and-filter-commentary" title="Permalink to this headline">¶</a></h1>
+<div class="sphx-glr-example-title section" id="frequency-and-filter-commentary">
+<span id="tut-fnirs-freq"></span><span id="sphx-glr-auto-examples-plot-30-frequency-summary-py"></span><h1>Frequency and Filter Commentary<a class="headerlink" href="#frequency-and-filter-commentary" title="Permalink to this headline">¶</a></h1>
 <p>In this example we discuss frequency and filters in the context
 of NIRS analysis.
 We examine the interplay between the expected brain response based
@@ -151,7 +151,7 @@ before I fill in the text.</p>
 so will not be described in detail here.
 We read in the data, annotate the triggers, remove the control condition,
 convert to haemoglobin concentration. See
-<a class="reference external" href="https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing">https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing</a>.html#</p>
+<a class="reference external" href="https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing.html">https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing.html</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_data_folder</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fnirs_motor</span><span class="o">.</span><span class="n">data_path</span><span class="p">()</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_raw_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="os.path.join" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_data_folder</span></a><span class="p">,</span> <span class="s1">&#39;Participant-1&#39;</span><span class="p">)</span>
 <span class="n">raw_intensity</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_raw_nirx</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_raw_dir</span></a><span class="p">,</span>
@@ -310,7 +310,7 @@ different components relate.</p>
 <span class="n">epochs</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span>
                                         <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_filter</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filter_params</span></a><span class="p">,</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
-                          <span class="n">flim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">fscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">flim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0005</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">fscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                           <span class="n">plot</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">leg_lines</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.axes" title="matplotlib.figure.Figure.axes" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">axes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">get_linestyle</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">]</span>
@@ -329,7 +329,7 @@ Effective window size : 262.144 (s)
 Text(0.5, 1.0, &#39;&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.884 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.835 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-30-frequency-summary-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/716799dfb1f4812dbf7a7ab6e7d18e47/plot_30_frequency_summary.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_30_frequency_summary.py</span></code></a></p>
