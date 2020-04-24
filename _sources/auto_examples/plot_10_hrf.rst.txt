@@ -9,10 +9,10 @@
     .. _sphx_glr_auto_examples_plot_10_hrf.py:
 
 
-.. _tut-fnirs-processing:
+.. _tut-fnirs-hrf:
 
-Haeomodynamic response analysis
-===============================
+Haeomodynamic response function analysis
+========================================
 
 This document is a work in progress.
 It is a first attempt to add GLM analysis to MNE processing of NIRS data.
@@ -22,7 +22,6 @@ https://github.com/nilearn/nilearn/tree/master/nilearn/stats .
 
 Currently the analysis is only being run on the first third of the measurement
 to meet github actions memory constraints.
-I need to either swtich to another CI with more memory or solve this issue.
 This means the results are noisier than the MNE fnirs tutorial.
 
 This document quite poorly written, read with caution.
@@ -87,17 +86,6 @@ Crop to meet github memory constraints.
 
  .. code-block:: none
 
-    Using default location ~/mne_data for fnirs_motor...
-    Creating ~/mne_data
-    Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
-    Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
-      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      3%|2         | Downloading : 504k/17.1M [00:00<00:00,    26.9MB/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:02,    7.51MB/s]     20%|##        | Downloading : 3.49M/17.1M [00:00<00:01,    12.3MB/s]     23%|##3       | Downloading : 3.99M/17.1M [00:00<00:01,    13.5MB/s]     26%|##6       | Downloading : 4.49M/17.1M [00:00<00:00,    14.0MB/s]     29%|##9       | Downloading : 4.99M/17.1M [00:00<00:00,    13.2MB/s]     32%|###2      | Downloading : 5.49M/17.1M [00:00<00:00,    13.6MB/s]     35%|###5      | Downloading : 5.99M/17.1M [00:00<00:00,    14.5MB/s]     38%|###8      | Downloading : 6.49M/17.1M [00:00<00:00,    13.0MB/s]     41%|####1     | Downloading : 6.99M/17.1M [00:00<00:00,    12.6MB/s]     44%|####3     | Downloading : 7.49M/17.1M [00:00<00:00,    12.8MB/s]     47%|####6     | Downloading : 7.99M/17.1M [00:00<00:00,    13.0MB/s]     50%|####9     | Downloading : 8.49M/17.1M [00:00<00:00,    12.1MB/s]     53%|#####2    | Downloading : 8.99M/17.1M [00:00<00:00,    15.1MB/s]     56%|#####5    | Downloading : 9.49M/17.1M [00:00<00:00,    11.8MB/s]     59%|#####8    | Downloading : 9.99M/17.1M [00:00<00:00,    13.1MB/s]     62%|######1   | Downloading : 10.5M/17.1M [00:00<00:00,    14.2MB/s]     64%|######4   | Downloading : 11.0M/17.1M [00:00<00:00,    17.7MB/s]     67%|######7   | Downloading : 11.5M/17.1M [00:00<00:00,    25.6MB/s]     70%|#######   | Downloading : 12.0M/17.1M [00:00<00:00,    22.6MB/s]     73%|#######3  | Downloading : 12.5M/17.1M [00:01<00:00,    13.6MB/s]     76%|#######6  | Downloading : 13.0M/17.1M [00:01<00:00,    12.5MB/s]     79%|#######9  | Downloading : 13.5M/17.1M [00:01<00:00,    12.6MB/s]     82%|########2 | Downloading : 14.0M/17.1M [00:01<00:00,    11.9MB/s]     85%|########4 | Downloading : 14.5M/17.1M [00:01<00:00,    13.0MB/s]     88%|########7 | Downloading : 15.0M/17.1M [00:01<00:00,    13.5MB/s]     91%|######### | Downloading : 15.5M/17.1M [00:01<00:00,    13.0MB/s]     94%|#########3| Downloading : 16.0M/17.1M [00:01<00:00,    13.3MB/s]     97%|#########6| Downloading : 16.5M/17.1M [00:01<00:00,    11.7MB/s]    100%|#########9| Downloading : 17.0M/17.1M [00:01<00:00,    14.9MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:01<00:00,    12.8MB/s]
-    Verifying hash c4935d19ddab35422a69f3326a01fef8.
-    Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
-    (please be patient, this can take some time)
-    Successfully extracted to: ['/github/home/mne_data/MNE-fNIRS-motor-data']
-    Attempting to create new mne-python configuration file:
-    /github/home/.mne/mne-python.json
     Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
     Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
 
@@ -303,7 +291,7 @@ using standard Nilearn reporting functions.
  .. code-block:: none
 
 
-    <matplotlib.axes._subplots.AxesSubplot object at 0x7f3abb977100>
+    <matplotlib.axes._subplots.AxesSubplot object at 0x7fe6eb7ed3a0>
 
 
 
@@ -431,7 +419,7 @@ negative sof HbO as expected.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  48.775 seconds)
+   **Total running time of the script:** ( 1 minutes  45.502 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:

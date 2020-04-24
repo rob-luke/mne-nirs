@@ -1,0 +1,329 @@
+.. only:: html
+
+    .. note::
+        :class: sphx-glr-download-link-note
+
+        Click :ref:`here <sphx_glr_download_auto_examples_plot_30_frequency_summary.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_plot_30_frequency_summary.py:
+
+
+.. _tut-fnirs-freq:
+
+NIRS Frequency and Filter Commentary
+====================================
+
+In this example we discuss frequency and filters in the context
+of NIRS analysis.
+We examine the interplay between the expected brain response based
+on experimental design and our model of how the brain reacts to stimuli:,
+the actual data measured during an experiment, and the filtering
+that is applied to the data.
+
+.. contents:: Page contents
+   :local:
+   :depth: 2
+
+
+.. code-block:: default
+
+
+    # Authors: Robert Luke <mail@robertluke.net>
+    #
+    # License: BSD (3-clause)
+
+    import os
+    import mne
+    import numpy as np
+    from mne_nirs.experimental_design import create_first_level_design_matrix
+
+
+
+
+
+
+
+
+
+Import and preprocess data
+--------------------------
+
+This code is similar to the first sections in the MNE tutorial,
+so will not be described in detail here.
+We read in the data, annotate the triggers, remove the control condition,
+convert to haemoglobin concentration. See
+https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing.html#
+
+
+.. code-block:: default
+
+
+    fnirs_data_folder = mne.datasets.fnirs_motor.data_path()
+    fnirs_raw_dir = os.path.join(fnirs_data_folder, 'Participant-1')
+    raw_intensity = mne.io.read_raw_nirx(fnirs_raw_dir,
+                                         verbose=True).load_data()
+    new_des = [des for des in raw_intensity.annotations.description]
+    new_des = ['Control' if x == "1.0" else x for x in new_des]
+    new_des = ['Tapping/Left' if x == "2.0" else x for x in new_des]
+    new_des = ['Tapping/Right' if x == "3.0" else x for x in new_des]
+    annot = mne.Annotations(raw_intensity.annotations.onset,
+                            raw_intensity.annotations.duration * 5., new_des)
+    raw_intensity.set_annotations(annot)
+    raw_intensity.annotations.crop(60, 2967)
+    raw_intensity.annotations.delete(
+        np.where([d == 'Control' for d in raw_intensity.annotations.description]))
+
+    raw_od = mne.preprocessing.nirs.optical_density(raw_intensity)
+    raw_haemo = mne.preprocessing.nirs.beer_lambert_law(raw_od)
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Using default location ~/mne_data for fnirs_motor...
+    Creating ~/mne_data
+    Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
+    Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
+      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      3%|2         | Downloading : 504k/17.1M [00:00<00:00,    31.3MB/s]      6%|5         | Downloading : 0.99M/17.1M [00:00<00:00,    30.1MB/s]      9%|8         | Downloading : 1.49M/17.1M [00:00<00:00,    28.0MB/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:00,    26.4MB/s]     15%|#4        | Downloading : 2.49M/17.1M [00:00<00:00,    25.5MB/s]     18%|#7        | Downloading : 2.99M/17.1M [00:00<00:00,    24.4MB/s]     20%|##        | Downloading : 3.49M/17.1M [00:00<00:00,    23.7MB/s]     23%|##3       | Downloading : 3.99M/17.1M [00:00<00:00,    22.8MB/s]     26%|##6       | Downloading : 4.49M/17.1M [00:00<00:00,    22.1MB/s]     29%|##9       | Downloading : 4.99M/17.1M [00:00<00:00,    21.4MB/s]     32%|###2      | Downloading : 5.49M/17.1M [00:00<00:00,    20.6MB/s]     35%|###5      | Downloading : 5.99M/17.1M [00:00<00:00,    20.0MB/s]     38%|###8      | Downloading : 6.49M/17.1M [00:00<00:00,    19.6MB/s]     41%|####1     | Downloading : 6.99M/17.1M [00:00<00:00,    19.1MB/s]     44%|####3     | Downloading : 7.49M/17.1M [00:00<00:00,    18.7MB/s]     47%|####6     | Downloading : 7.99M/17.1M [00:00<00:00,    18.3MB/s]     50%|####9     | Downloading : 8.49M/17.1M [00:00<00:00,    17.9MB/s]     53%|#####2    | Downloading : 8.99M/17.1M [00:00<00:00,    17.5MB/s]     56%|#####5    | Downloading : 9.49M/17.1M [00:00<00:00,    17.1MB/s]     59%|#####8    | Downloading : 9.99M/17.1M [00:00<00:00,    16.9MB/s]     62%|######1   | Downloading : 10.5M/17.1M [00:00<00:00,    16.5MB/s]     64%|######4   | Downloading : 11.0M/17.1M [00:00<00:00,    16.6MB/s]     67%|######7   | Downloading : 11.5M/17.1M [00:00<00:00,    16.4MB/s]     70%|#######   | Downloading : 12.0M/17.1M [00:00<00:00,    16.0MB/s]     73%|#######3  | Downloading : 12.5M/17.1M [00:00<00:00,    16.0MB/s]     76%|#######6  | Downloading : 13.0M/17.1M [00:00<00:00,    15.9MB/s]     79%|#######9  | Downloading : 13.5M/17.1M [00:01<00:00,    15.7MB/s]     82%|########2 | Downloading : 14.0M/17.1M [00:01<00:00,    15.6MB/s]     85%|########4 | Downloading : 14.5M/17.1M [00:01<00:00,    15.6MB/s]     88%|########7 | Downloading : 15.0M/17.1M [00:01<00:00,    15.4MB/s]     91%|######### | Downloading : 15.5M/17.1M [00:01<00:00,    15.4MB/s]     94%|#########3| Downloading : 16.0M/17.1M [00:01<00:00,    15.3MB/s]     97%|#########6| Downloading : 16.5M/17.1M [00:01<00:00,    15.2MB/s]    100%|#########9| Downloading : 17.0M/17.1M [00:01<00:00,    15.1MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:01<00:00,    13.7MB/s]
+    Verifying hash c4935d19ddab35422a69f3326a01fef8.
+    Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
+    (please be patient, this can take some time)
+    Successfully extracted to: ['/github/home/mne_data/MNE-fNIRS-motor-data']
+    Attempting to create new mne-python configuration file:
+    /github/home/.mne/mne-python.json
+    Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
+    Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
+
+
+
+
+Extract expected HRF from data
+------------------------------
+
+First we extract the expected HRF function from
+the data. See :ref:`_tut-fnirs-hrf` for more details on this analysis.
+
+
+.. code-block:: default
+
+
+    design_matrix = create_first_level_design_matrix(raw_haemo, drift_order=0)
+
+    # This is a bit of a hack.
+    # Overwrite the first NIRS channel with the expected response.
+    # Rescale to be in expected units of uM.
+    hrf = raw_haemo.copy().pick(picks=[0])
+    hrf._data[0] = 1e-6 * (design_matrix['Tapping/Left'] +
+                           design_matrix['Tapping/Right']).T
+
+    fig = hrf.pick(picks='hbo').plot_psd(average=True, fmax=2,
+                                         color='r', show=False)
+
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_plot_30_frequency_summary_001.png
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Effective window size : 262.144 (s)
+
+
+
+
+Plot raw measured data
+----------------------
+
+Next we plot the PSD of the raw data.
+Here we rescale the data to fit in the figure.
+
+TODO: Find a nice way to show this data with correct scale, perhaps a left
+y axis scale.
+
+
+.. code-block:: default
+
+
+    raw_haemo._data = raw_haemo._data * 1e-2
+    fig = raw_haemo.pick(picks='hbo').plot_psd(average=True, fmax=2,
+                                               ax=fig.axes, show=False)
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Effective window size : 262.144 (s)
+
+
+
+
+Plot epoched data
+-----------------
+
+Next we plot the PSD of the epoched data.
+
+
+.. code-block:: default
+
+
+
+    events, _ = mne.events_from_annotations(raw_haemo)
+    event_dict = {'Tapping/Left': 1, 'Tapping/Right': 2}
+    reject_criteria = dict(hbo=120e-6)
+    tmin, tmax = -5, 15
+    epochs = mne.Epochs(raw_haemo, events, event_id=event_dict,
+                        tmin=tmin, tmax=tmax,
+                        reject=reject_criteria, reject_by_annotation=True,
+                        proj=True, baseline=(None, 0), preload=True,
+                        detrend=None, verbose=True)
+    fig = epochs.pick(picks='hbo').plot_psd(average=True, fmax=2, ax=fig.axes,
+                                            show=False, color='g')
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Used Annotations descriptions: ['Tapping/Left', 'Tapping/Right']
+    60 matching events found
+    Applying baseline correction (mode: mean)
+    Not setting metadata
+    0 projection items activated
+    Loading data for 60 events and 157 original time points ...
+    0 bad epochs dropped
+        Using multitaper spectrum estimation with 7 DPSS windows
+
+
+
+
+Plot filter response
+--------------------
+
+Next we plot the filter response.
+
+
+.. code-block:: default
+
+
+    filter_params = mne.filter.create_filter(
+        raw_haemo.get_data(), raw_haemo.info['sfreq'],
+        l_freq=0.01, h_freq=0.4,
+        h_trans_bandwidth=0.2, l_trans_bandwidth=0.005)
+    fig = mne.viz.plot_filter(filter_params, raw_haemo.info['sfreq'],
+                              flim=(0.005, 2), fscale='log', gain=False,
+                              plot='magnitude', axes=fig.axes, show=False)
+
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_plot_30_frequency_summary_002.png
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Setting up band-pass filter from 0.01 - 0.4 Hz
+
+    FIR filter parameters
+    ---------------------
+    Designing a one-pass, zero-phase, non-causal bandpass filter:
+    - Windowed time-domain design (firwin) method
+    - Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+    - Lower passband edge: 0.01
+    - Lower transition bandwidth: 0.01 Hz (-6 dB cutoff frequency: 0.01 Hz)
+    - Upper passband edge: 0.40 Hz
+    - Upper transition bandwidth: 0.20 Hz (-6 dB cutoff frequency: 0.50 Hz)
+    - Filter length: 5157 samples (660.096 sec)
+
+
+
+
+
+Discussion
+----------
+
+Next we plot the filter response.
+
+
+.. code-block:: default
+
+
+    leg_lines = [line for line in fig.axes[0].lines if line.get_linestyle() == '-']
+    fig.legend(leg_lines, ['Theoretical HRF', 'Measured Data',
+                           'Epoched Data', 'Filter Response'])
+    fig.axes[0].set_ylabel('Filter Magnitude (dB) [invalid for other lines]')
+    fig.axes[0].set_title('')
+
+    fig.show()
+
+
+
+
+
+
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** ( 0 minutes  16.316 seconds)
+
+
+.. _sphx_glr_download_auto_examples_plot_30_frequency_summary.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download sphx-glr-download-python
+
+     :download:`Download Python source code: plot_30_frequency_summary.py <plot_30_frequency_summary.py>`
+
+
+
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+     :download:`Download Jupyter notebook: plot_30_frequency_summary.ipynb <plot_30_frequency_summary.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

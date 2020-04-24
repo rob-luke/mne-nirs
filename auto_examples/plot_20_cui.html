@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Examine the effect of signal enhancement approaches &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>Signal enhancement techniques &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -70,7 +70,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Examine the effect of signal enhancement approaches</a><ul>
+<li><a class="reference internal" href="#">Signal enhancement techniques</a><ul>
 <li><a class="reference internal" href="#import-and-preprocess-data">Import and preprocess data</a></li>
 <li><a class="reference internal" href="#extract-epochs-with-no-additional-processing">Extract epochs with no additional processing</a></li>
 <li><a class="reference internal" href="#apply-negative-correlation-enhancment-algorithm">Apply negative correlation enhancment algorithm</a></li>
@@ -112,8 +112,10 @@
 <p class="admonition-title">Note</p>
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-20-cui-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="examine-the-effect-of-signal-enhancement-approaches">
-<span id="tut-fnirs-cui"></span><span id="sphx-glr-auto-examples-plot-20-cui-py"></span><h1>Examine the effect of signal enhancement approaches<a class="headerlink" href="#examine-the-effect-of-signal-enhancement-approaches" title="Permalink to this headline">¶</a></h1>
+<div class="sphx-glr-example-title section" id="signal-enhancement-techniques">
+<span id="tut-fnirs-cui"></span><span id="sphx-glr-auto-examples-plot-20-cui-py"></span><h1>Signal enhancement techniques<a class="headerlink" href="#signal-enhancement-techniques" title="Permalink to this headline">¶</a></h1>
+<p>In this document we investigate the effect of different signal enhancement
+techniques for NIRS data.</p>
 <div class="contents local topic" id="page-contents">
 <p class="topic-title">Page contents</p>
 <ul class="simple">
@@ -123,7 +125,11 @@
 <li><p><a class="reference internal" href="#plot-two-approaches-for-comparison" id="id4">Plot two approaches for comparison</a></p></li>
 </ul>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Robert Luke &lt;mail@robertluke.net&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># License: BSD (3-clause)</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -276,7 +282,7 @@ combining channels using &quot;mean&quot;
 combining channels using &quot;mean&quot;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.183 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.058 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-20-cui-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/8004bd8d0571541b1596a2bb003de455/plot_20_cui.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_20_cui.py</span></code></a></p>

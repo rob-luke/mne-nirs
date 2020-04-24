@@ -15,6 +15,26 @@ Introductory examples.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example we discuss frequency and filters in the context of NIRS analysis. We examine th...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_30_frequency_summary_thumb.png
+
+     :ref:`sphx_glr_auto_examples_plot_30_frequency_summary.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_30_frequency_summary
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This document is a work in progress. It is a first attempt to add GLM analysis to MNE processin...">
 
 .. only:: html
@@ -35,7 +55,7 @@ Introductory examples.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Examine the effect of signal enhancement approaches">
+    <div class="sphx-glr-thumbcontainer" tooltip="In this document we investigate the effect of different signal enhancement techniques for NIRS ...">
 
 .. only:: html
 
