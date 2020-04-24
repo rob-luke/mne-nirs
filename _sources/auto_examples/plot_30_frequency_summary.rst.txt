@@ -113,7 +113,7 @@ the data. See :ref:`tut-fnirs-hrf` for more details on this analysis.
     hrf._data[0] = 1e-6 * (design_matrix['Tapping/Left'] +
                            design_matrix['Tapping/Right']).T
 
-    hrf.pick(picks='hbo').plot_psd(average=True, fmax=2,
+    hrf.pick(picks='hbo').plot_psd(average=True, fmax=2, xscale='log',
                                          color='r', show=False)
 
 
@@ -147,7 +147,7 @@ Here we rescale the data to fit in the final figure.
 
 
     raw_haemo._data = raw_haemo._data * 1e-2
-    raw_haemo.pick(picks='hbo').plot_psd(average=True, fmax=2)
+    raw_haemo.pick(picks='hbo').plot_psd(average=True, fmax=2, xscale='log')
 
 
 
@@ -188,7 +188,7 @@ Next we plot the PSD of the epoched data.
                         proj=True, baseline=(None, 0), preload=True,
                         detrend=None, verbose=True)
 
-    epochs.pick(picks='hbo').plot_psd(average=True, fmax=2, color='g')
+    epochs.pick(picks='hbo').plot_psd(average=True, fmax=2, color='g', xscale='log')
 
 
 
@@ -317,7 +317,7 @@ different components relate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.700 seconds)
+   **Total running time of the script:** ( 0 minutes  14.183 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency_summary.py:
