@@ -299,10 +299,17 @@ Designing a one-pass, zero-phase, non-causal bandpass filter:
 </div>
 <div class="section" id="discussion">
 <h2><a class="toc-backref" href="#id6">Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
-<p>Next we overlay all figures on the same figure to see how the
+<p>Finally we overlay all lines on the same figure to see how the
 different components relate.</p>
-<p>We note that the heart rate…</p>
-<p>We see that …</p>
+<p>We note that the filter cutoff above 0.4 Hz attenuates the heart rate signal
+which is situated around 1 Hz.</p>
+<p>The breathing rate / Mayer waves around 0.1 Hz are in the same range as
+the expected model response, so are not attenuated by the filter. However,
+as the experiment was designed with a randomised inter stimulus interval
+the act of epoching and averaging the data removes these unwanted components.</p>
+<p>The filter attenuates low frequency components in the signal. We observe that
+the expected model response has reduced below 0.015 Hz, so filtering below
+0.01 should not overly affect the signal of interest.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">hrf</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                      <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">raw_haemo</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -329,7 +336,7 @@ Effective window size : 262.144 (s)
 Text(0.5, 1.0, &#39;&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.202 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.658 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-30-frequency-summary-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/716799dfb1f4812dbf7a7ab6e7d18e47/plot_30_frequency_summary.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_30_frequency_summary.py</span></code></a></p>
