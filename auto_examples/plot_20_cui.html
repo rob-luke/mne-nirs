@@ -115,7 +115,7 @@
 <div class="sphx-glr-example-title section" id="signal-enhancement-techniques">
 <span id="tut-fnirs-cui"></span><span id="sphx-glr-auto-examples-plot-20-cui-py"></span><h1>Signal enhancement techniques<a class="headerlink" href="#signal-enhancement-techniques" title="Permalink to this headline">¶</a></h1>
 <p>In this document we investigate the effect of different signal enhancement
-techniques for NIRS data.</p>
+techniques on NIRS data.</p>
 <div class="contents local topic" id="page-contents">
 <p class="topic-title">Page contents</p>
 <ul class="simple">
@@ -139,7 +139,10 @@ techniques for NIRS data.</p>
 </div>
 <div class="section" id="import-and-preprocess-data">
 <h2><a class="toc-backref" href="#id1">Import and preprocess data</a><a class="headerlink" href="#import-and-preprocess-data" title="Permalink to this headline">¶</a></h2>
-<p>This code is exactly the same as the first sections in the MNE tutorial.</p>
+<p>This code is exactly the same as the first sections in the MNE tutorial.
+See
+<a class="reference external" href="https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing.html">https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing.html</a>
+for more details.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_data_folder</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fnirs_motor</span><span class="o">.</span><span class="n">data_path</span><span class="p">()</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_raw_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="os.path.join" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_data_folder</span></a><span class="p">,</span> <span class="s1">&#39;Participant-1&#39;</span><span class="p">)</span>
 <span class="n">raw_intensity</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_raw_nirx</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fnirs_raw_dir</span></a><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
@@ -180,7 +183,7 @@ Used Annotations descriptions: [&#39;1.0&#39;, &#39;2.0&#39;, &#39;3.0&#39;]
 </div>
 <div class="section" id="extract-epochs-with-no-additional-processing">
 <h2><a class="toc-backref" href="#id2">Extract epochs with no additional processing</a><a class="headerlink" href="#extract-epochs-with-no-additional-processing" title="Permalink to this headline">¶</a></h2>
-<p>First we extract the epochs with no additional processing
+<p>First we extract the epochs with no additional processing,
 this result should be the same as the MNE tutorial.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">reject_criteria</span></a> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">hbo</span><span class="o">=</span><span class="mf">80e-6</span><span class="p">)</span>
 <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmin</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmax</span></a> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span>
@@ -282,7 +285,7 @@ combining channels using &quot;mean&quot;
 combining channels using &quot;mean&quot;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.113 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.287 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-20-cui-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/8004bd8d0571541b1596a2bb003de455/plot_20_cui.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_20_cui.py</span></code></a></p>

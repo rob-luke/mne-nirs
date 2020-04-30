@@ -15,7 +15,7 @@ Signal enhancement techniques
 =============================
 
 In this document we investigate the effect of different signal enhancement
-techniques for NIRS data.
+techniques on NIRS data.
 
 .. contents:: Page contents
    :local:
@@ -49,6 +49,9 @@ Import and preprocess data
 --------------------------
 
 This code is exactly the same as the first sections in the MNE tutorial.
+See
+https://mne.tools/dev/auto_tutorials/preprocessing/plot_70_fnirs_processing.html
+for more details.
 
 
 .. code-block:: default
@@ -105,7 +108,7 @@ This code is exactly the same as the first sections in the MNE tutorial.
 Extract epochs with no additional processing
 --------------------------------------------
 
-First we extract the epochs with no additional processing
+First we extract the epochs with no additional processing,
 this result should be the same as the MNE tutorial.
 
 
@@ -258,7 +261,7 @@ Plot the average epochs with and without Cui 2010 applied.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.113 seconds)
+   **Total running time of the script:** ( 0 minutes  2.287 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_20_cui.py:
