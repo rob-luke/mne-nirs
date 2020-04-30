@@ -258,7 +258,7 @@ Discuss with specific relation to NIRS.
 
     filter_params = mne.filter.create_filter(
         raw_haemo.get_data(), raw_haemo.info['sfreq'],
-        l_freq=0.01, h_freq=0.4,
+        l_freq=0.03, h_freq=0.4,
         h_trans_bandwidth=0.2, l_trans_bandwidth=0.005)
 
     mne.viz.plot_filter(filter_params, raw_haemo.info['sfreq'],
@@ -279,15 +279,15 @@ Discuss with specific relation to NIRS.
 
  .. code-block:: none
 
-    Setting up band-pass filter from 0.01 - 0.4 Hz
+    Setting up band-pass filter from 0.03 - 0.4 Hz
 
     FIR filter parameters
     ---------------------
     Designing a one-pass, zero-phase, non-causal bandpass filter:
     - Windowed time-domain design (firwin) method
     - Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
-    - Lower passband edge: 0.01
-    - Lower transition bandwidth: 0.01 Hz (-6 dB cutoff frequency: 0.01 Hz)
+    - Lower passband edge: 0.03
+    - Lower transition bandwidth: 0.01 Hz (-6 dB cutoff frequency: 0.03 Hz)
     - Upper passband edge: 0.40 Hz
     - Upper transition bandwidth: 0.20 Hz (-6 dB cutoff frequency: 0.50 Hz)
     - Filter length: 5157 samples (660.096 sec)
@@ -362,7 +362,7 @@ so filtering below 0.01 should not overly affect the signal of interest.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.549 seconds)
+   **Total running time of the script:** ( 0 minutes  9.454 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency_summary.py:

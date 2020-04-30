@@ -271,7 +271,7 @@ Loading data for 60 events and 157 original time points ...
 <p>Discuss with specific relation to NIRS.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filter_params</span></a> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">create_filter</span><span class="p">(</span>
     <span class="n">raw_haemo</span><span class="o">.</span><span class="n">get_data</span><span class="p">(),</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
-    <span class="n">l_freq</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">l_freq</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
     <span class="n">h_trans_bandwidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">l_trans_bandwidth</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
 
 <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_filter</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filter_params</span></a><span class="p">,</span> <span class="n">raw_haemo</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
@@ -281,15 +281,15 @@ Loading data for 60 events and 157 original time points ...
 </div>
 <img alt="../_images/sphx_glr_plot_30_frequency_summary_004.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_30_frequency_summary_004.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Setting up band-pass filter from 0.01 - 0.4 Hz
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Setting up band-pass filter from 0.03 - 0.4 Hz
 
 FIR filter parameters
 ---------------------
 Designing a one-pass, zero-phase, non-causal bandpass filter:
 - Windowed time-domain design (firwin) method
 - Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
-- Lower passband edge: 0.01
-- Lower transition bandwidth: 0.01 Hz (-6 dB cutoff frequency: 0.01 Hz)
+- Lower passband edge: 0.03
+- Lower transition bandwidth: 0.01 Hz (-6 dB cutoff frequency: 0.03 Hz)
 - Upper passband edge: 0.40 Hz
 - Upper transition bandwidth: 0.20 Hz (-6 dB cutoff frequency: 0.50 Hz)
 - Filter length: 5157 samples (660.096 sec)
@@ -342,7 +342,7 @@ Effective window size : 262.144 (s)
 Text(0.5, 1.0, &#39;&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.549 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.454 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-30-frequency-summary-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/716799dfb1f4812dbf7a7ab6e7d18e47/plot_30_frequency_summary.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_30_frequency_summary.py</span></code></a></p>
