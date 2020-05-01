@@ -124,7 +124,11 @@ It is a first attempt to add GLM analysis to MNE processing of NIRS data.</p>
 <p>Currently the analysis is only being run on the first third of the measurement
 to meet github actions memory constraints.
 This means the results are noisier than the MNE fnirs tutorial.</p>
-<p>This document quite poorly written, read with caution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is a work in progress. Suggestions of improvements are
+appreciated. I am finalising the code, then will fix the text.</p>
+</div>
 <div class="contents local topic" id="page-contents">
 <p class="topic-title">Page contents</p>
 <ul class="simple">
@@ -171,35 +175,17 @@ Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
 Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&amp;action=download&amp;direct (17.1 MB)
 
   0%|          | Downloading : 0.00/17.1M [00:00&lt;?,        ?B/s]
-  1%|          | Downloading : 120k/17.1M [00:00&lt;00:02,    6.62MB/s]
-  2%|1         | Downloading : 312k/17.1M [00:00&lt;00:02,    6.74MB/s]
-  7%|6         | Downloading : 1.18M/17.1M [00:00&lt;00:02,    6.91MB/s]
- 10%|9         | Downloading : 1.68M/17.1M [00:00&lt;00:02,    7.01MB/s]
- 13%|#2        | Downloading : 2.18M/17.1M [00:00&lt;00:02,    6.40MB/s]
- 17%|#7        | Downloading : 2.93M/17.1M [00:00&lt;00:02,    6.67MB/s]
- 20%|##        | Downloading : 3.43M/17.1M [00:00&lt;00:02,    6.91MB/s]
- 23%|##3       | Downloading : 3.93M/17.1M [00:00&lt;00:01,    7.17MB/s]
- 26%|##5       | Downloading : 4.43M/17.1M [00:00&lt;00:01,    7.41MB/s]
- 29%|##8       | Downloading : 4.93M/17.1M [00:00&lt;00:01,    7.65MB/s]
- 32%|###1      | Downloading : 5.43M/17.1M [00:00&lt;00:01,    7.87MB/s]
- 35%|###4      | Downloading : 5.93M/17.1M [00:00&lt;00:01,    8.11MB/s]
- 38%|###7      | Downloading : 6.43M/17.1M [00:00&lt;00:01,    8.32MB/s]
- 41%|####      | Downloading : 6.93M/17.1M [00:00&lt;00:01,    8.55MB/s]
- 44%|####3     | Downloading : 7.43M/17.1M [00:00&lt;00:01,    8.78MB/s]
- 46%|####6     | Downloading : 7.93M/17.1M [00:00&lt;00:01,    8.99MB/s]
- 49%|####9     | Downloading : 8.43M/17.1M [00:00&lt;00:00,    9.30MB/s]
- 52%|#####2    | Downloading : 8.93M/17.1M [00:00&lt;00:00,    9.61MB/s]
- 55%|#####5    | Downloading : 9.43M/17.1M [00:00&lt;00:00,    9.88MB/s]
- 58%|#####8    | Downloading : 9.93M/17.1M [00:00&lt;00:00,    10.1MB/s]
- 61%|######1   | Downloading : 10.4M/17.1M [00:00&lt;00:00,    10.2MB/s]
- 64%|######4   | Downloading : 10.9M/17.1M [00:00&lt;00:00,    10.5MB/s]
- 73%|#######2  | Downloading : 12.4M/17.1M [00:00&lt;00:00,    10.8MB/s]
- 79%|#######8  | Downloading : 13.4M/17.1M [00:00&lt;00:00,    11.1MB/s]
- 85%|########4 | Downloading : 14.4M/17.1M [00:01&lt;00:00,    11.3MB/s]
- 90%|######### | Downloading : 15.4M/17.1M [00:01&lt;00:00,    11.6MB/s]
- 96%|#########6| Downloading : 16.4M/17.1M [00:01&lt;00:00,    11.8MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    12.1MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    15.7MB/s]
+  1%|1         | Downloading : 248k/17.1M [00:00&lt;00:01,    11.6MB/s]
+  4%|4         | Downloading : 760k/17.1M [00:00&lt;00:01,    11.9MB/s]
+ 13%|#3        | Downloading : 2.24M/17.1M [00:00&lt;00:01,    12.4MB/s]
+ 31%|###       | Downloading : 5.24M/17.1M [00:00&lt;00:00,    13.0MB/s]
+ 42%|####2     | Downloading : 7.24M/17.1M [00:00&lt;00:00,    13.5MB/s]
+ 54%|#####4    | Downloading : 9.24M/17.1M [00:00&lt;00:00,    14.0MB/s]
+ 66%|######5   | Downloading : 11.2M/17.1M [00:00&lt;00:00,    14.5MB/s]
+ 78%|#######7  | Downloading : 13.2M/17.1M [00:00&lt;00:00,    15.0MB/s]
+ 89%|########9 | Downloading : 15.2M/17.1M [00:00&lt;00:00,    15.6MB/s]
+100%|##########| Downloading : 17.1M/17.1M [00:00&lt;00:00,    16.0MB/s]
+100%|##########| Downloading : 17.1M/17.1M [00:00&lt;00:00,    47.8MB/s]
 Verifying hash c4935d19ddab35422a69f3326a01fef8.
 Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
 (please be patient, this can take some time)
@@ -314,7 +300,7 @@ using standard Nilearn reporting functions.</p>
 </div>
 <img alt="../_images/sphx_glr_plot_10_hrf_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_003.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f8045295340&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f812d6a8f70&gt;
 </pre></div>
 </div>
 <p>And we can also look at a single experimental condition.</p>
@@ -380,7 +366,7 @@ negative sof HbO as expected.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x700 with 4 Axes&gt;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.972 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.962 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-10-hrf-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5d7784c7a4d7e581cc48ca0671986fdb/plot_10_hrf.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_10_hrf.py</span></code></a></p>
