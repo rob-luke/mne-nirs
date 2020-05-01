@@ -59,9 +59,9 @@ Introductory examples.
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_30_frequency_summary_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_30_frequency_thumb.png
 
-     :ref:`sphx_glr_auto_examples_plot_30_frequency_summary.py`
+     :ref:`sphx_glr_auto_examples_plot_30_frequency.py`
 
 .. raw:: html
 
@@ -71,7 +71,7 @@ Introductory examples.
 .. toctree::
    :hidden:
 
-   /auto_examples/plot_30_frequency_summary
+   /auto_examples/plot_30_frequency
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
