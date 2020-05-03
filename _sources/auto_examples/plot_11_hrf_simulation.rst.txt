@@ -119,9 +119,9 @@ Estimate response on clean data
 Now we can run the GLM analysis on the clean data.
 The design matrix had three columns, so we get an estimate for our simulated
 event, the first order drift, and the constant.
-We see that the estimate of the first component is 4e-6, or 4 uM.
-Which is the amplitude we used in the simulation.
-Consequently the error is zero.
+We see that the estimate of the first component is 4e-6 (4 uM),
+which was the amplitude we used in the simulation.
+We also see that the mean square error of the model fit is close to zero.
 
 
 .. code-block:: default
@@ -129,7 +129,8 @@ Consequently the error is zero.
 
     labels, glm_estimates = run_GLM(raw, design_matrix)
 
-    print(glm_estimates[labels[0]].theta)
+    print("Estimate:", glm_estimates[labels[0]].theta[0],
+          "  MSE:", glm_estimates[labels[0]].MSE)
 
 
 
@@ -142,9 +143,7 @@ Consequently the error is zero.
 
  .. code-block:: none
 
-    [[ 4.00000000e-06]
-     [-1.54990544e-22]
-     [-4.01547720e-22]]
+    Estimate: [4.e-06]   MSE: [1.94051454e-44]
 
 
 
@@ -153,20 +152,25 @@ Simulate noisy NIRS data
 ------------------------
 
 Real data has noise. Here we add white noise with a standard deviation
-of 3 uM, this value is small compared to real data, but suffices for
-this demo.
-We then use the GLM approach to estimate the response size and report
-the estimate error.
+of 3 uM, this noise is not realistic, 
+but suffices for this demo.
+We plot the noisy data and the GLM fitted model.
+We report the model estimate and mean square error of the fit.
 
 
 .. code-block:: default
 
 
     raw._data += np.random.randn(raw._data.shape[1]) * 1.e-6 * 3.
-    raw.plot(duration=600, show_scrollbars=False)
     labels, glm_estimates = run_GLM(raw, design_matrix)
-    error = glm_estimates[labels[0]].theta[0] - amp * 1.e-6
-    print(error)
+
+    plt.plot(raw.times, glm_estimates[labels[0]].predicted)
+    plt.plot(raw.times, raw.get_data().T, alpha=0.3)
+    plt.xlabel("Time (s)")
+    plt.legend(["GLM Estimate", "Simulated Data"])
+
+    print("Estimate:", glm_estimates[labels[0]].theta[0],
+          "  MSE:", glm_estimates[labels[0]].MSE)
 
 
 
@@ -182,7 +186,7 @@ the estimate error.
 
  .. code-block:: none
 
-    [-1.41592186e-07]
+    Estimate: [3.85840781e-06]   MSE: [8.44099246e-12]
 
 
 
@@ -239,7 +243,7 @@ Here we observe that as the noise is increased the estimate error increases.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7fd30f81d100>
+    <matplotlib.collections.LineCollection object at 0x7f0abe5d2e50>
 
 
 
@@ -295,14 +299,14 @@ We observe that increasing the signal length decreases the estimate error.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7fd30f7e5ac0>
+    <matplotlib.collections.LineCollection object at 0x7f0abe604580>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  45.970 seconds)
+   **Total running time of the script:** ( 0 minutes  52.917 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_11_hrf_simulation.py:
