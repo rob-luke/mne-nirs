@@ -145,7 +145,7 @@ appreciated. I am finalising the code, then will fix the text.</p>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">mne</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">mne_nirs.experimental_design</span> <span class="kn">import</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a>
+<span class="kn">from</span> <span class="nn">mne_nirs.experimental_design</span> <span class="kn">import</span> <span class="n">make_first_level_design_matrix</span>
 </pre></div>
 </div>
 <div class="section" id="import-and-preprocess-data">
@@ -195,7 +195,7 @@ See <a class="reference internal" href="plot_10_hrf.html#tut-fnirs-hrf"><span cl
 and plot the frequency spectrum.</p>
 <p>We note there is a peak at 0.03 which corresponds approximately to
 the repetition rate of the experiment.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <span class="n">make_first_level_design_matrix</span><span class="p">(</span>
     <span class="n">raw_haemo</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">5.</span><span class="p">)</span>
 
 <span class="c1"># This is a bit of a hack.</span>
@@ -350,7 +350,7 @@ Effective window size : 262.144 (s)
 Text(0.5, 1.0, &#39;&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.558 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.704 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-30-frequency-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/9665738ce6017eae19d9b4cefcedeb45/plot_30_frequency.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_30_frequency.py</span></code></a></p>

@@ -108,20 +108,18 @@
 <span class="kn">import</span> <span class="nn">mne</span>
 
 
-<div class="viewcode-block" id="create_first_level_design_matrix"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix">[docs]</a><span class="k">def</span> <span class="nf">create_first_level_design_matrix</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
-                                     <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;glover&#39;</span><span class="p">,</span>
-                                     <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span>
-                                     <span class="n">high_pass</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                     <span class="n">fir_delays</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">add_regs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                     <span class="n">add_reg_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_onset</span><span class="o">=-</span><span class="mi">24</span><span class="p">,</span>
-                                     <span class="n">oversampling</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_first_level_design_matrix</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                                   <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;glover&#39;</span><span class="p">,</span>
+                                   <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+                                   <span class="n">high_pass</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                   <span class="n">fir_delays</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">add_regs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">add_reg_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_onset</span><span class="o">=-</span><span class="mi">24</span><span class="p">,</span>
+                                   <span class="n">oversampling</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a design matrix for the experiment.</span>
 
 <span class="sd">    This is a wrapper function for</span>
 <span class="sd">    nilearn.stats.first_level_model.make_first_level_design_matrix.</span>
-
-<span class="sd">      .. warning:: The inputs to this function will change to match nilearn.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -129,14 +127,36 @@
 <span class="sd">        Haemoglobin data.</span>
 <span class="sd">    stim_dur : Number</span>
 <span class="sd">        The length of your stimulus.</span>
-<span class="sd">        TODO: Make this be independent per event id</span>
-<span class="sd">    hrf_model : As specified in Nilearn</span>
-<span class="sd">    drift_model : As specified in Nilearn</span>
-<span class="sd">    high_pass : As specified in Nilearn. Actually its not documented there.</span>
-<span class="sd">    drift_order : As specified in Nilearn</span>
-<span class="sd">    fir_delays : As specified in Nilearn</span>
-<span class="sd">    add_regs : As specified in Nilearn</span>
-<span class="sd">    min_onset : As specified in Nilearn</span>
+<span class="sd">    hrf_model : {&#39;spm&#39;, &#39;spm + derivative&#39;, &#39;spm + derivative + dispersion&#39;,</span>
+<span class="sd">        &#39;glover&#39;, &#39;glover + derivative&#39;, &#39;glover + derivative + dispersion&#39;,</span>
+<span class="sd">        &#39;fir&#39;, None}, optional,</span>
+<span class="sd">        Specifies the hemodynamic response function</span>
+<span class="sd">    drift_model : {&#39;polynomial&#39;, &#39;cosine&#39;, None}, optional</span>
+<span class="sd">        Specifies the desired drift model,</span>
+<span class="sd">    period_cut : float, optional</span>
+<span class="sd">        Cut period of the high-pass filter in seconds.</span>
+<span class="sd">        Used only if drift_model is &#39;cosine&#39;.</span>
+<span class="sd">    drift_order : int, optional</span>
+<span class="sd">        Order of the drift model (in case it is polynomial).</span>
+<span class="sd">    fir_delays : array of shape(n_onsets) or list, optional,</span>
+<span class="sd">        In case of FIR design, yields the array of delays used in the FIR</span>
+<span class="sd">        model (in scans).</span>
+<span class="sd">    add_regs : array of shape(n_frames, n_add_reg), optional</span>
+<span class="sd">        additional user-supplied regressors, e.g. data driven noise regressors</span>
+<span class="sd">        or seed based regressors.</span>
+<span class="sd">    add_reg_names : list of (n_add_reg,) strings, optional</span>
+<span class="sd">        If None, while add_regs was provided, these will be termed</span>
+<span class="sd">        &#39;reg_%i&#39;, i = 0..n_add_reg - 1</span>
+<span class="sd">    min_onset : float, optional</span>
+<span class="sd">        Minimal onset relative to frame_times[0] (in seconds)</span>
+<span class="sd">        events that start before frame_times[0] + min_onset are not considered.</span>
+<span class="sd">    oversampling: int, optional,</span>
+<span class="sd">        Oversampling factor used in temporal convolutions.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    design_matrix : DataFrame instance,</span>
+<span class="sd">        holding the computed design matrix, the index being the frames_times</span>
+<span class="sd">        and each column a regressor.</span>
 <span class="sd">    oversampling : As specified in Nilearn</span>
 
 <span class="sd">    Returns</span>
@@ -168,7 +188,7 @@
                                         <span class="n">add_reg_names</span><span class="o">=</span><span class="n">add_reg_names</span><span class="p">,</span>
                                         <span class="n">fir_delays</span><span class="o">=</span><span class="n">fir_delays</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">dm</span></div>
+    <span class="k">return</span> <span class="n">dm</span>
 
 
 <div class="viewcode-block" id="create_boxcar"><a class="viewcode-back" href="../../../generated/mne_nirs.experimental_design.create_boxcar.html#mne_nirs.experimental_design.create_boxcar">[docs]</a><span class="k">def</span> <span class="nf">create_boxcar</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>

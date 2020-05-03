@@ -37,7 +37,7 @@ on response amplitude estimates, and the effect of measurement length.
     import mne_nirs
     import matplotlib.pylab as plt
     import numpy as np
-    from mne_nirs.experimental_design import create_first_level_design_matrix
+    from mne_nirs.experimental_design import make_first_level_design_matrix
     from mne_nirs.statistics import run_GLM
     from nilearn.reporting import plot_design_matrix
     import seaborn as sns
@@ -98,9 +98,9 @@ For more details on this procedure see :ref:`tut-fnirs-hrf`.
 .. code-block:: default
 
 
-    design_matrix = create_first_level_design_matrix(raw, stim_dur=5.0,
-                                                     drift_order=1,
-                                                     drift_model='polynomial')
+    design_matrix = make_first_level_design_matrix(raw, stim_dur=5.0,
+                                                   drift_order=1,
+                                                   drift_model='polynomial')
     fig = plot_design_matrix(design_matrix)
 
 
@@ -207,7 +207,7 @@ Here we observe that as the noise is increased the estimate error increases.
                 sfreq=sfreq, sig_dur=60 * 10, amplitude=amp)
             raw._data += np.random.randn(raw._data.shape[1]) * 1.e-6 * std
 
-            design_matrix = create_first_level_design_matrix(
+            design_matrix = make_first_level_design_matrix(
                 raw, stim_dur=5.0, drift_order=1, drift_model='polynomial')
 
             labels, glm_estimates = run_GLM(raw, design_matrix)
@@ -239,7 +239,7 @@ Here we observe that as the noise is increased the estimate error increases.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7efef78d9340>
+    <matplotlib.collections.LineCollection object at 0x7fd30f81d100>
 
 
 
@@ -266,7 +266,7 @@ We observe that increasing the signal length decreases the estimate error.
                 stim_dur=5., sfreq=sfreq, sig_dur=60 * slen, amplitude=amp)
             raw._data += np.random.randn(raw._data.shape[1]) * 1.e-6 * std
 
-            design_matrix = create_first_level_design_matrix(
+            design_matrix = make_first_level_design_matrix(
                 raw, stim_dur=5.0, drift_order=1, drift_model='polynomial')
 
             labels, glm_estimates = run_GLM(raw, design_matrix)
@@ -295,14 +295,14 @@ We observe that increasing the signal length decreases the estimate error.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7efef78a9a60>
+    <matplotlib.collections.LineCollection object at 0x7fd30f7e5ac0>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  43.819 seconds)
+   **Total running time of the script:** ( 0 minutes  45.970 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_11_hrf_simulation.py:

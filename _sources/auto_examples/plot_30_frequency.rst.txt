@@ -42,7 +42,7 @@ that is applied to the data.
     import os
     import mne
     import numpy as np
-    from mne_nirs.experimental_design import create_first_level_design_matrix
+    from mne_nirs.experimental_design import make_first_level_design_matrix
 
 
 
@@ -124,7 +124,7 @@ the repetition rate of the experiment.
 .. code-block:: default
 
 
-    design_matrix = create_first_level_design_matrix(
+    design_matrix = make_first_level_design_matrix(
         raw_haemo, drift_order=0, stim_dur=5.)
 
     # This is a bit of a hack.
@@ -366,7 +366,7 @@ epoched data.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.558 seconds)
+   **Total running time of the script:** ( 0 minutes  9.704 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency.py:

@@ -109,23 +109,22 @@
 <code class="sig-prename descclassname">mne_nirs.statistics.</code><code class="sig-name descname">run_GLM</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">design_matrix</em>, <em class="sig-param">noise_model='ar1'</em>, <em class="sig-param">bins=100</em>, <em class="sig-param">n_jobs=1</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/statistics/_run_GLM.html#run_GLM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.statistics.run_GLM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run GLM on data using supplied design matrix.</p>
 <p>This is a wrapper function for nilearn.stats.first_level_model.run_glm.</p>
-<blockquote>
-<div><div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The inputs to this function will change to match nilearn.</p>
-</div>
-</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>Haemoglobin data.</p>
+<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>The haemoglobin data.</p>
 </dd>
-<dt><strong>design_matrix</strong><span class="classifier">as specified in Nilearn</span></dt><dd><p>Design matrix of experiment.</p>
+<dt><strong>design_matrix</strong><span class="classifier">as specified in Nilearn</span></dt><dd><p>The design matrix.</p>
 </dd>
-<dt><strong>noise_model</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
-<dt><strong>bins</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
-<dt><strong>n_jobs</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
-<dt><strong>verbose</strong><span class="classifier">As specified in Nilearn</span></dt><dd></dd>
+<dt><strong>noise_model</strong><span class="classifier">{‘ar1’, ‘ols’}, optional</span></dt><dd><p>The temporal variance model. Defaults to ‘ar1’.</p>
+</dd>
+<dt><strong>bins</strong><span class="classifier">: int, optional</span></dt><dd><p>Maximum number of discrete bins for the AR(1) coef histogram.</p>
+</dd>
+<dt><strong>n_jobs</strong><span class="classifier">int, optional</span></dt><dd><p>The number of CPUs to use to do the computation. -1 means
+‘all CPUs’.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">int, optional</span></dt><dd><p>The verbosity level. Defaut is 0</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>

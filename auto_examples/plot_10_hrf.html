@@ -150,7 +150,7 @@ appreciated. I am finalising the code, then will fix the text.</p>
 <span class="kn">import</span> <span class="nn">mne</span>
 <span class="kn">import</span> <span class="nn">mne_nirs</span>
 
-<span class="kn">from</span> <span class="nn">mne_nirs.experimental_design</span> <span class="kn">import</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a>
+<span class="kn">from</span> <span class="nn">mne_nirs.experimental_design</span> <span class="kn">import</span> <span class="n">make_first_level_design_matrix</span>
 <span class="kn">from</span> <span class="nn">mne_nirs.statistics</span> <span class="kn">import</span> <a href="../generated/mne_nirs.statistics.run_GLM.html#mne_nirs.statistics.run_GLM" title="mne_nirs.statistics.run_GLM" class="sphx-glr-backref-module-mne_nirs-statistics sphx-glr-backref-type-py-function"><span class="n">run_GLM</span></a>
 <span class="kn">from</span> <span class="nn">mne_nirs.visualisation</span> <span class="kn">import</span> <a href="../generated/mne_nirs.visualisation.plot_GLM_topo.html#mne_nirs.visualisation.plot_GLM_topo" title="mne_nirs.visualisation.plot_GLM_topo" class="sphx-glr-backref-module-mne_nirs-visualisation sphx-glr-backref-type-py-function"><span class="n">plot_GLM_topo</span></a>
 
@@ -175,24 +175,24 @@ Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
 Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&amp;action=download&amp;direct (17.1 MB)
 
   0%|          | Downloading : 0.00/17.1M [00:00&lt;?,        ?B/s]
-  3%|2         | Downloading : 504k/17.1M [00:00&lt;00:00,    22.3MB/s]
-  6%|5         | Downloading : 0.99M/17.1M [00:00&lt;00:00,    22.4MB/s]
- 10%|#         | Downloading : 1.74M/17.1M [00:00&lt;00:00,    18.2MB/s]
- 20%|##        | Downloading : 3.49M/17.1M [00:00&lt;00:00,    15.8MB/s]
- 26%|##6       | Downloading : 4.49M/17.1M [00:00&lt;00:00,    14.3MB/s]
- 37%|###6      | Downloading : 6.24M/17.1M [00:01&lt;00:00,    14.2MB/s]
- 40%|###9      | Downloading : 6.74M/17.1M [00:01&lt;00:00,    14.5MB/s]
- 42%|####2     | Downloading : 7.24M/17.1M [00:01&lt;00:00,    14.8MB/s]
- 51%|#####1    | Downloading : 8.74M/17.1M [00:01&lt;00:00,    14.1MB/s]
- 60%|######    | Downloading : 10.2M/17.1M [00:01&lt;00:00,    14.5MB/s]
- 66%|######5   | Downloading : 11.2M/17.1M [00:01&lt;00:00,    15.0MB/s]
- 72%|#######1  | Downloading : 12.2M/17.1M [00:01&lt;00:00,    15.5MB/s]
- 78%|#######7  | Downloading : 13.2M/17.1M [00:01&lt;00:00,    16.0MB/s]
- 84%|########3 | Downloading : 14.2M/17.1M [00:01&lt;00:00,    16.5MB/s]
- 89%|########9 | Downloading : 15.2M/17.1M [00:01&lt;00:00,    17.1MB/s]
- 95%|#########5| Downloading : 16.2M/17.1M [00:01&lt;00:00,    17.6MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    18.2MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    12.2MB/s]
+  2%|1         | Downloading : 312k/17.1M [00:00&lt;00:00,    17.6MB/s]
+ 12%|#2        | Downloading : 2.05M/17.1M [00:00&lt;00:00,    17.8MB/s]
+ 18%|#7        | Downloading : 3.05M/17.1M [00:00&lt;00:00,    17.7MB/s]
+ 24%|##3       | Downloading : 4.05M/17.1M [00:00&lt;00:00,    17.6MB/s]
+ 30%|##9       | Downloading : 5.05M/17.1M [00:00&lt;00:00,    17.6MB/s]
+ 36%|###5      | Downloading : 6.05M/17.1M [00:00&lt;00:00,    17.4MB/s]
+ 41%|####1     | Downloading : 7.05M/17.1M [00:00&lt;00:00,    17.3MB/s]
+ 47%|####7     | Downloading : 8.05M/17.1M [00:00&lt;00:00,    17.2MB/s]
+ 53%|#####3    | Downloading : 9.05M/17.1M [00:00&lt;00:00,    17.2MB/s]
+ 59%|#####8    | Downloading : 10.1M/17.1M [00:00&lt;00:00,    17.0MB/s]
+ 65%|######4   | Downloading : 11.1M/17.1M [00:00&lt;00:00,    16.8MB/s]
+ 71%|#######   | Downloading : 12.1M/17.1M [00:00&lt;00:00,    16.9MB/s]
+ 77%|#######6  | Downloading : 13.1M/17.1M [00:00&lt;00:00,    16.9MB/s]
+ 82%|########2 | Downloading : 14.1M/17.1M [00:00&lt;00:00,    16.7MB/s]
+ 88%|########8 | Downloading : 15.1M/17.1M [00:00&lt;00:00,    16.7MB/s]
+ 94%|#########4| Downloading : 16.1M/17.1M [00:01&lt;00:00,    16.7MB/s]
+100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    16.6MB/s]
+100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    16.3MB/s]
 Verifying hash c4935d19ddab35422a69f3326a01fef8.
 Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
 (please be patient, this can take some time)
@@ -294,10 +294,10 @@ Text(0.5, 0, &#39;Time (s)&#39;)
 is created and plotted below.
 In this example we use the standard SPM haemodynamic response function and
 include a first order polynomial drift.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a><span class="p">(</span><span class="n">raw_intensity</span><span class="p">,</span>
-                                                 <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
-                                                 <span class="n">drift_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                                 <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <span class="n">make_first_level_design_matrix</span><span class="p">(</span><span class="n">raw_intensity</span><span class="p">,</span>
+                                               <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+                                               <span class="n">drift_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                               <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And we display a summary of the design matrix
@@ -307,7 +307,7 @@ using standard Nilearn reporting functions.</p>
 </div>
 <img alt="../_images/sphx_glr_plot_10_hrf_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_003.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7efef79a0160&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fd30fe54280&gt;
 </pre></div>
 </div>
 <p>And we can also look at a single experimental condition.</p>
@@ -373,7 +373,7 @@ negative sof HbO as expected.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x700 with 4 Axes&gt;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.224 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.240 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-10-hrf-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5d7784c7a4d7e581cc48ca0671986fdb/plot_10_hrf.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_10_hrf.py</span></code></a></p>

@@ -112,18 +112,21 @@
 
 <span class="sd">    This is a wrapper function for nilearn.stats.first_level_model.run_glm.</span>
 
-<span class="sd">      .. warning:: The inputs to this function will change to match nilearn.</span>
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    raw : instance of Raw</span>
-<span class="sd">        Haemoglobin data.</span>
+<span class="sd">        The haemoglobin data.</span>
 <span class="sd">    design_matrix : as specified in Nilearn</span>
-<span class="sd">        Design matrix of experiment.</span>
-<span class="sd">    noise_model : As specified in Nilearn</span>
-<span class="sd">    bins : As specified in Nilearn</span>
-<span class="sd">    n_jobs : As specified in Nilearn</span>
-<span class="sd">    verbose : As specified in Nilearn</span>
+<span class="sd">        The design matrix.</span>
+<span class="sd">    noise_model : {&#39;ar1&#39;, &#39;ols&#39;}, optional</span>
+<span class="sd">        The temporal variance model. Defaults to &#39;ar1&#39;.</span>
+<span class="sd">    bins : : int, optional</span>
+<span class="sd">        Maximum number of discrete bins for the AR(1) coef histogram.</span>
+<span class="sd">    n_jobs : int, optional</span>
+<span class="sd">        The number of CPUs to use to do the computation. -1 means</span>
+<span class="sd">        &#39;all CPUs&#39;.</span>
+<span class="sd">    verbose : int, optional</span>
+<span class="sd">        The verbosity level. Defaut is 0</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
