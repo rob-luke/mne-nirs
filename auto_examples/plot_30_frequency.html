@@ -190,12 +190,13 @@ stimulus presentation
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Haemodynamic_response">https://en.wikipedia.org/wiki/Haemodynamic_response</a>).
 From this information we can build a model of how we expect the brain
 to be active during this experiment.
-See <a class="reference internal" href="plot_10_hrf.html#tut-fnirs-hrf"><span class="std std-ref">Haeomodynamic response function analysis</span></a> for more details on this analysis.</p>
+See <a class="reference internal" href="plot_10_hrf.html#tut-fnirs-hrf"><span class="std std-ref">GLM Analysis (Measured Data)</span></a> for more details on this analysis.</p>
 <p>Here we create the expected model neural response function using the data
 and plot the frequency spectrum.</p>
 <p>We note there is a peak at 0.03 which corresponds approximately to
 the repetition rate of the experiment.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">5.</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <a href="../generated/mne_nirs.experimental_design.create_first_level_design_matrix.html#mne_nirs.experimental_design.create_first_level_design_matrix" title="mne_nirs.experimental_design.create_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">create_first_level_design_matrix</span></a><span class="p">(</span>
+    <span class="n">raw_haemo</span><span class="p">,</span> <span class="n">drift_order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">5.</span><span class="p">)</span>
 
 <span class="c1"># This is a bit of a hack.</span>
 <span class="c1"># Overwrite the first NIRS channel with the expected response.</span>
@@ -256,7 +257,8 @@ is still visible.</p>
                     <span class="n">proj</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">detrend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">epochs</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">epochs</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_psd</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/sphx_glr_plot_30_frequency_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_30_frequency_003.png" />
@@ -348,7 +350,7 @@ Effective window size : 262.144 (s)
 Text(0.5, 1.0, &#39;&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.126 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.238 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-30-frequency-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/9665738ce6017eae19d9b4cefcedeb45/plot_30_frequency.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_30_frequency.py</span></code></a></p>

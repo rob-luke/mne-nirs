@@ -1,0 +1,6 @@
+mne\_nirs.simulation.simulate\_nirs\_raw
+========================================
+
+.. currentmodule:: mne_nirs.simulation
+
+.. autofunction:: simulate_nirs_raw

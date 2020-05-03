@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Overview: module code &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>mne_nirs.simulation.simulate_nirs_raw &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -69,7 +69,10 @@
      href="#">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"
       role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">mne_nirs.simulation.simulate_nirs_raw</a></li>
+</ul>
+</ul>
 </li>
               
             
@@ -99,14 +102,46 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="mne_nirs/experimental_design/_experimental_design.html">mne_nirs.experimental_design._experimental_design</a></li>
-<li><a href="mne_nirs/signal_enhancement/_negative_correlation.html">mne_nirs.signal_enhancement._negative_correlation</a></li>
-<li><a href="mne_nirs/simulation/_simulation.html">mne_nirs.simulation._simulation</a></li>
-<li><a href="mne_nirs/statistics/_run_GLM.html">mne_nirs.statistics._run_GLM</a></li>
-<li><a href="mne_nirs/visualisation/_plot_GLM_topo.html">mne_nirs.visualisation._plot_GLM_topo</a></li>
-<li><a href="mne_nirs/visualisation/_plot_nirs_source_detector.html">mne_nirs.visualisation._plot_nirs_source_detector</a></li>
-</ul>
+  <div class="section" id="mne-nirs-simulation-simulate-nirs-raw">
+<h1>mne_nirs.simulation.simulate_nirs_raw<a class="headerlink" href="#mne-nirs-simulation-simulate-nirs-raw" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mne_nirs.simulation.simulate_nirs_raw">
+<code class="sig-prename descclassname">mne_nirs.simulation.</code><code class="sig-name descname">simulate_nirs_raw</code><span class="sig-paren">(</span><em class="sig-param">sfreq=3.0</em>, <em class="sig-param">amplitude=1.0</em>, <em class="sig-param">sig_dur=300.0</em>, <em class="sig-param">stim_dur=5.0</em>, <em class="sig-param">isi_min=15.0</em>, <em class="sig-param">isi_max=45.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/simulation/_simulation.html#simulate_nirs_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.simulation.simulate_nirs_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create simulated data.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Work in progress: I am trying to think on the best API.</p>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sfreq</strong><span class="classifier">Number</span></dt><dd><p>The sample rate.</p>
+</dd>
+<dt><strong>amplitude</strong><span class="classifier">Number</span></dt><dd><p>The amplitude of the signal to simulate in uM.</p>
+</dd>
+<dt><strong>sig_dur</strong><span class="classifier">Number</span></dt><dd><p>The length of the signal to generate in seconds.</p>
+</dd>
+<dt><strong>stim_dur</strong><span class="classifier">Number</span></dt><dd><p>The length of the stimulus to generate in seconds.</p>
+</dd>
+<dt><strong>isi_min</strong><span class="classifier">Number</span></dt><dd><p>The minimum duration of the inter stimulus interval in seconds.</p>
+</dd>
+<dt><strong>isi_max</strong><span class="classifier">Number</span></dt><dd><p>The maximum duration of the inter stimulus interval in seconds.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>The generated raw instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
 
     </div>
       
