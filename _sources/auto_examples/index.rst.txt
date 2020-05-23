@@ -20,6 +20,7 @@ Introductory examples.
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_11_hrf_simulation_thumb.png
+     :alt: GLM Analysis (Simulated Data)
 
      :ref:`sphx_glr_auto_examples_plot_11_hrf_simulation.py`
 
@@ -40,6 +41,7 @@ Introductory examples.
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_10_hrf_thumb.png
+     :alt: GLM Analysis (Measured Data)
 
      :ref:`sphx_glr_auto_examples_plot_10_hrf.py`
 
@@ -60,6 +62,7 @@ Introductory examples.
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_20_cui_thumb.png
+     :alt: Signal enhancement techniques
 
      :ref:`sphx_glr_auto_examples_plot_20_cui.py`
 
@@ -80,6 +83,7 @@ Introductory examples.
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_30_frequency_thumb.png
+     :alt: Frequency and Filter Commentary
 
      :ref:`sphx_glr_auto_examples_plot_30_frequency.py`
 

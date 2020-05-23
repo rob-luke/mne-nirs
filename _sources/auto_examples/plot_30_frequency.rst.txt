@@ -141,6 +141,7 @@ the repetition rate of the experiment.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_30_frequency_001.png
+    :alt: Oxyhemoglobin
     :class: sphx-glr-single-img
 
 
@@ -185,6 +186,7 @@ There is also a small bump around 0.3 Hz that is likely the breathing rate.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_30_frequency_002.png
+    :alt: Oxyhemoglobin
     :class: sphx-glr-single-img
 
 
@@ -231,6 +233,7 @@ is still visible.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_30_frequency_003.png
+    :alt: Oxyhemoglobin
     :class: sphx-glr-single-img
 
 
@@ -280,6 +283,7 @@ after epoching.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_30_frequency_004.png
+    :alt: plot 30 frequency
     :class: sphx-glr-single-img
 
 
@@ -346,6 +350,7 @@ epoched data.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_30_frequency_005.png
+    :alt: plot 30 frequency
     :class: sphx-glr-single-img
 
 
@@ -366,7 +371,7 @@ epoched data.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.999 seconds)
+   **Total running time of the script:** ( 0 minutes  11.166 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency.py:

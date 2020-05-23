@@ -73,6 +73,7 @@ The amplitude of the simulated signal is 4 uMol and the sample rate is 3 Hz.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_11_hrf_simulation_001.png
+    :alt: plot 11 hrf simulation
     :class: sphx-glr-single-img
 
 
@@ -107,6 +108,7 @@ For more details on this procedure see :ref:`tut-fnirs-hrf`.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_11_hrf_simulation_002.png
+    :alt: plot 11 hrf simulation
     :class: sphx-glr-single-img
 
 
@@ -177,6 +179,7 @@ We report the model estimate and mean square error of the fit.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_11_hrf_simulation_003.png
+    :alt: plot 11 hrf simulation
     :class: sphx-glr-single-img
 
 
@@ -233,6 +236,7 @@ Here we observe that as the noise is increased the estimate error increases.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_11_hrf_simulation_004.png
+    :alt: plot 11 hrf simulation
     :class: sphx-glr-single-img
 
 
@@ -243,7 +247,7 @@ Here we observe that as the noise is increased the estimate error increases.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7f5c687a01f0>
+    <matplotlib.collections.LineCollection object at 0x7fb2286cbe80>
 
 
 
@@ -289,6 +293,7 @@ We observe that increasing the signal length decreases the estimate error.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_11_hrf_simulation_005.png
+    :alt: plot 11 hrf simulation
     :class: sphx-glr-single-img
 
 
@@ -299,14 +304,14 @@ We observe that increasing the signal length decreases the estimate error.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7f5c68773940>
+    <matplotlib.collections.LineCollection object at 0x7fb22868fd30>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  3.406 seconds)
+   **Total running time of the script:** ( 0 minutes  55.769 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_11_hrf_simulation.py:
