@@ -106,7 +106,8 @@ For more details on this procedure see :ref:`tut-fnirs-hrf`.
     design_matrix = make_first_level_design_matrix(raw, stim_dur=5.0,
                                                    drift_order=1,
                                                    drift_model='polynomial')
-    fig = plot_design_matrix(design_matrix)
+    fig, ax1 = plt.subplots(figsize=(10, 6), nrows=1, ncols=1)
+    fig = plot_design_matrix(design_matrix, ax=ax1)
 
 
 
@@ -218,11 +219,11 @@ observe in the raw data, the GLM analysis has extracted an accurate estimate.
 
 
     raw = raw_noise_free.copy()
-    cov = mne.Covariance(np.ones(1)*1e-11, raw.ch_names,
+    cov = mne.Covariance(np.ones(1) * 1e-11, raw.ch_names,
                          raw.info['bads'], raw.info['projs'], nfree=0)
     raw = mne.simulation.add_noise(raw, cov,
-                                   iir_filter=[1. , -0.58853134, -0.29575669,
-                                               -0.52246482,  0.38735476,
+                                   iir_filter=[1., -0.58853134, -0.29575669,
+                                               -0.52246482, 0.38735476,
                                                0.02428681])
     labels, glm_est = run_GLM(raw, design_matrix)
 
@@ -307,14 +308,14 @@ Here we observe that as the noise is increased the estimate error increases.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7fdabc453880>
+    <matplotlib.collections.LineCollection object at 0x7fd6098006a0>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  19.946 seconds)
+   **Total running time of the script:** ( 0 minutes  21.363 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_11_hrf_simulation.py:
