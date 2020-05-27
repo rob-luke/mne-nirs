@@ -420,13 +420,22 @@ Some common high pass filter values from literature are shown in red.
     :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    ../mne_nirs/simulation/_simulation.py:67: RuntimeWarning: Limited 1 annotation(s) that were expanding outside the data range.
+      raw.set_annotations(annotations)
+
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  27.411 seconds)
+   **Total running time of the script:** ( 0 minutes  29.783 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency.py:
