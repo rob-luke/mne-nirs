@@ -393,8 +393,8 @@ Some common high pass filter values from literature are shown in red.
     sm = plt.cm.ScalarMappable(cmap='viridis', norm=plt.Normalize(vmin=0, vmax=60))
     fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(20, 10))
     for rep in range(2):
-        for column, min_isi in enumerate([9, 15]):
-            for row, max_isi in enumerate([14, 30, 45, 60]):
+        for column, min_isi in enumerate([0, 15]):
+            for row, max_isi in enumerate([15, 30, 45, 60]):
                 if max_isi >= min_isi:
                     if max_isi >= min_isi:
                         raw = simulate_nirs_raw(sfreq=4., sig_dur=60 * 60,
@@ -415,19 +415,11 @@ Some common high pass filter values from literature are shown in red.
         plt.colorbar(sm, ax=axes[rep, 1], label='Max ISI (s)')
 
 
+
 .. image:: /auto_examples/images/sphx_glr_plot_30_frequency_006.png
-    :alt: ISI: 9 (s) to Max ISI, ISI: 15 (s) to Max ISI, ISI: 9 (s) to Max ISI, ISI: 15 (s) to Max ISI
+    :alt: ISI: 0 (s) to Max ISI, ISI: 15 (s) to Max ISI, ISI: 0 (s) to Max ISI, ISI: 15 (s) to Max ISI
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    ../mne_nirs/simulation/_simulation.py:67: RuntimeWarning: Limited 1 annotation(s) that were expanding outside the data range.
-      raw.set_annotations(annotations)
 
 
 
@@ -435,7 +427,7 @@ Some common high pass filter values from literature are shown in red.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  34.207 seconds)
+   **Total running time of the script:** ( 0 minutes  25.246 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency.py:
