@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Computation times &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>mne_nirs.utils.get_short_channels &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="index.html">Examples</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../api.html">API</a></li>
                 <li><a href="https://github.com/mne-tools/mne-nirs">GitHub</a></li>
             
@@ -70,7 +70,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Computation times</a></li>
+<li><a class="reference internal" href="#">mne_nirs.utils.get_short_channels</a></li>
 </ul>
 </ul>
 </li>
@@ -102,34 +102,30 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="computation-times">
-<span id="sphx-glr-auto-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
-<p><strong>01:07.556</strong> total execution time for <strong>auto_examples</strong> files:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 82%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_30_frequency.html#sphx-glr-auto-examples-plot-30-frequency-py"><span class="std std-ref">Frequency and Filter Commentary</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_30_frequency.py</span></code>)</p></td>
-<td><p>00:29.329</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_11_hrf_simulation.html#sphx-glr-auto-examples-plot-11-hrf-simulation-py"><span class="std std-ref">GLM Analysis (Simulated Data)</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_11_hrf_simulation.py</span></code>)</p></td>
-<td><p>00:19.893</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_10_hrf.html#sphx-glr-auto-examples-plot-10-hrf-py"><span class="std std-ref">GLM Analysis (Measured Data)</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_10_hrf.py</span></code>)</p></td>
-<td><p>00:16.628</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_20_cui.html#sphx-glr-auto-examples-plot-20-cui-py"><span class="std std-ref">Signal enhancement techniques</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_20_cui.py</span></code>)</p></td>
-<td><p>00:01.706</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-</tbody>
-</table>
+  <div class="section" id="mne-nirs-utils-get-short-channels">
+<h1>mne_nirs.utils.get_short_channels<a class="headerlink" href="#mne-nirs-utils-get-short-channels" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mne_nirs.utils.get_short_channels">
+<code class="sig-prename descclassname">mne_nirs.utils.</code><code class="sig-name descname">get_short_channels</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">max_dist=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/utils/_short.html#get_short_channels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.utils.get_short_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return channels with a short source detector separation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>The haemoglobin data.</p>
+</dd>
+<dt><strong>max_dist</strong><span class="classifier">number</span></dt><dd><p>Maximum distance of returned channel.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>Raw instance with only short channels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 

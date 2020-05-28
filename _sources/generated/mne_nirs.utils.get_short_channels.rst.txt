@@ -1,0 +1,6 @@
+mne\_nirs.utils.get\_short\_channels
+====================================
+
+.. currentmodule:: mne_nirs.utils
+
+.. autofunction:: get_short_channels
