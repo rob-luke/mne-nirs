@@ -66,7 +66,7 @@ Import raw NIRS data
 --------------------
 
 Import the motor tapping data also used in MNE tutorial.
-Crop to meet github memory constraints.
+Resample to meet github memory constraints.
 
 
 .. code-block:: default
@@ -76,7 +76,7 @@ Crop to meet github memory constraints.
     fnirs_raw_dir = os.path.join(fnirs_data_folder, 'Participant-1')
     raw_intensity = mne.io.read_raw_nirx(fnirs_raw_dir,
                                          verbose=True).load_data()
-    raw_intensity.crop(tmax=800)
+    raw_intensity.resample(1.0)
 
 
 
@@ -93,7 +93,7 @@ Crop to meet github memory constraints.
     Creating ~/mne_data
     Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
     Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
-      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      6%|5         | Downloading : 0.99M/17.1M [00:00<00:00,    41.9MB/s]     15%|#4        | Downloading : 2.49M/17.1M [00:00<00:00,    43.1MB/s]     26%|##6       | Downloading : 4.49M/17.1M [00:00<00:00,    42.1MB/s]     38%|###8      | Downloading : 6.49M/17.1M [00:00<00:00,    43.2MB/s]     50%|####9     | Downloading : 8.49M/17.1M [00:00<00:00,    44.3MB/s]     62%|######1   | Downloading : 10.5M/17.1M [00:00<00:00,    45.5MB/s]     73%|#######3  | Downloading : 12.5M/17.1M [00:00<00:00,    46.8MB/s]     85%|########4 | Downloading : 14.5M/17.1M [00:00<00:00,    48.1MB/s]     97%|#########6| Downloading : 16.5M/17.1M [00:00<00:00,    48.7MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    67.2MB/s]
+      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:00,     107MB/s]     35%|###5      | Downloading : 5.99M/17.1M [00:00<00:00,    95.5MB/s]     53%|#####2    | Downloading : 8.99M/17.1M [00:00<00:00,    92.3MB/s]     76%|#######6  | Downloading : 13.0M/17.1M [00:00<00:00,    93.5MB/s]    100%|#########9| Downloading : 17.0M/17.1M [00:00<00:00,    94.3MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    63.5MB/s]
     Verifying hash c4935d19ddab35422a69f3326a01fef8.
     Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
     (please be patient, this can take some time)
@@ -103,7 +103,7 @@ Crop to meet github memory constraints.
     Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
     Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
 
-    <RawNIRX | Participant-1, 56 x 6251 (800.0 s), ~2.8 MB, data loaded>
+    <RawNIRX | Participant-1, 56 x 2975 (2974.0 s), ~1.4 MB, data loaded>
 
 
 
@@ -138,7 +138,7 @@ the experiment began and finished.
  .. code-block:: none
 
 
-    <Annotations | 24 segments: Control (8), Tapping/Left (9), Tapping/Right (7)>
+    <Annotations | 90 segments: Control (30), Tapping/Left (30), Tapping/Right ...>
 
 
 
@@ -159,33 +159,10 @@ Convert the raw data to haemoglobin concentration and bandpass filter.
     raw_intensity.pick(picks[dists > 0.01])
     raw_od = mne.preprocessing.nirs.optical_density(raw_intensity)
     raw_haemo = mne.preprocessing.nirs.beer_lambert_law(raw_od)
-    raw_haemo = raw_haemo.filter(0.05, 0.7, h_trans_bandwidth=0.2,
-                                 l_trans_bandwidth=0.02)
 
 
 
 
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Filtering raw data in 1 contiguous segment
-    Setting up band-pass filter from 0.05 - 0.7 Hz
-
-    FIR filter parameters
-    ---------------------
-    Designing a one-pass, zero-phase, non-causal bandpass filter:
-    - Windowed time-domain design (firwin) method
-    - Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
-    - Lower passband edge: 0.05
-    - Lower transition bandwidth: 0.02 Hz (-6 dB cutoff frequency: 0.04 Hz)
-    - Upper passband edge: 0.70 Hz
-    - Upper transition bandwidth: 0.20 Hz (-6 dB cutoff frequency: 0.80 Hz)
-    - Filter length: 1289 samples (164.992 sec)
 
 
 
@@ -431,7 +408,7 @@ negative sof HbO as expected.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  16.628 seconds)
+   **Total running time of the script:** ( 0 minutes  7.928 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
