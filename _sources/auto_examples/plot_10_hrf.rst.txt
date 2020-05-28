@@ -93,7 +93,7 @@ Crop to meet github memory constraints.
     Creating ~/mne_data
     Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
     Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
-      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:00,    77.5MB/s]     29%|##9       | Downloading : 4.99M/17.1M [00:00<00:00,    63.5MB/s]     47%|####6     | Downloading : 7.99M/17.1M [00:00<00:00,    65.3MB/s]     70%|#######   | Downloading : 12.0M/17.1M [00:00<00:00,    67.2MB/s]     82%|########2 | Downloading : 14.0M/17.1M [00:00<00:00,    68.8MB/s]     94%|#########3| Downloading : 16.0M/17.1M [00:00<00:00,    69.7MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    52.3MB/s]
+      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:00,    72.1MB/s]     29%|##9       | Downloading : 4.99M/17.1M [00:00<00:00,    72.1MB/s]     41%|####1     | Downloading : 6.99M/17.1M [00:00<00:00,    67.6MB/s]     64%|######4   | Downloading : 11.0M/17.1M [00:00<00:00,    69.6MB/s]    100%|#########9| Downloading : 17.0M/17.1M [00:00<00:00,    71.6MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    85.6MB/s]
     Verifying hash c4935d19ddab35422a69f3326a01fef8.
     Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
     (please be patient, this can take some time)
@@ -274,15 +274,9 @@ include a first order polynomial drift.
                                                    hrf_model='spm', stim_dur=5.0,
                                                    drift_order=1,
                                                    drift_model='polynomial')
-    fig, ax1 = plt.subplots(figsize=(10, 6), nrows=1, ncols=1)
-    fig = plot_design_matrix(design_matrix, ax=ax1)
 
 
 
-
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_003.png
-    :alt: plot 10 hrf
-    :class: sphx-glr-single-img
 
 
 
@@ -295,25 +289,18 @@ using standard Nilearn reporting functions.
 .. code-block:: default
 
 
-    plot_design_matrix(design_matrix)
+    fig, ax1 = plt.subplots(figsize=(10, 6), nrows=1, ncols=1)
+    fig = plot_design_matrix(design_matrix, ax=ax1)
 
 
 
 
 
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_004.png
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_003.png
     :alt: plot 10 hrf
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    <matplotlib.axes._subplots.AxesSubplot object at 0x7fba00b6a640>
 
 
 
@@ -335,7 +322,7 @@ And we can also look at a single experimental condition.
 
 
 
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_005.png
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_004.png
     :alt: plot 10 hrf
     :class: sphx-glr-single-img
 
@@ -398,7 +385,7 @@ is seen in the epoching tutorial.
 
 
 
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_006.png
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_005.png
     :alt: plot 10 hrf
     :class: sphx-glr-single-img
 
@@ -425,7 +412,7 @@ negative sof HbO as expected.
 
 
 
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_007.png
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_006.png
     :alt: Tapping/Left, Tapping/Right, Tapping/Left, Tapping/Right
     :class: sphx-glr-single-img
 
@@ -444,7 +431,7 @@ negative sof HbO as expected.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.906 seconds)
+   **Total running time of the script:** ( 0 minutes  15.268 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
