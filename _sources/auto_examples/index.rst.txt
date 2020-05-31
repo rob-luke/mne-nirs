@@ -15,27 +15,6 @@ Introductory examples.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This document is a work in progress. It is a first attempt to add GLM analysis to MNE processin...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_10_hrf_thumb.png
-     :alt: GLM Analysis (Measured Data)
-
-     :ref:`sphx_glr_auto_examples_plot_10_hrf.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_10_hrf
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="In this example we simulate a block design NIRS experiment and analyse the simulated signal. We...">
 
 .. only:: html
@@ -75,6 +54,27 @@ Introductory examples.
    :hidden:
 
    /auto_examples/plot_20_cui
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This document is a work in progress. It is a first attempt to add GLM analysis to MNE processin...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_10_hrf_thumb.png
+     :alt: GLM Analysis (Measured Data)
+
+     :ref:`sphx_glr_auto_examples_plot_10_hrf.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_10_hrf
 
 .. raw:: html
 
