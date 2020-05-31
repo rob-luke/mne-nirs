@@ -89,6 +89,7 @@ for a detailed introduction to processing NIRS with MNE.
 
     raw_od = mne.preprocessing.nirs.optical_density(raw_intensity)
     raw_haemo = mne.preprocessing.nirs.beer_lambert_law(raw_od)
+    raw_haemo = mne_nirs.utils.get_long_channels(raw_haemo)
 
 
 
@@ -248,9 +249,10 @@ is still visible.
  .. code-block:: none
 
     Used Annotations descriptions: ['Tapping/Left', 'Tapping/Right']
+    Not setting metadata
+    Not setting metadata
     60 matching events found
     Applying baseline correction (mode: mean)
-    Not setting metadata
     0 projection items activated
     Loading data for 60 events and 157 original time points ...
     0 bad epochs dropped
@@ -427,7 +429,7 @@ Some common high pass filter values from literature are shown in red.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  30.883 seconds)
+   **Total running time of the script:** ( 0 minutes  30.210 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency.py:
