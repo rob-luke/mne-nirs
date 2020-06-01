@@ -308,14 +308,14 @@ Here we observe that as the noise is increased the estimate error increases.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7fdc7874e460>
+    <matplotlib.collections.LineCollection object at 0x7f60af85b940>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  18.669 seconds)
+   **Total running time of the script:** ( 0 minutes  17.386 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_11_hrf_simulation.py:

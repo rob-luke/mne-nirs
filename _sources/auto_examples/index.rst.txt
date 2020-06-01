@@ -57,7 +57,7 @@ Introductory examples.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This document is a work in progress. It is a first attempt to add GLM analysis to MNE processin...">
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example we analyse data from a real multichannel fNIRS experiment (see tut-fnirs-hrf-si...">
 
 .. only:: html
 
