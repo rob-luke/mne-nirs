@@ -89,7 +89,7 @@ for a detailed introduction to processing NIRS with MNE.
 
     raw_od = mne.preprocessing.nirs.optical_density(raw_intensity)
     raw_haemo = mne.preprocessing.nirs.beer_lambert_law(raw_od)
-    raw_haemo = mne_nirs.utils.get_long_channels(raw_haemo)
+    raw_haemo = mne_nirs.channels.get_long_channels(raw_haemo)
 
 
 
@@ -429,7 +429,7 @@ Some common high pass filter values from literature are shown in red.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  34.496 seconds)
+   **Total running time of the script:** ( 0 minutes  29.160 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_30_frequency.py:
