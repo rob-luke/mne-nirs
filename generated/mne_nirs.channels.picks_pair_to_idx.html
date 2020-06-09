@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Computation times &#8212; MNE-NIRS 0.0.1 dev documentation</title>
+    <title>mne_nirs.channels.picks_pair_to_idx &#8212; MNE-NIRS 0.0.1 dev documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap_divs.css" />
@@ -47,7 +47,7 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="index.html">Examples</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../api.html">API</a></li>
                 <li><a href="https://github.com/mne-tools/mne-nirs">GitHub</a></li>
             
@@ -72,7 +72,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Computation times</a></li>
+<li><a class="reference internal" href="#">mne_nirs.channels.picks_pair_to_idx</a></li>
 </ul>
 </ul>
 </li>
@@ -104,34 +104,44 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="computation-times">
-<span id="sphx-glr-auto-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
-<p><strong>00:56.735</strong> total execution time for <strong>auto_examples</strong> files:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 82%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_30_frequency.html#sphx-glr-auto-examples-plot-30-frequency-py"><span class="std std-ref">Frequency and Filter Commentary</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_30_frequency.py</span></code>)</p></td>
-<td><p>00:34.683</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_10_hrf.html#sphx-glr-auto-examples-plot-10-hrf-py"><span class="std std-ref">GLM Analysis (Measured Data)</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_10_hrf.py</span></code>)</p></td>
-<td><p>00:13.157</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_20_cui.html#sphx-glr-auto-examples-plot-20-cui-py"><span class="std std-ref">Signal enhancement techniques</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_20_cui.py</span></code>)</p></td>
-<td><p>00:05.035</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_11_hrf_simulation.html#sphx-glr-auto-examples-plot-11-hrf-simulation-py"><span class="std std-ref">GLM Analysis (Simulated Data)</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_11_hrf_simulation.py</span></code>)</p></td>
-<td><p>00:03.860</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-</tbody>
-</table>
+  <div class="section" id="mne-nirs-channels-picks-pair-to-idx">
+<h1>mne_nirs.channels.picks_pair_to_idx<a class="headerlink" href="#mne-nirs-channels-picks-pair-to-idx" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mne_nirs.channels.picks_pair_to_idx">
+<code class="sig-prename descclassname">mne_nirs.channels.</code><code class="sig-name descname">picks_pair_to_idx</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">sd_pairs</em>, <em class="sig-param">on_missing='error'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/channels/_roi.html#picks_pair_to_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.channels.picks_pair_to_idx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of picks for specified source detector pairs.</p>
+<p>If multiple channel have the same source detector pair,
+for example if there are multiple wavelengths or chromaphore, then
+all channels matching the requested sources and detectors will be
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>raw</strong><span class="classifier">instance of Raw</span></dt><dd><p>The haemoglobin data.</p>
+</dd>
+<dt><strong>sd_pairs</strong><span class="classifier">list of lists</span></dt><dd><p>List of source detector pairs. For example, to request the picks for
+channels comprising of source 1 detector 4 and source 13
+detector 4 you would specify [[1, 4], [13, 4]].</p>
+</dd>
+<dt><strong>on_missing</strong><span class="classifier">str</span></dt><dd><p>What to do if one or several requested source detector are not found
+in the recording.
+Valid keys are ‘error’ | ‘warning’ | ‘ignore’
+Default is ‘error’. If on_missing is ‘warning’ it will proceed but
+warn, if ‘ignore’ it will proceed silently. Note.
+If none of the event ids are found in the data, an error will be
+automatically generated irrespective of this parameter.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>picks</strong><span class="classifier">list of integers</span></dt><dd><p>List of picks corresponding to requested source detector pairs.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
