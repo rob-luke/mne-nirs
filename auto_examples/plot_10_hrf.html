@@ -392,7 +392,7 @@ is seen in the epoching tutorial.</p>
 </div>
 <img alt="plot 10 hrf" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_005.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7f79ff691670&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7ff72ccc4cd0&gt;
 </pre></div>
 </div>
 <p>We can also view the contriubution from the drift and constant factors.</p>
@@ -406,7 +406,7 @@ is seen in the epoching tutorial.</p>
 </div>
 <img alt="plot 10 hrf" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_006.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7f79fd5e6a30&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7ff72cc0a640&gt;
 </pre></div>
 </div>
 <p>And we can examine the contriubution from our short channel regression.</p>
@@ -420,7 +420,7 @@ is seen in the epoching tutorial.</p>
 </div>
 <img alt="plot 10 hrf" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_007.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7f79fcf530d0&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7ff7299165b0&gt;
 </pre></div>
 </div>
 </div>
@@ -473,29 +473,92 @@ in the channel, which chroma, etc.</p>
 positive rates. Note: optodes cover a greater region than just the
 motor cortex, so we dont expect 100% of channels to detect responses to
 the tapping, but we do expect 5% or less for the false positive rate.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fp_rate</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="numpy.sum" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">sum</span></a><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;condition in [&#39;Control&#39;]&quot;</span><span class="p">)[</span><span class="s2">&quot;Significant&quot;</span><span class="p">])</span> <span class="o">/</span> \
-    <span class="nb">len</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;condition in [&#39;Control&#39;]&quot;</span><span class="p">)[</span><span class="s2">&quot;Significant&quot;</span><span class="p">]))</span>
-
-<span class="n">tp_left_rate</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="numpy.sum" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">sum</span></a><span class="p">(</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;condition in [&#39;Tapping/Left&#39;]&quot;</span><span class="p">)[</span><span class="s2">&quot;Significant&quot;</span><span class="p">])</span> <span class="o">/</span> \
-    <span class="nb">len</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;condition in [&#39;Tapping/Left&#39;]&quot;</span><span class="p">)[</span><span class="s2">&quot;Significant&quot;</span><span class="p">]))</span>
-
-<span class="n">tp_right_rate</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="numpy.sum" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">sum</span></a><span class="p">(</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;condition in [&#39;Tapping/Right&#39;]&quot;</span><span class="p">)[</span><span class="s2">&quot;Significant&quot;</span><span class="p">])</span> <span class="o">/</span> \
-    <span class="nb">len</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;condition in [&#39;Tapping/Right&#39;]&quot;</span><span class="p">)[</span><span class="s2">&quot;Significant&quot;</span><span class="p">]))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;False positive rate:&quot;</span><span class="p">,</span> <span class="mf">100.</span> <span class="o">*</span> <span class="n">fp_rate</span><span class="p">,</span> <span class="s2">&quot;(%)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True positive rate (left):&quot;</span><span class="p">,</span> <span class="mf">100.</span> <span class="o">*</span> <span class="n">tp_left_rate</span><span class="p">,</span> <span class="s2">&quot;(%)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True positive rate (right):&quot;</span><span class="p">,</span> <span class="mf">100.</span> <span class="o">*</span> <span class="n">tp_right_rate</span><span class="p">,</span> <span class="s2">&quot;(%)&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df</span>
+ <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;condition in [&quot;Control&quot;, &quot;Tapping/Left&quot;, &quot;Tapping/Right&quot;]&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;condition&#39;</span><span class="p">,</span> <span class="s1">&#39;Chroma&#39;</span><span class="p">])</span>
+ <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">])</span>
+ <span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;df&#39;</span><span class="p">,</span> <span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+ <span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>False positive rate: 0.0 (%)
-True positive rate (left): 45.0 (%)
-True positive rate (right): 47.5 (%)
-</pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>theta</th>
+      <th>Significant</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>mean</th>
+      <th>mean</th>
+    </tr>
+    <tr>
+      <th>condition</th>
+      <th>Chroma</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Control</th>
+      <th>hbo</th>
+      <td>-9.066196e-08</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>hbr</th>
+      <td>6.750751e-09</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Tapping/Left</th>
+      <th>hbo</th>
+      <td>7.249248e-06</td>
+      <td>0.90</td>
+    </tr>
+    <tr>
+      <th>hbr</th>
+      <td>-3.190265e-06</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Tapping/Right</th>
+      <th>hbo</th>
+      <td>8.276313e-06</td>
+      <td>0.95</td>
+    </tr>
+    <tr>
+      <th>hbr</th>
+      <td>-3.095988e-06</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.157 seconds)</p>
+<br />
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  17.114 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-10-hrf-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5d7784c7a4d7e581cc48ca0671986fdb/plot_10_hrf.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_10_hrf.py</span></code></a></p>
