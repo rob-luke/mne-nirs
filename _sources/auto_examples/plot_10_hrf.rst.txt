@@ -466,7 +466,7 @@ is seen in the epoching tutorial.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7f13ff5f6280>
+    <matplotlib.collections.LineCollection object at 0x7f3eefd63d60>
 
 
 
@@ -499,7 +499,7 @@ We can also view the contriubution from the drift and constant factors.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7f13ffea96d0>
+    <matplotlib.collections.LineCollection object at 0x7f3ef1d990d0>
 
 
 
@@ -532,7 +532,7 @@ And we can examine the contriubution from our short channel regression.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7f13fc53c5b0>
+    <matplotlib.collections.LineCollection object at 0x7f3eeece5640>
 
 
 
@@ -719,7 +719,7 @@ the tapping, but we do expect 5% or less for the false positive rate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.629 seconds)
+   **Total running time of the script:** ( 0 minutes  16.145 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
