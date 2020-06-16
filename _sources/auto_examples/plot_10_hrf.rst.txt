@@ -53,11 +53,11 @@ This GLM analysis is a wrapper over the excellent
 
     from mne_nirs.experimental_design import make_first_level_design_matrix
     from mne_nirs.statistics import run_GLM
-    from mne_nirs.visualisation import plot_GLM_topo
+    from mne_nirs.visualisation import plot_glm_topo
 
     from nilearn.reporting import plot_design_matrix
     from mne_nirs.channels import get_long_channels, get_short_channels
-    from mne_nirs.utils._io import _GLM_to_tidy_long, _tidy_long_to_wide
+    from mne_nirs.utils._io import glm_to_tidy, _tidy_long_to_wide
 
 
 
@@ -109,6 +109,17 @@ to meet github memory constraints.
 
  .. code-block:: none
 
+    Using default location ~/mne_data for fnirs_motor...
+    Creating ~/mne_data
+    Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
+    Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
+      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      1%|          | Downloading : 120k/17.1M [00:00<00:02,    5.97MB/s]      3%|3         | Downloading : 568k/17.1M [00:00<00:02,    6.14MB/s]      6%|6         | Downloading : 1.05M/17.1M [00:00<00:02,    6.37MB/s]     12%|#2        | Downloading : 2.05M/17.1M [00:00<00:02,    6.65MB/s]     21%|##        | Downloading : 3.55M/17.1M [00:00<00:02,    6.96MB/s]     38%|###8      | Downloading : 6.55M/17.1M [00:00<00:01,    7.31MB/s]     62%|######1   | Downloading : 10.6M/17.1M [00:00<00:00,    7.67MB/s]     85%|########5 | Downloading : 14.6M/17.1M [00:00<00:00,    8.05MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    8.45MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    77.0MB/s]
+    Verifying hash c4935d19ddab35422a69f3326a01fef8.
+    Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
+    (please be patient, this can take some time)
+    Successfully extracted to: ['/github/home/mne_data/MNE-fNIRS-motor-data']
+    Attempting to create new mne-python configuration file:
+    /github/home/.mne/mne-python.json
     Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
     Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
 
@@ -422,8 +433,7 @@ of a single source detector pair.
 
 
     data_subset = raw_haemo.copy().pick(picks=range(2))
-    labels, glm_est = run_GLM(data_subset, design_matrix)
-
+    glm_est = run_GLM(data_subset, design_matrix)
 
 
 
@@ -443,8 +453,8 @@ is seen in the epoching tutorial.
 .. code-block:: default
 
 
-    plt.scatter(design_matrix.columns[:3], glm_est[labels[0]].theta[:3] * 1e6)
-    plt.scatter(design_matrix.columns[:3], glm_est[labels[1]].theta[:3] * 1e6)
+    plt.scatter(design_matrix.columns[:3], glm_est['S1_D1 hbo'].theta[:3] * 1e6)
+    plt.scatter(design_matrix.columns[:3], glm_est['S1_D1 hbr'].theta[:3] * 1e6)
     plt.xlabel("Experiment Condition")
     plt.ylabel("Haemoglobin (μM)")
     plt.legend(["Oxyhaemoglobin", "Deoxyhaemoglobin"])
@@ -466,73 +476,7 @@ is seen in the epoching tutorial.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7fd18a5bf610>
-
-
-
-We can also view the contriubution from the drift and constant factors.
-
-
-.. code-block:: default
-
-
-    plt.scatter(design_matrix.columns[3:7], glm_est[labels[0]].theta[3:7] * 1e6)
-    plt.scatter(design_matrix.columns[3:7], glm_est[labels[1]].theta[3:7] * 1e6)
-    plt.xlabel("Model Component")
-    plt.ylabel("Estimated contribution")
-    plt.legend(["Oxyhaemoglobin", "Deoxyhaemoglobin"])
-    plt.hlines([0.0], 0, 3)
-
-
-
-
-
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_006.png
-    :alt: plot 10 hrf
-    :class: sphx-glr-single-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    <matplotlib.collections.LineCollection object at 0x7fd18a5e32e0>
-
-
-
-And we can examine the contriubution from our short channel regression.
-
-
-.. code-block:: default
-
-
-    plt.scatter(design_matrix.columns[7:], glm_est[labels[0]].theta[7:])
-    plt.scatter(design_matrix.columns[7:], glm_est[labels[1]].theta[7:])
-    plt.xlabel("Model Component")
-    plt.ylabel("Estimated contribution")
-    plt.legend(["Oxyhaemoglobin", "Deoxyhaemoglobin"])
-    plt.hlines([0.0], 0, 1)
-
-
-
-
-
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_007.png
-    :alt: plot 10 hrf
-    :class: sphx-glr-single-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    <matplotlib.collections.LineCollection object at 0x7fd18716d640>
+    <matplotlib.collections.LineCollection object at 0x7fb692fc8af0>
 
 
 
@@ -550,15 +494,16 @@ negative sof HbO as expected.
 .. code-block:: default
 
 
-    labels, glm_est = run_GLM(raw_haemo, design_matrix)
-    plot_GLM_topo(raw_haemo, labels, glm_est, design_matrix,
-                  requested_conditions=['Tapping/Left', 'Tapping/Right'])
+    glm_est = run_GLM(raw_haemo, design_matrix)
+    plot_glm_topo(raw_haemo, glm_est, design_matrix,
+                  requested_conditions=['Tapping/Left',
+                                        'Tapping/Right'])
 
 
 
 
 
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_008.png
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_006.png
     :alt: Tapping/Left, Tapping/Right, Tapping/Left, Tapping/Right
     :class: sphx-glr-single-img
 
@@ -570,7 +515,47 @@ negative sof HbO as expected.
  .. code-block:: none
 
 
-    <Figure size 1200x700 with 4 Axes>
+    <Figure size 1200x700 with 6 Axes>
+
+
+
+Compute contrasts
+-----------------
+
+We can also define a contrast as described in
+`Nilearn docs <https://5874-1235740-gh.circle-artifacts.com/0/doc/_build/html/auto_examples/04_glm_first_level_models/plot_localizer_surface_analysis.html>`_
+and plot it.
+Here we contrast the response to tapping on the left hand with the response
+from tapping on the right hand.
+
+
+.. code-block:: default
+
+
+    contrast_matrix = np.eye(design_matrix.shape[1])
+    basic_conts = dict([(column, contrast_matrix[i])
+                       for i, column in enumerate(design_matrix.columns)])
+    contrast_LvR = basic_conts['Tapping/Right'] - basic_conts['Tapping/Left']
+    contrast = mne_nirs.statistics.compute_contrast(glm_est, contrast_LvR)
+    mne_nirs.visualisation.plot_glm_contrast_topo(raw_haemo, contrast)
+
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_007.png
+    :alt: hbo, hbr
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    <Figure size 1200x700 with 3 Axes>
 
 
 
@@ -599,7 +584,7 @@ in the channel, which chroma, etc.
 
 
 
-    df = _GLM_to_tidy_long(raw_haemo, labels, glm_est, design_matrix)
+    df = glm_to_tidy(raw_haemo, glm_est, design_matrix)
     df = _tidy_long_to_wide(df)
 
 
@@ -626,7 +611,7 @@ the tapping, but we do expect 5% or less for the false positive rate.
      .query('condition in ["Control", "Tapping/Left", "Tapping/Right"]')
      .groupby(['condition', 'Chroma'])
      .agg(['mean'])
-     .drop(['df', 'mse', 'p', 't'], 1)
+     .drop(['df', 'mse', 'p_value', 't'], 1)
      )
 
 
@@ -719,7 +704,7 @@ the tapping, but we do expect 5% or less for the false positive rate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.072 seconds)
+   **Total running time of the script:** ( 0 minutes  30.243 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
