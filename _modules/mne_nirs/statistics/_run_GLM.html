@@ -139,7 +139,7 @@
 <span class="sd">        Keys correspond to the different labels values values are</span>
 <span class="sd">        RegressionResults instances corresponding to the voxels.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">nilearn.stats.first_level_model</span> <span class="kn">import</span> <span class="n">run_glm</span>
+    <span class="kn">from</span> <span class="nn">nilearn.glm.first_level</span> <span class="kn">import</span> <span class="n">run_glm</span>
 
     <span class="n">picks</span> <span class="o">=</span> <span class="n">_picks_to_idx</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="s1">&#39;fnirs&#39;</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[],</span> <span class="n">allow_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">ch_names</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">ch_names</span>
@@ -177,7 +177,7 @@
 <span class="sd">        Yields the statistics of the contrast (effects, variance, p-values).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">nilearn.stats.contrasts</span> <span class="kn">import</span> <span class="n">compute_contrast</span> <span class="k">as</span> <span class="n">_cc</span>
+    <span class="kn">from</span> <span class="nn">nilearn.glm.contrasts</span> <span class="kn">import</span> <span class="n">compute_contrast</span> <span class="k">as</span> <span class="n">_cc</span>
     <span class="k">return</span> <span class="n">_cc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">glm_est</span><span class="o">.</span><span class="n">keys</span><span class="p">())),</span> <span class="n">glm_est</span><span class="p">,</span> <span class="n">contrast</span><span class="p">,</span>
                <span class="n">contrast_type</span><span class="o">=</span><span class="n">contrast_type</span><span class="p">)</span></div>
 </pre></div>
