@@ -159,7 +159,7 @@ this result should be the same as the MNE tutorial.
         Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S8_D8 hbo']
         Rejecting  epoch based on HBO : ['S4_D4 hbo']
         Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S8_D8 hbo']
-        Rejecting  epoch based on HBO : ['S1_D1 hbo', 'S3_D3 hbo', 'S4_D4 hbo', 'S7_D6 hbo', 'S7_D7 hbo', 'S8_D8 hbo']
+        Rejecting  epoch based on HBO : ['S1_D1 hbo', 'S3_D3 hbo', 'S4_D4 hbo', 'S7_D7 hbo', 'S8_D8 hbo']
         Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S6_D8 hbo', 'S8_D8 hbo']
     6 bad epochs dropped
 
@@ -283,13 +283,34 @@ detector pairs for analysis.
     right = [[5, 5], [5, 6], [5, 7], [6, 5], [6, 7],
              [6, 8], [7, 6], [7, 7], [8, 7], [8, 8]]
 
-    groups = dict(Left_ROI=picks_pair_to_idx(raw_anti.pick(picks='hbo'), left),
-                  Right_ROI=picks_pair_to_idx(raw_anti.pick(picks='hbo'), right))
+    groups = dict(Left_ROI=picks_pair_to_idx(raw_anti.pick(picks='hbo'), left,
+                                             on_missing='warning'),
+                  Right_ROI=picks_pair_to_idx(raw_anti.pick(picks='hbo'), right,
+                                             on_missing='warning'))
 
 
 
 
 
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    ../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 1 detector 3
+      warn(msg)
+    ../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 3 detector 2
+      warn(msg)
+    ../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 4 detector 3
+      warn(msg)
+    ../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 5 detector 7
+      warn(msg)
+    ../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 7 detector 6
+      warn(msg)
+    ../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 8 detector 7
+      warn(msg)
 
 
 
@@ -404,7 +425,7 @@ method.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.238 seconds)
+   **Total running time of the script:** ( 0 minutes  3.258 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_20_cui.py:

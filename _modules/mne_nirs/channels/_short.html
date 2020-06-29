@@ -142,7 +142,7 @@
     <span class="k">return</span> <span class="n">short_chans</span></div>
 
 
-<div class="viewcode-block" id="get_long_channels"><a class="viewcode-back" href="../../../generated/mne_nirs.channels.get_long_channels.html#mne_nirs.channels.get_long_channels">[docs]</a><span class="k">def</span> <span class="nf">get_long_channels</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<div class="viewcode-block" id="get_long_channels"><a class="viewcode-back" href="../../../generated/mne_nirs.channels.get_long_channels.html#mne_nirs.channels.get_long_channels">[docs]</a><span class="k">def</span> <span class="nf">get_long_channels</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="mf">0.04</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return channels with a long source detector separation.</span>
 
@@ -153,6 +153,8 @@
 <span class="sd">        The haemoglobin data.</span>
 <span class="sd">    min_dist : number</span>
 <span class="sd">        Minimum distance of returned channel.</span>
+<span class="sd">    max_dist : number</span>
+<span class="sd">        Maximum distance of returned channel.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -168,7 +170,7 @@
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Short channel extraction for NIRS signals only.&#39;</span><span class="p">)</span>
 
     <span class="n">dists</span> <span class="o">=</span> <span class="n">source_detector_distances</span><span class="p">(</span><span class="n">long_chans</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">picks</span><span class="o">=</span><span class="n">picks</span><span class="p">)</span>
-    <span class="n">long_chans</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="p">[</span><span class="n">dists</span> <span class="o">&gt;</span> <span class="n">min_dist</span><span class="p">])</span>
+    <span class="n">long_chans</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="p">[(</span><span class="n">dists</span> <span class="o">&gt;</span> <span class="n">min_dist</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dists</span> <span class="o">&lt;</span> <span class="n">max_dist</span><span class="p">)])</span>
 
     <span class="k">return</span> <span class="n">long_chans</span></div>
 </pre></div>
