@@ -223,7 +223,7 @@ Loading data for 90 events and 157 original time points ...
     Rejecting  epoch based on HBO : [&#39;S4_D4 hbo&#39;, &#39;S8_D8 hbo&#39;]
     Rejecting  epoch based on HBO : [&#39;S4_D4 hbo&#39;]
     Rejecting  epoch based on HBO : [&#39;S4_D4 hbo&#39;, &#39;S8_D8 hbo&#39;]
-    Rejecting  epoch based on HBO : [&#39;S1_D1 hbo&#39;, &#39;S3_D3 hbo&#39;, &#39;S4_D4 hbo&#39;, &#39;S7_D7 hbo&#39;, &#39;S8_D8 hbo&#39;]
+    Rejecting  epoch based on HBO : [&#39;S1_D1 hbo&#39;, &#39;S3_D3 hbo&#39;, &#39;S4_D4 hbo&#39;, &#39;S7_D6 hbo&#39;, &#39;S7_D7 hbo&#39;, &#39;S8_D8 hbo&#39;]
     Rejecting  epoch based on HBO : [&#39;S4_D4 hbo&#39;, &#39;S6_D8 hbo&#39;, &#39;S8_D8 hbo&#39;]
 6 bad epochs dropped
 </pre></div>
@@ -311,21 +311,6 @@ detector pairs for analysis.</p>
                                          <span class="n">on_missing</span><span class="o">=</span><span class="s1">&#39;warning&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 1 detector 3
-  warn(msg)
-../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 3 detector 2
-  warn(msg)
-../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 4 detector 3
-  warn(msg)
-../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 5 detector 7
-  warn(msg)
-../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 7 detector 6
-  warn(msg)
-../mne_nirs/channels/_roi.py:55: RuntimeWarning: No matching channels found for source 8 detector 7
-  warn(msg)
-</pre></div>
-</div>
 <p>First we plot the epochs for the unprocessed data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://mne.tools/stable/generated/mne.Epochs.html#mne.Epochs" title="mne.Epochs" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">epochs</span></a><span class="p">[</span><span class="s1">&#39;Tapping&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="s1">&#39;hbo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot_image</span><span class="p">(</span><span class="n">combine</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
                                                     <span class="n">group_by</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">groups</span></a><span class="p">)</span>
@@ -387,7 +372,7 @@ combining channels using &quot;mean&quot;
 [&lt;Figure size 640x480 with 3 Axes&gt;, &lt;Figure size 640x480 with 3 Axes&gt;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.258 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.655 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-20-cui-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/8004bd8d0571541b1596a2bb003de455/plot_20_cui.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_20_cui.py</span></code></a></p>
