@@ -5,14 +5,14 @@
 
 Computation times
 =================
-**01:18.782** total execution time for **auto_examples** files:
+**01:22.552** total execution time for **auto_examples** files:
 
 +-----------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_10_hrf.py` (``plot_10_hrf.py``)                       | 00:38.635 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_10_hrf.py` (``plot_10_hrf.py``)                       | 00:39.729 | 0.0 MB |
 +-----------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_30_frequency.py` (``plot_30_frequency.py``)           | 00:32.302 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_30_frequency.py` (``plot_30_frequency.py``)           | 00:34.809 | 0.0 MB |
 +-----------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_11_hrf_simulation.py` (``plot_11_hrf_simulation.py``) | 00:04.253 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_11_hrf_simulation.py` (``plot_11_hrf_simulation.py``) | 00:04.327 | 0.0 MB |
 +-----------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_20_cui.py` (``plot_20_cui.py``)                       | 00:03.591 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_20_cui.py` (``plot_20_cui.py``)                       | 00:03.687 | 0.0 MB |
 +-----------------------------------------------------------------------------------------+-----------+--------+
