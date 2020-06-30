@@ -111,7 +111,7 @@
 <h1>mne_nirs.simulation.simulate_nirs_raw<a class="headerlink" href="#mne-nirs-simulation-simulate-nirs-raw" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="mne_nirs.simulation.simulate_nirs_raw">
-<code class="sig-prename descclassname">mne_nirs.simulation.</code><code class="sig-name descname">simulate_nirs_raw</code><span class="sig-paren">(</span><em class="sig-param">sfreq=3.0</em>, <em class="sig-param">amplitude=1.0</em>, <em class="sig-param">sig_dur=300.0</em>, <em class="sig-param">stim_dur=5.0</em>, <em class="sig-param">isi_min=15.0</em>, <em class="sig-param">isi_max=45.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/simulation/_simulation.html#simulate_nirs_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.simulation.simulate_nirs_raw" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mne_nirs.simulation.</code><code class="sig-name descname">simulate_nirs_raw</code><span class="sig-paren">(</span><em class="sig-param">sfreq=3.0</em>, <em class="sig-param">amplitude=1.0</em>, <em class="sig-param">annot_desc='A'</em>, <em class="sig-param">sig_dur=300.0</em>, <em class="sig-param">stim_dur=5.0</em>, <em class="sig-param">isi_min=15.0</em>, <em class="sig-param">isi_max=45.0</em>, <em class="sig-param">ch_name='Simulated'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mne_nirs/simulation/_simulation.html#simulate_nirs_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mne_nirs.simulation.simulate_nirs_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create simulated data.</p>
 <blockquote>
 <div><div class="admonition warning">
@@ -124,15 +124,19 @@
 <dd class="field-odd"><dl class="simple">
 <dt><strong>sfreq</strong><span class="classifier">Number</span></dt><dd><p>The sample rate.</p>
 </dd>
-<dt><strong>amplitude</strong><span class="classifier">Number</span></dt><dd><p>The amplitude of the signal to simulate in uM.</p>
+<dt><strong>amplitude</strong><span class="classifier">Number, Array of numbers</span></dt><dd><p>The amplitude of the signal to simulate in uM.</p>
+</dd>
+<dt><strong>annot_desc</strong><span class="classifier">String, Array of strings</span></dt><dd><p>The name of the annotations for simulated amplitudes.</p>
 </dd>
 <dt><strong>sig_dur</strong><span class="classifier">Number</span></dt><dd><p>The length of the signal to generate in seconds.</p>
 </dd>
-<dt><strong>stim_dur</strong><span class="classifier">Number</span></dt><dd><p>The length of the stimulus to generate in seconds.</p>
+<dt><strong>stim_dur</strong><span class="classifier">Number, Array of numbers</span></dt><dd><p>The length of the stimulus to generate in seconds.</p>
 </dd>
 <dt><strong>isi_min</strong><span class="classifier">Number</span></dt><dd><p>The minimum duration of the inter stimulus interval in seconds.</p>
 </dd>
 <dt><strong>isi_max</strong><span class="classifier">Number</span></dt><dd><p>The maximum duration of the inter stimulus interval in seconds.</p>
+</dd>
+<dt><strong>ch_name</strong><span class="classifier">String</span></dt><dd><p>Channel name to be used in returned raw instance.</p>
 </dd>
 </dl>
 </dd>
