@@ -227,32 +227,37 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
     <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
     <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.axes_divider</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
 
+    <span class="c1"># Extract types. One subplot is created per type (hbo/hbr)</span>
     <span class="n">types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get_channel_types</span><span class="p">())</span>
 
-    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                             <span class="n">ncols</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">),</span>
-                             <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
-
+    <span class="c1"># Extract values to plot and rescale to uM</span>
     <span class="n">estimates</span> <span class="o">=</span> <span class="n">contrast</span><span class="o">.</span><span class="n">effect</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">estimates</span> <span class="o">=</span> <span class="n">estimates</span> <span class="o">*</span> <span class="mf">1e6</span>
 
+    <span class="c1"># Create subplots for figures</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">ncols</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">),</span>
+                             <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="c1"># Create limits for colorbar</span>
     <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">estimates</span><span class="p">))</span>
     <span class="n">vmin</span> <span class="o">=</span> <span class="n">vmax</span> <span class="o">*</span> <span class="o">-</span><span class="mf">1.</span>
     <span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdBu_r</span>
     <span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">t_idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">types</span><span class="p">):</span>
+        <span class="c1"># Extract just the channels corresponding to the type to plot</span>
         <span class="n">picks</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">pick</span><span class="o">.</span><span class="n">_picks_to_idx</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[],</span>
                                           <span class="n">allow_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">raw_subset</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="n">picks</span><span class="p">)</span>
 
+        <span class="c1"># Extract positions of channels for plotting</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">merge_channels</span><span class="p">,</span> <span class="n">ch_names</span><span class="p">,</span> <span class="n">ch_type</span><span class="p">,</span> <span class="n">sphere</span><span class="p">,</span> <span class="n">clip_origin</span> <span class="o">=</span> \
             <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">topomap</span><span class="o">.</span><span class="n">_prepare_topomap_plot</span><span class="p">(</span><span class="n">raw_subset</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">)</span>
 
+        <span class="c1"># Plot the topomap</span>
         <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">topomap</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">estimates</span><span class="p">[</span><span class="n">picks</span><span class="p">],</span> <span class="n">pos</span><span class="p">,</span>
                                      <span class="n">extrapolate</span><span class="o">=</span><span class="s1">&#39;local&#39;</span><span class="p">,</span>
                                      <span class="n">names</span><span class="o">=</span><span class="n">ch_names</span><span class="p">,</span>
@@ -261,8 +266,10 @@
                                      <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">t_idx</span><span class="p">],</span>
                                      <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                      <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">)</span>
+        <span class="c1"># Set the title for this type</span>
         <span class="n">axes</span><span class="p">[</span><span class="n">t_idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
+    <span class="c1"># Create a single colorbar for all types based on limits above</span>
     <span class="n">ax1_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">cax1</span> <span class="o">=</span> <span class="n">ax1_divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;7%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s2">&quot;2%&quot;</span><span class="p">)</span>
     <span class="n">cbar</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">ColorbarBase</span><span class="p">(</span><span class="n">cax1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
