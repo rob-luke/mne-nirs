@@ -470,7 +470,7 @@ is seen in the epoching tutorial.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7f63c53c64c0>
+    <matplotlib.collections.LineCollection object at 0x7fee68f64d60>
 
 
 
@@ -529,7 +529,7 @@ from tapping on the right hand.
     contrast_matrix = np.eye(design_matrix.shape[1])
     basic_conts = dict([(column, contrast_matrix[i])
                        for i, column in enumerate(design_matrix.columns)])
-    contrast_LvR = basic_conts['Tapping/Right'] - basic_conts['Tapping/Left']
+    contrast_LvR = basic_conts['Tapping/Left'] - basic_conts['Tapping/Right']
     contrast = mne_nirs.statistics.compute_contrast(glm_est, contrast_LvR)
     mne_nirs.visualisation.plot_glm_contrast_topo(raw_haemo, contrast)
 
@@ -698,7 +698,7 @@ the tapping, but we do expect 5% or less for the false positive rate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  37.275 seconds)
+   **Total running time of the script:** ( 0 minutes  29.233 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
