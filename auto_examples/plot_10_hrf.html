@@ -310,7 +310,7 @@ function combined with the known stimulus event times and durations
 (as described above).
 We also include a third order polynomial drift and constant to model
 slow fluctuations in the data and a constant DC shift.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <a href="../generated/mne_nirs.experimental_design.make_first_level_design_matrix.html#mne_nirs.experimental_design.make_first_level_design_matrix" title="mne_nirs.experimental_design.make_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">make_first_level_design_matrix</span></a><span class="p">(</span><span class="n">raw_intensity</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <a href="../generated/mne_nirs.experimental_design.make_first_level_design_matrix.html#mne_nirs.experimental_design.make_first_level_design_matrix" title="mne_nirs.experimental_design.make_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">make_first_level_design_matrix</span></a><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span>
                                                <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span> <span class="n">stim_dur</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
                                                <span class="n">drift_order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
                                                <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">)</span>
@@ -399,7 +399,7 @@ is seen in the epoching tutorial.</p>
 </div>
 <img alt="plot 10 hrf" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_005.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7fee68f64d60&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7f86c217fdf0&gt;
 </pre></div>
 </div>
 </div>
@@ -559,7 +559,7 @@ the tapping, but we do expect 5% or less for the false positive rate.</p>
 </table>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  29.233 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  33.337 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-10-hrf-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5d7784c7a4d7e581cc48ca0671986fdb/plot_10_hrf.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_10_hrf.py</span></code></a></p>

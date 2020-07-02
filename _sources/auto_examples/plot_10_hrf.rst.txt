@@ -300,7 +300,7 @@ slow fluctuations in the data and a constant DC shift.
 .. code-block:: default
 
 
-    design_matrix = make_first_level_design_matrix(raw_intensity,
+    design_matrix = make_first_level_design_matrix(raw_haemo,
                                                    hrf_model='spm', stim_dur=5.0,
                                                    drift_order=3,
                                                    drift_model='polynomial')
@@ -470,7 +470,7 @@ is seen in the epoching tutorial.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7fee68f64d60>
+    <matplotlib.collections.LineCollection object at 0x7f86c217fdf0>
 
 
 
@@ -698,7 +698,7 @@ the tapping, but we do expect 5% or less for the false positive rate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  29.233 seconds)
+   **Total running time of the script:** ( 0 minutes  33.337 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
