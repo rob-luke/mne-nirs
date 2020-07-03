@@ -257,20 +257,26 @@
         <span class="n">_</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">merge_channels</span><span class="p">,</span> <span class="n">ch_names</span><span class="p">,</span> <span class="n">ch_type</span><span class="p">,</span> <span class="n">sphere</span><span class="p">,</span> <span class="n">clip_origin</span> <span class="o">=</span> \
             <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">topomap</span><span class="o">.</span><span class="n">_prepare_topomap_plot</span><span class="p">(</span><span class="n">raw_subset</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">)</span>
 
+        <span class="c1"># Deal with case when only a single chroma is available</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">t_idx</span><span class="p">]</span>
+
         <span class="c1"># Plot the topomap</span>
         <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">topomap</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">estimates</span><span class="p">[</span><span class="n">picks</span><span class="p">],</span> <span class="n">pos</span><span class="p">,</span>
                                      <span class="n">extrapolate</span><span class="o">=</span><span class="s1">&#39;local&#39;</span><span class="p">,</span>
                                      <span class="n">names</span><span class="o">=</span><span class="n">ch_names</span><span class="p">,</span>
                                      <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
                                      <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
-                                     <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">t_idx</span><span class="p">],</span>
+                                     <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                      <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                      <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">)</span>
         <span class="c1"># Set the title for this type</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">t_idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
     <span class="c1"># Create a single colorbar for all types based on limits above</span>
-    <span class="n">ax1_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax1_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
     <span class="n">cax1</span> <span class="o">=</span> <span class="n">ax1_divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;7%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s2">&quot;2%&quot;</span><span class="p">)</span>
     <span class="n">cbar</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">ColorbarBase</span><span class="p">(</span><span class="n">cax1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
                                      <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
