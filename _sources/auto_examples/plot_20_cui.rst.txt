@@ -89,17 +89,6 @@ for more details.
 
  .. code-block:: none
 
-    Using default location ~/mne_data for fnirs_motor...
-    Creating ~/mne_data
-    Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
-    Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
-      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]      6%|5         | Downloading : 0.99M/17.1M [00:00<00:00,    28.5MB/s]      9%|8         | Downloading : 1.49M/17.1M [00:00<00:00,    28.3MB/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:00,    27.4MB/s]     15%|#4        | Downloading : 2.49M/17.1M [00:00<00:00,    26.9MB/s]     18%|#7        | Downloading : 2.99M/17.1M [00:00<00:00,    26.4MB/s]     20%|##        | Downloading : 3.49M/17.1M [00:00<00:00,    25.7MB/s]     23%|##3       | Downloading : 3.99M/17.1M [00:00<00:00,    25.2MB/s]     26%|##6       | Downloading : 4.49M/17.1M [00:00<00:00,    24.6MB/s]     29%|##9       | Downloading : 4.99M/17.1M [00:00<00:00,    24.1MB/s]     32%|###2      | Downloading : 5.49M/17.1M [00:00<00:00,    23.6MB/s]     35%|###5      | Downloading : 5.99M/17.1M [00:00<00:00,    23.2MB/s]     38%|###8      | Downloading : 6.49M/17.1M [00:00<00:00,    22.9MB/s]     41%|####1     | Downloading : 6.99M/17.1M [00:00<00:00,    22.4MB/s]     44%|####3     | Downloading : 7.49M/17.1M [00:00<00:00,    22.5MB/s]     47%|####6     | Downloading : 7.99M/17.1M [00:00<00:00,    22.5MB/s]     50%|####9     | Downloading : 8.49M/17.1M [00:00<00:00,    22.3MB/s]     53%|#####2    | Downloading : 8.99M/17.1M [00:00<00:00,    22.3MB/s]     56%|#####5    | Downloading : 9.49M/17.1M [00:00<00:00,    22.0MB/s]     59%|#####8    | Downloading : 9.99M/17.1M [00:00<00:00,    21.5MB/s]     62%|######1   | Downloading : 10.5M/17.1M [00:00<00:00,    21.5MB/s]     64%|######4   | Downloading : 11.0M/17.1M [00:00<00:00,    21.3MB/s]     67%|######7   | Downloading : 11.5M/17.1M [00:00<00:00,    21.0MB/s]     70%|#######   | Downloading : 12.0M/17.1M [00:00<00:00,    21.1MB/s]     73%|#######3  | Downloading : 12.5M/17.1M [00:00<00:00,    20.9MB/s]     76%|#######6  | Downloading : 13.0M/17.1M [00:00<00:00,    21.0MB/s]     79%|#######9  | Downloading : 13.5M/17.1M [00:00<00:00,    21.0MB/s]     82%|########2 | Downloading : 14.0M/17.1M [00:00<00:00,    20.8MB/s]     85%|########4 | Downloading : 14.5M/17.1M [00:00<00:00,    20.9MB/s]     88%|########7 | Downloading : 15.0M/17.1M [00:00<00:00,    20.7MB/s]     91%|######### | Downloading : 15.5M/17.1M [00:00<00:00,    20.6MB/s]     94%|#########3| Downloading : 16.0M/17.1M [00:00<00:00,    20.2MB/s]     97%|#########6| Downloading : 16.5M/17.1M [00:00<00:00,    20.2MB/s]    100%|#########9| Downloading : 17.0M/17.1M [00:00<00:00,    20.1MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:00<00:00,    19.2MB/s]
-    Verifying hash c4935d19ddab35422a69f3326a01fef8.
-    Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
-    (please be patient, this can take some time)
-    Successfully extracted to: ['/github/home/mne_data/MNE-fNIRS-motor-data']
-    Attempting to create new mne-python configuration file:
-    /github/home/.mne/mne-python.json
     Loading /github/home/mne_data/MNE-fNIRS-motor-data/Participant-1
     Reading 0 ... 23238  =      0.000 ...  2974.464 secs...
     Filtering raw data in 1 contiguous segment
@@ -131,7 +120,7 @@ this result should be the same as the MNE tutorial.
 .. code-block:: default
 
 
-    reject_criteria = dict(hbo=80e-6)
+    reject_criteria = dict(hbo=100e-6)
     tmin, tmax = -5, 15
 
     epochs = mne.Epochs(raw_haemo, events, event_id=event_dict,
@@ -167,12 +156,11 @@ this result should be the same as the MNE tutorial.
     0 projection items activated
     Loading data for 90 events and 157 original time points ...
         Rejecting  epoch based on HBO : ['S4_D4 hbo']
-        Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S8_D8 hbo']
         Rejecting  epoch based on HBO : ['S4_D4 hbo']
         Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S8_D8 hbo']
-        Rejecting  epoch based on HBO : ['S1_D1 hbo', 'S3_D3 hbo', 'S4_D4 hbo', 'S7_D6 hbo', 'S7_D7 hbo', 'S8_D8 hbo']
-        Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S6_D8 hbo', 'S8_D8 hbo']
-    6 bad epochs dropped
+        Rejecting  epoch based on HBO : ['S8_D8 hbo']
+        Rejecting  epoch based on HBO : ['S4_D4 hbo']
+    5 bad epochs dropped
 
 
 
@@ -225,8 +213,79 @@ Apply Cui et. al. 2010 and extract epochs.
 
 
 
-Plot two approaches for comparison
-----------------------------------
+Apply short channel correction
+------------------------------
+
+Apply Scholkmann et al 2014 and extract epochs.
+
+
+.. code-block:: default
+
+
+    od_corrected = mne_nirs.signal_enhancement.short_channel_regression(raw_od)
+    raw_haemo = mne.preprocessing.nirs.beer_lambert_law(od_corrected)
+    raw_haemo = mne_nirs.channels.get_long_channels(raw_haemo)
+
+    raw_haemo = raw_haemo.filter(0.05, 0.7, h_trans_bandwidth=0.2,
+                                 l_trans_bandwidth=0.02)
+
+    epochs_corr = mne.Epochs(raw_haemo, events, event_id=event_dict,
+                             tmin=tmin, tmax=tmax,
+                             reject=reject_criteria, reject_by_annotation=True,
+                             proj=True, baseline=(None, 0), preload=True,
+                             detrend=None, verbose=True)
+
+    evoked_dict_corr = {
+        'Tapping/HbO': epochs_corr['Tapping'].average(picks='hbo'),
+        'Tapping/HbR': epochs_corr['Tapping'].average(picks='hbr'),
+        'Control/HbO': epochs_corr['Control'].average(picks='hbo'),
+        'Control/HbR': epochs_corr['Control'].average(picks='hbr')}
+
+    # Rename channels until the encoding of frequency in ch_name is fixed
+    for condition in evoked_dict_corr:
+        evoked_dict_corr[condition].rename_channels(lambda x: x[:-4])
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Filtering raw data in 1 contiguous segment
+    Setting up band-pass filter from 0.05 - 0.7 Hz
+
+    FIR filter parameters
+    ---------------------
+    Designing a one-pass, zero-phase, non-causal bandpass filter:
+    - Windowed time-domain design (firwin) method
+    - Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+    - Lower passband edge: 0.05
+    - Lower transition bandwidth: 0.02 Hz (-6 dB cutoff frequency: 0.04 Hz)
+    - Upper passband edge: 0.70 Hz
+    - Upper transition bandwidth: 0.20 Hz (-6 dB cutoff frequency: 0.80 Hz)
+    - Filter length: 1289 samples (164.992 sec)
+
+    Not setting metadata
+    Not setting metadata
+    90 matching events found
+    Applying baseline correction (mode: mean)
+    0 projection items activated
+    Loading data for 90 events and 157 original time points ...
+        Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S8_D8 hbo']
+        Rejecting  epoch based on HBO : ['S1_D1 hbo', 'S7_D6 hbo', 'S7_D7 hbo', 'S8_D8 hbo']
+        Rejecting  epoch based on HBO : ['S4_D4 hbo', 'S8_D8 hbo']
+    3 bad epochs dropped
+
+
+
+
+Plot approaches for comparison
+------------------------------
 
 Plot the average epochs with and without Cui 2010 applied.
 
@@ -234,7 +293,7 @@ Plot the average epochs with and without Cui 2010 applied.
 .. code-block:: default
 
 
-    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15, 6))
+    fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(15, 6))
 
     color_dict = dict(HbO='#AA3377', HbR='b')
     styles_dict = dict(Control=dict(linestyle='dashed'))
@@ -242,14 +301,21 @@ Plot the average epochs with and without Cui 2010 applied.
     mne.viz.plot_compare_evokeds(evoked_dict, combine="mean", ci=0.95,
                                  axes=axes[0], colors=color_dict,
                                  styles=styles_dict,
-                                 ylim=dict(hbo=[-10, 13]))
+                                 ylim=dict(hbo=[-10, 15]))
 
     mne.viz.plot_compare_evokeds(evoked_dict_anti, combine="mean", ci=0.95,
                                  axes=axes[1], colors=color_dict,
                                  styles=styles_dict,
-                                 ylim=dict(hbo=[-10, 13]))
+                                 ylim=dict(hbo=[-10, 15]))
 
-    for column, condition in enumerate(['Original Data', 'Cui Enhanced Data']):
+    mne.viz.plot_compare_evokeds(evoked_dict_corr, combine="mean", ci=0.95,
+                                 axes=axes[2], colors=color_dict,
+                                 styles=styles_dict,
+                                 ylim=dict(hbo=[-10, 15]))
+
+    for column, condition in enumerate(['Original Data',
+                                        'With Enhanced Anticorrelation',
+                                        'With Short Regression']):
         axes[column].set_title('{}'.format(condition))
 
 
@@ -257,7 +323,7 @@ Plot the average epochs with and without Cui 2010 applied.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_20_cui_001.png
-    :alt: Original Data, Cui Enhanced Data
+    :alt: Original Data, With Enhanced Anticorrelation, With Short Regression
     :class: sphx-glr-single-img
 
 
@@ -275,12 +341,16 @@ Plot the average epochs with and without Cui 2010 applied.
     combining channels using "mean"
     combining channels using "mean"
     combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
 
 
 
 
-Plot trials for each approach
------------------------------
+Plot hemisphere for each approach
+---------------------------------
 
 Plot the epoch image for each approach. First we specify the source
 detector pairs for analysis.
@@ -289,104 +359,92 @@ detector pairs for analysis.
 .. code-block:: default
 
 
-    left = [[1, 1], [1, 2], [1, 3], [2, 1], [2, 3],
-            [2, 4], [3, 2], [3, 3], [4, 3], [4, 4]]
-    right = [[5, 5], [5, 6], [5, 7], [6, 5], [6, 7],
-             [6, 8], [7, 6], [7, 7], [8, 7], [8, 8]]
+    left = [[1, 3], [2, 3], [1, 2], [4, 3]]
+    right = [[5, 7], [6, 7], [5, 6], [8, 7]]
 
     groups = dict(Left_ROI=picks_pair_to_idx(raw_anti.pick(picks='hbo'), left,
                                              on_missing='warning'),
                   Right_ROI=picks_pair_to_idx(raw_anti.pick(picks='hbo'), right,
                                              on_missing='warning'))
 
+    evoked_dict = {
+        'Left/HbO': epochs['Tapping/Left'].average(picks='hbo'),
+        'Left/HbR': epochs['Tapping/Left'].average(picks='hbr'),
+        'Right/HbO': epochs['Tapping/Right'].average(picks='hbo'),
+        'Right/HbR': epochs['Tapping/Right'].average(picks='hbr')}
+    for condition in evoked_dict:
+        evoked_dict[condition].rename_channels(lambda x: x[:-4])
+
+    evoked_dict_anti = {
+        'Left/HbO': epochs_anti['Tapping/Left'].average(picks='hbo'),
+        'Left/HbR': epochs_anti['Tapping/Left'].average(picks='hbr'),
+        'Right/HbO': epochs_anti['Tapping/Right'].average(picks='hbo'),
+        'Right/HbR': epochs_anti['Tapping/Right'].average(picks='hbr')}
+    for condition in evoked_dict_anti:
+        evoked_dict_anti[condition].rename_channels(lambda x: x[:-4])
+
+    evoked_dict_corr = {
+        'Left/HbO': epochs_corr['Tapping/Left'].average(picks='hbo'),
+        'Left/HbR': epochs_corr['Tapping/Left'].average(picks='hbr'),
+        'Right/HbO': epochs_corr['Tapping/Right'].average(picks='hbo'),
+        'Right/HbR': epochs_corr['Tapping/Right'].average(picks='hbr')}
+    for condition in evoked_dict_corr:
+        evoked_dict_corr[condition].rename_channels(lambda x: x[:-4])
+
+
+    color_dict = dict(HbO='#AA3377', HbR='b')
+    styles_dict = dict(Left=dict(linestyle='dashed'))
+
+    fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(15, 16))
+
+    mne.viz.plot_compare_evokeds(evoked_dict, combine="mean", ci=0.95,
+                                 picks=groups['Left_ROI'],
+                                 axes=axes[0, 0], colors=color_dict,
+                                 styles=styles_dict,
+                                 ylim=dict(hbo=[-10, 15]))
+
+    mne.viz.plot_compare_evokeds(evoked_dict, combine="mean", ci=0.95,
+                                 picks=groups['Right_ROI'],
+                                 axes=axes[0, 1], colors=color_dict,
+                                 styles=styles_dict,
+                                 ylim=dict(hbo=[-10, 15]))
+
+    mne.viz.plot_compare_evokeds(evoked_dict_anti, combine="mean", ci=0.95,
+                                 picks=groups['Left_ROI'],
+                                 axes=axes[1, 0], colors=color_dict,
+                                 styles=styles_dict,
+                                 ylim=dict(hbo=[-10, 15]))
+
+    mne.viz.plot_compare_evokeds(evoked_dict_anti, combine="mean", ci=0.95,
+                                 picks=groups['Right_ROI'],
+                                 axes=axes[1, 1], colors=color_dict,
+                                 styles=styles_dict,
+                                 ylim=dict(hbo=[-10, 15]))
+
+    mne.viz.plot_compare_evokeds(evoked_dict_corr, combine="mean", ci=0.95,
+                                 picks=groups['Left_ROI'],
+                                 axes=axes[2, 0], colors=color_dict,
+                                 styles=styles_dict,
+                                 ylim=dict(hbo=[-10, 15]))
+
+    mne.viz.plot_compare_evokeds(evoked_dict_corr, combine="mean", ci=0.95,
+                                 picks=groups['Right_ROI'],
+                                 axes=axes[2, 1], colors=color_dict,
+                                 styles=styles_dict,
+                                 ylim=dict(hbo=[-10, 15]))
+
+    for row, condition in enumerate(['Original',
+                                     'Anticorrelation',
+                                     'Short Regression']):
+        for column, hemi in enumerate(['Left', 'Right']):
+            axes[row, column].set_title('{}: {}'.format(condition, hemi))
 
 
 
 
-
-
-
-
-First we plot the epochs for the unprocessed data.
-
-
-.. code-block:: default
-
-
-    epochs['Tapping'].pick(picks='hbo').plot_image(combine='mean',
-                                                        group_by=groups)
-
-
-
-
-
-.. rst-class:: sphx-glr-horizontal
-
-
-    *
-
-      .. image:: /auto_examples/images/sphx_glr_plot_20_cui_002.png
-          :alt: Left_ROI (mean)
-          :class: sphx-glr-multi-img
-
-    *
-
-      .. image:: /auto_examples/images/sphx_glr_plot_20_cui_003.png
-          :alt: Right_ROI (mean)
-          :class: sphx-glr-multi-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Not setting metadata
-    Not setting metadata
-    55 matching events found
-    No baseline correction applied
-    0 projection items activated
-    0 bad epochs dropped
-    Not setting metadata
-    Not setting metadata
-    55 matching events found
-    No baseline correction applied
-    0 projection items activated
-    0 bad epochs dropped
-    combining channels using "mean"
-    combining channels using "mean"
-
-    [<Figure size 640x480 with 3 Axes>, <Figure size 640x480 with 3 Axes>]
-
-
-
-New we plot the epochs for the data processed with the Cui anti correlation
-method.
-
-
-.. code-block:: default
-
-
-    epochs_anti['Tapping'].pick(picks='hbo').plot_image(combine='mean',
-                                                        group_by=groups)
-
-
-
-.. rst-class:: sphx-glr-horizontal
-
-
-    *
-
-      .. image:: /auto_examples/images/sphx_glr_plot_20_cui_004.png
-          :alt: Left_ROI (mean)
-          :class: sphx-glr-multi-img
-
-    *
-
-      .. image:: /auto_examples/images/sphx_glr_plot_20_cui_005.png
-          :alt: Right_ROI (mean)
-          :class: sphx-glr-multi-img
+.. image:: /auto_examples/images/sphx_glr_plot_20_cui_002.png
+    :alt: Original: Left, Original: Right, Anticorrelation: Left, Anticorrelation: Right, Short Regression: Left, Short Regression: Right
+    :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -395,29 +453,38 @@ method.
 
  .. code-block:: none
 
-    Not setting metadata
-    Not setting metadata
-    60 matching events found
-    No baseline correction applied
-    0 projection items activated
-    0 bad epochs dropped
-    Not setting metadata
-    Not setting metadata
-    60 matching events found
-    No baseline correction applied
-    0 projection items activated
-    0 bad epochs dropped
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
+    combining channels using "mean"
     combining channels using "mean"
     combining channels using "mean"
 
-    [<Figure size 640x480 with 3 Axes>, <Figure size 640x480 with 3 Axes>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.451 seconds)
+   **Total running time of the script:** ( 0 minutes  2.896 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_20_cui.py:
