@@ -81,6 +81,7 @@
 <li><a class="reference internal" href="#examine-expected-response">Examine expected response</a></li>
 <li><a class="reference internal" href="#fit-glm-to-subset-of-data-and-estimate-response-for-each-experimental-condition">Fit GLM to subset of data and estimate response for each experimental condition</a></li>
 <li><a class="reference internal" href="#fit-glm-to-all-data-and-view-topographic-distribution">Fit GLM to all data and view topographic distribution</a></li>
+<li><a class="reference internal" href="#analyse-regions-of-interest">Analyse regions of interest</a></li>
 <li><a class="reference internal" href="#compute-contrasts">Compute contrasts</a></li>
 <li><a class="reference internal" href="#export-results">Export Results</a></li>
 <li><a class="reference internal" href="#determine-true-and-false-positive-rates">Determine true and false positive rates</a></li>
@@ -151,9 +152,10 @@ viewed in the
 <li><p><a class="reference internal" href="#examine-expected-response" id="id6">Examine expected response</a></p></li>
 <li><p><a class="reference internal" href="#fit-glm-to-subset-of-data-and-estimate-response-for-each-experimental-condition" id="id7">Fit GLM to subset of data and estimate response for each experimental condition</a></p></li>
 <li><p><a class="reference internal" href="#fit-glm-to-all-data-and-view-topographic-distribution" id="id8">Fit GLM to all data and view topographic distribution</a></p></li>
-<li><p><a class="reference internal" href="#compute-contrasts" id="id9">Compute contrasts</a></p></li>
-<li><p><a class="reference internal" href="#export-results" id="id10">Export Results</a></p></li>
-<li><p><a class="reference internal" href="#determine-true-and-false-positive-rates" id="id11">Determine true and false positive rates</a></p></li>
+<li><p><a class="reference internal" href="#analyse-regions-of-interest" id="id9">Analyse regions of interest</a></p></li>
+<li><p><a class="reference internal" href="#compute-contrasts" id="id10">Compute contrasts</a></p></li>
+<li><p><a class="reference internal" href="#export-results" id="id11">Export Results</a></p></li>
+<li><p><a class="reference internal" href="#determine-true-and-false-positive-rates" id="id12">Determine true and false positive rates</a></p></li>
 </ul>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Robert Luke &lt;mail@robertluke.net&gt;</span>
@@ -161,17 +163,20 @@ viewed in the
 <span class="c1"># License: BSD (3-clause)</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
 <span class="kn">import</span> <span class="nn">mne</span>
 <span class="kn">import</span> <span class="nn">mne_nirs</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">mne_nirs.experimental_design</span> <span class="kn">import</span> <a href="../generated/mne_nirs.experimental_design.make_first_level_design_matrix.html#mne_nirs.experimental_design.make_first_level_design_matrix" title="mne_nirs.experimental_design.make_first_level_design_matrix" class="sphx-glr-backref-module-mne_nirs-experimental_design sphx-glr-backref-type-py-function"><span class="n">make_first_level_design_matrix</span></a>
-<span class="kn">from</span> <span class="nn">mne_nirs.statistics</span> <span class="kn">import</span> <a href="../generated/mne_nirs.statistics.run_GLM.html#mne_nirs.statistics.run_GLM" title="mne_nirs.statistics.run_GLM" class="sphx-glr-backref-module-mne_nirs-statistics sphx-glr-backref-type-py-function"><span class="n">run_GLM</span></a>
+<span class="kn">from</span> <span class="nn">mne_nirs.statistics</span> <span class="kn">import</span> <a href="../generated/mne_nirs.statistics.run_GLM.html#mne_nirs.statistics.run_GLM" title="mne_nirs.statistics.run_GLM" class="sphx-glr-backref-module-mne_nirs-statistics sphx-glr-backref-type-py-function"><span class="n">run_GLM</span></a><span class="p">,</span> <a href="../generated/mne_nirs.statistics.glm_region_of_interest.html#mne_nirs.statistics.glm_region_of_interest" title="mne_nirs.statistics.glm_region_of_interest" class="sphx-glr-backref-module-mne_nirs-statistics sphx-glr-backref-type-py-function"><span class="n">glm_region_of_interest</span></a>
 <span class="kn">from</span> <span class="nn">mne_nirs.visualisation</span> <span class="kn">import</span> <a href="../generated/mne_nirs.visualisation.plot_glm_topo.html#mne_nirs.visualisation.plot_glm_topo" title="mne_nirs.visualisation.plot_glm_topo" class="sphx-glr-backref-module-mne_nirs-visualisation sphx-glr-backref-type-py-function"><span class="n">plot_glm_topo</span></a>
+<span class="kn">from</span> <span class="nn">mne_nirs.channels</span> <span class="kn">import</span> <span class="p">(</span><a href="../generated/mne_nirs.channels.get_long_channels.html#mne_nirs.channels.get_long_channels" title="mne_nirs.channels.get_long_channels" class="sphx-glr-backref-module-mne_nirs-channels sphx-glr-backref-type-py-function"><span class="n">get_long_channels</span></a><span class="p">,</span> <a href="../generated/mne_nirs.channels.get_short_channels.html#mne_nirs.channels.get_short_channels" title="mne_nirs.channels.get_short_channels" class="sphx-glr-backref-module-mne_nirs-channels sphx-glr-backref-type-py-function"><span class="n">get_short_channels</span></a><span class="p">,</span>
+                               <a href="../generated/mne_nirs.channels.picks_pair_to_idx.html#mne_nirs.channels.picks_pair_to_idx" title="mne_nirs.channels.picks_pair_to_idx" class="sphx-glr-backref-module-mne_nirs-channels sphx-glr-backref-type-py-function"><span class="n">picks_pair_to_idx</span></a><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">nilearn.reporting</span> <span class="kn">import</span> <span class="n">plot_design_matrix</span>
-<span class="kn">from</span> <span class="nn">mne_nirs.channels</span> <span class="kn">import</span> <a href="../generated/mne_nirs.channels.get_long_channels.html#mne_nirs.channels.get_long_channels" title="mne_nirs.channels.get_long_channels" class="sphx-glr-backref-module-mne_nirs-channels sphx-glr-backref-type-py-function"><span class="n">get_long_channels</span></a><span class="p">,</span> <a href="../generated/mne_nirs.channels.get_short_channels.html#mne_nirs.channels.get_short_channels" title="mne_nirs.channels.get_short_channels" class="sphx-glr-backref-module-mne_nirs-channels sphx-glr-backref-type-py-function"><span class="n">get_short_channels</span></a>
 <span class="kn">from</span> <span class="nn">mne_nirs.utils._io</span> <span class="kn">import</span> <a href="../generated/mne_nirs.utils.glm_to_tidy.html#mne_nirs.utils.glm_to_tidy" title="mne_nirs.utils.glm_to_tidy" class="sphx-glr-backref-module-mne_nirs-utils sphx-glr-backref-type-py-function"><span class="n">glm_to_tidy</span></a><span class="p">,</span> <span class="n">_tidy_long_to_wide</span>
 </pre></div>
 </div>
@@ -207,38 +212,45 @@ Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
 Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&amp;action=download&amp;direct (17.1 MB)
 
   0%|          | Downloading : 0.00/17.1M [00:00&lt;?,        ?B/s]
- 12%|#1        | Downloading : 1.99M/17.1M [00:00&lt;00:02,    7.05MB/s]
- 15%|#4        | Downloading : 2.49M/17.1M [00:00&lt;00:02,    7.28MB/s]
- 18%|#7        | Downloading : 2.99M/17.1M [00:00&lt;00:01,    7.43MB/s]
- 20%|##        | Downloading : 3.49M/17.1M [00:00&lt;00:01,    7.60MB/s]
- 23%|##3       | Downloading : 3.99M/17.1M [00:00&lt;00:01,    7.79MB/s]
- 26%|##6       | Downloading : 4.49M/17.1M [00:00&lt;00:01,    7.97MB/s]
- 29%|##9       | Downloading : 4.99M/17.1M [00:00&lt;00:01,    8.19MB/s]
- 32%|###2      | Downloading : 5.49M/17.1M [00:00&lt;00:01,    8.34MB/s]
- 35%|###5      | Downloading : 5.99M/17.1M [00:00&lt;00:01,    8.47MB/s]
- 38%|###8      | Downloading : 6.49M/17.1M [00:00&lt;00:01,    8.65MB/s]
- 41%|####1     | Downloading : 6.99M/17.1M [00:00&lt;00:01,    8.78MB/s]
- 44%|####3     | Downloading : 7.49M/17.1M [00:00&lt;00:01,    8.95MB/s]
- 47%|####6     | Downloading : 7.99M/17.1M [00:00&lt;00:01,    9.10MB/s]
- 50%|####9     | Downloading : 8.49M/17.1M [00:00&lt;00:00,    9.31MB/s]
- 53%|#####2    | Downloading : 8.99M/17.1M [00:00&lt;00:00,    9.47MB/s]
- 56%|#####5    | Downloading : 9.49M/17.1M [00:00&lt;00:00,    9.62MB/s]
- 59%|#####8    | Downloading : 9.99M/17.1M [00:00&lt;00:00,    9.92MB/s]
- 62%|######1   | Downloading : 10.5M/17.1M [00:00&lt;00:00,    10.1MB/s]
- 64%|######4   | Downloading : 11.0M/17.1M [00:00&lt;00:00,    10.3MB/s]
- 67%|######7   | Downloading : 11.5M/17.1M [00:00&lt;00:00,    10.4MB/s]
- 70%|#######   | Downloading : 12.0M/17.1M [00:01&lt;00:00,    10.5MB/s]
- 73%|#######3  | Downloading : 12.5M/17.1M [00:01&lt;00:00,    10.7MB/s]
- 76%|#######6  | Downloading : 13.0M/17.1M [00:01&lt;00:00,    10.8MB/s]
- 79%|#######9  | Downloading : 13.5M/17.1M [00:01&lt;00:00,    10.9MB/s]
- 82%|########2 | Downloading : 14.0M/17.1M [00:01&lt;00:00,    11.1MB/s]
- 85%|########4 | Downloading : 14.5M/17.1M [00:01&lt;00:00,    11.2MB/s]
- 88%|########7 | Downloading : 15.0M/17.1M [00:01&lt;00:00,    11.2MB/s]
- 91%|######### | Downloading : 15.5M/17.1M [00:01&lt;00:00,    11.4MB/s]
- 94%|#########3| Downloading : 16.0M/17.1M [00:01&lt;00:00,    11.5MB/s]
- 97%|#########6| Downloading : 16.5M/17.1M [00:01&lt;00:00,    11.6MB/s]
-100%|#########9| Downloading : 17.0M/17.1M [00:01&lt;00:00,    11.7MB/s]
-100%|##########| Downloading : 17.1M/17.1M [00:01&lt;00:00,    12.8MB/s]
+ 12%|#1        | Downloading : 1.99M/17.1M [00:00&lt;00:02,    7.11MB/s]
+ 15%|#4        | Downloading : 2.49M/17.1M [00:00&lt;00:02,    7.35MB/s]
+ 18%|#7        | Downloading : 2.99M/17.1M [00:00&lt;00:01,    7.59MB/s]
+ 20%|##        | Downloading : 3.49M/17.1M [00:00&lt;00:01,    7.67MB/s]
+ 23%|##3       | Downloading : 3.99M/17.1M [00:00&lt;00:01,    7.62MB/s]
+ 26%|##6       | Downloading : 4.49M/17.1M [00:00&lt;00:01,    7.10MB/s]
+ 29%|##9       | Downloading : 4.99M/17.1M [00:00&lt;00:01,    7.32MB/s]
+ 32%|###2      | Downloading : 5.49M/17.1M [00:00&lt;00:01,    7.56MB/s]
+ 35%|###5      | Downloading : 5.99M/17.1M [00:00&lt;00:01,    7.78MB/s]
+ 38%|###8      | Downloading : 6.49M/17.1M [00:00&lt;00:01,    8.02MB/s]
+ 41%|####1     | Downloading : 6.99M/17.1M [00:00&lt;00:01,    8.25MB/s]
+ 42%|####2     | Downloading : 7.24M/17.1M [00:00&lt;00:01,    8.42MB/s]
+ 44%|####3     | Downloading : 7.49M/17.1M [00:00&lt;00:01,    8.60MB/s]
+ 47%|####6     | Downloading : 7.99M/17.1M [00:00&lt;00:01,    8.81MB/s]
+ 48%|####8     | Downloading : 8.24M/17.1M [00:00&lt;00:01,    9.01MB/s]
+ 50%|####9     | Downloading : 8.49M/17.1M [00:00&lt;00:00,    9.18MB/s]
+ 51%|#####1    | Downloading : 8.74M/17.1M [00:01&lt;00:01,    7.04MB/s]
+ 53%|#####3    | Downloading : 9.12M/17.1M [00:01&lt;00:01,    7.25MB/s]
+ 55%|#####4    | Downloading : 9.37M/17.1M [00:01&lt;00:01,    7.44MB/s]
+ 56%|#####6    | Downloading : 9.62M/17.1M [00:01&lt;00:01,    7.50MB/s]
+ 58%|#####7    | Downloading : 9.87M/17.1M [00:01&lt;00:00,    7.59MB/s]
+ 59%|#####9    | Downloading : 10.1M/17.1M [00:01&lt;00:00,    7.68MB/s]
+ 61%|######    | Downloading : 10.4M/17.1M [00:01&lt;00:00,    7.86MB/s]
+ 62%|######2   | Downloading : 10.6M/17.1M [00:01&lt;00:01,    6.22MB/s]
+ 63%|######2   | Downloading : 10.7M/17.1M [00:01&lt;00:01,    6.06MB/s]
+ 65%|######5   | Downloading : 11.1M/17.1M [00:01&lt;00:01,    6.17MB/s]
+ 68%|######8   | Downloading : 11.6M/17.1M [00:01&lt;00:00,    6.43MB/s]
+ 71%|#######1  | Downloading : 12.1M/17.1M [00:01&lt;00:00,    5.88MB/s]
+ 75%|#######5  | Downloading : 12.9M/17.1M [00:01&lt;00:00,    6.13MB/s]
+ 78%|#######8  | Downloading : 13.4M/17.1M [00:01&lt;00:00,    6.36MB/s]
+ 81%|########1 | Downloading : 13.9M/17.1M [00:01&lt;00:00,    6.57MB/s]
+ 84%|########4 | Downloading : 14.4M/17.1M [00:01&lt;00:00,    6.80MB/s]
+ 87%|########7 | Downloading : 14.9M/17.1M [00:01&lt;00:00,    7.00MB/s]
+ 90%|######### | Downloading : 15.4M/17.1M [00:01&lt;00:00,    7.09MB/s]
+ 93%|#########3| Downloading : 15.9M/17.1M [00:02&lt;00:00,    7.06MB/s]
+ 96%|#########5| Downloading : 16.4M/17.1M [00:02&lt;00:00,    6.49MB/s]
+ 97%|#########7| Downloading : 16.6M/17.1M [00:02&lt;00:00,    6.69MB/s]
+ 99%|#########8| Downloading : 16.9M/17.1M [00:02&lt;00:00,    6.88MB/s]
+100%|##########| Downloading : 17.1M/17.1M [00:02&lt;00:00,    7.78MB/s]
 Verifying hash c4935d19ddab35422a69f3326a01fef8.
 Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
 (please be patient, this can take some time)
@@ -268,7 +280,7 @@ experimental conditions.</p>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idxs</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="numpy.where" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">keepers</span></a><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 <a href="https://mne.tools/stable/generated/mne.Annotations.html#mne.Annotations" title="mne.Annotations" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span></a> <span class="o">=</span> <a href="https://mne.tools/stable/generated/mne.Annotations.html#mne.Annotations" title="mne.Annotations" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class"><span class="n">mne</span><span class="o">.</span><span class="n">Annotations</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">original_annotations</span><span class="o">.</span><span class="n">onset</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idxs</span></a><span class="p">],</span>
                         <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">original_annotations</span><span class="o">.</span><span class="n">duration</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idxs</span></a><span class="p">]</span> <span class="o">*</span> <span class="mf">5.</span><span class="p">,</span>
-                        <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">new_des</span></a><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="numpy.where" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">keepers</span></a><span class="p">)[</span><span class="mi">0</span><span class="p">]]))</span>
+                        <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">new_des</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idx</span></a><span class="p">]</span> <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idx</span></a> <span class="ow">in</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="numpy.where" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">keepers</span></a><span class="p">)[</span><span class="mi">0</span><span class="p">]]))</span>
 <a href="https://mne.tools/stable/generated/mne.io.BaseRaw.html#mne.io.BaseRaw.set_annotations" title="mne.io.BaseRaw.set_annotations" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_intensity</span><span class="o">.</span><span class="n">set_annotations</span></a><span class="p">(</span><a href="https://mne.tools/stable/generated/mne.Annotations.html#mne.Annotations" title="mne.Annotations" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span></a><span class="p">)</span>
 </pre></div>
 </div>
@@ -443,7 +455,7 @@ is seen in the epoching tutorial.</p>
 </div>
 <img alt="plot 10 hrf" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_005.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7f4a882b8e50&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection object at 0x7f9acfc64df0&gt;
 </pre></div>
 </div>
 </div>
@@ -467,8 +479,202 @@ negative sof HbO as expected.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="analyse-regions-of-interest">
+<h2><a class="toc-backref" href="#id9">Analyse regions of interest</a><a class="headerlink" href="#analyse-regions-of-interest" title="Permalink to this headline">¶</a></h2>
+<p>Or alternatively we can summarise the responses across regions of interest
+for each condition.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">left</span></a> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">right</span></a> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">groups</span></a> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Left_ROI</span><span class="o">=</span><a href="../generated/mne_nirs.channels.picks_pair_to_idx.html#mne_nirs.channels.picks_pair_to_idx" title="mne_nirs.channels.picks_pair_to_idx" class="sphx-glr-backref-module-mne_nirs-channels sphx-glr-backref-type-py-function"><span class="n">picks_pair_to_idx</span></a><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">left</span></a><span class="p">),</span>
+              <span class="n">Right_ROI</span><span class="o">=</span><a href="../generated/mne_nirs.channels.picks_pair_to_idx.html#mne_nirs.channels.picks_pair_to_idx" title="mne_nirs.channels.picks_pair_to_idx" class="sphx-glr-backref-module-mne_nirs-channels sphx-glr-backref-type-py-function"><span class="n">picks_pair_to_idx</span></a><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">right</span></a><span class="p">))</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idx</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">col</span></a> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">3</span><span class="p">]):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="../generated/mne_nirs.statistics.glm_region_of_interest.html#mne_nirs.statistics.glm_region_of_interest" title="mne_nirs.statistics.glm_region_of_interest" class="sphx-glr-backref-module-mne_nirs-statistics sphx-glr-backref-type-py-function"><span class="n">glm_region_of_interest</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">glm_est</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">groups</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idx</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">col</span></a><span class="p">))</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Chroma</th>
+      <th>Condition</th>
+      <th>ROI</th>
+      <th>dfe</th>
+      <th>p</th>
+      <th>se</th>
+      <th>t</th>
+      <th>theta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>hbo</td>
+      <td>Control</td>
+      <td>Left_ROI</td>
+      <td>9.0</td>
+      <td>0.883756</td>
+      <td>0.972274</td>
+      <td>-0.150413</td>
+      <td>-0.146243</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>hbr</td>
+      <td>Control</td>
+      <td>Left_ROI</td>
+      <td>9.0</td>
+      <td>0.780657</td>
+      <td>0.634913</td>
+      <td>0.286938</td>
+      <td>0.182181</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>hbo</td>
+      <td>Control</td>
+      <td>Right_ROI</td>
+      <td>9.0</td>
+      <td>0.918047</td>
+      <td>0.986590</td>
+      <td>0.105819</td>
+      <td>0.104399</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>hbr</td>
+      <td>Control</td>
+      <td>Right_ROI</td>
+      <td>9.0</td>
+      <td>0.872387</td>
+      <td>0.636521</td>
+      <td>-0.165267</td>
+      <td>-0.105196</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>hbo</td>
+      <td>Tapping/Left</td>
+      <td>Left_ROI</td>
+      <td>9.0</td>
+      <td>0.000411</td>
+      <td>0.982716</td>
+      <td>5.440447</td>
+      <td>5.346417</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>hbr</td>
+      <td>Tapping/Left</td>
+      <td>Left_ROI</td>
+      <td>9.0</td>
+      <td>0.011629</td>
+      <td>0.641765</td>
+      <td>-3.155758</td>
+      <td>-2.025255</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>hbo</td>
+      <td>Tapping/Left</td>
+      <td>Right_ROI</td>
+      <td>9.0</td>
+      <td>0.000005</td>
+      <td>0.997194</td>
+      <td>9.543235</td>
+      <td>9.516460</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>hbr</td>
+      <td>Tapping/Left</td>
+      <td>Right_ROI</td>
+      <td>9.0</td>
+      <td>0.000120</td>
+      <td>0.643366</td>
+      <td>-6.433946</td>
+      <td>-4.139385</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>hbo</td>
+      <td>Tapping/Right</td>
+      <td>Left_ROI</td>
+      <td>9.0</td>
+      <td>0.000002</td>
+      <td>0.983927</td>
+      <td>10.506843</td>
+      <td>10.337964</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>hbr</td>
+      <td>Tapping/Right</td>
+      <td>Left_ROI</td>
+      <td>9.0</td>
+      <td>0.000528</td>
+      <td>0.642436</td>
+      <td>-5.249642</td>
+      <td>-3.372560</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>hbo</td>
+      <td>Tapping/Right</td>
+      <td>Right_ROI</td>
+      <td>9.0</td>
+      <td>0.000110</td>
+      <td>0.998398</td>
+      <td>6.508918</td>
+      <td>6.498489</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>hbr</td>
+      <td>Tapping/Right</td>
+      <td>Right_ROI</td>
+      <td>9.0</td>
+      <td>0.002742</td>
+      <td>0.644119</td>
+      <td>-4.083768</td>
+      <td>-2.630433</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<br /><p>And we can visualise these summary statistics.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Condition&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Chroma&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;ROI&quot;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">s</span></a><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="plot 10 hrf" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_007.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f9ad8086400&gt;
+</pre></div>
+</div>
+</div>
 <div class="section" id="compute-contrasts">
-<h2><a class="toc-backref" href="#id9">Compute contrasts</a><a class="headerlink" href="#compute-contrasts" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Compute contrasts</a><a class="headerlink" href="#compute-contrasts" title="Permalink to this headline">¶</a></h2>
 <p>We can also define a contrast as described in
 <a class="reference external" href="https://5874-1235740-gh.circle-artifacts.com/0/doc/_build/html/auto_examples/04_glm_first_level_models/plot_localizer_surface_analysis.html">Nilearn docs</a>
 and plot it.
@@ -482,14 +688,14 @@ from tapping on the right hand.</p>
 <a href="../generated/mne_nirs.visualisation.plot_glm_contrast_topo.html#mne_nirs.visualisation.plot_glm_contrast_topo" title="mne_nirs.visualisation.plot_glm_contrast_topo" class="sphx-glr-backref-module-mne_nirs-visualisation sphx-glr-backref-type-py-function"><span class="n">mne_nirs</span><span class="o">.</span><span class="n">visualisation</span><span class="o">.</span><span class="n">plot_glm_contrast_topo</span></a><span class="p">(</span><span class="n">raw_haemo</span><span class="p">,</span> <span class="n">contrast</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="hbo, hbr" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_007.png" />
+<img alt="hbo, hbr" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_10_hrf_008.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x700 with 3 Axes&gt;
 </pre></div>
 </div>
 </div>
 <div class="section" id="export-results">
-<h2><a class="toc-backref" href="#id10">Export Results</a><a class="headerlink" href="#export-results" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Export Results</a><a class="headerlink" href="#export-results" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The functions used in this section are in development, and are highly
@@ -501,8 +707,9 @@ and have no promise they will be here next week.</p>
 <p class="sidebar-title">Relevant literature</p>
 <p>Wickham, Hadley. “Tidy data.” Journal of Statistical Software 59.10 (2014): 1-23.</p>
 </div>
-<p>Here we export the data in a tidy pandas data frame. Data is exported in
-long format by default.
+<p>Here we export the data in a tidy pandas data frame.
+We export the GLM results for every channel and condition.
+Data is exported in long format by default.
 However, a helper function is also provided to convert the long data to wide format.
 The long to wide conversion also adds some additonal derived data, such as
 if a significant response (p&lt;0.05) was observed, which sensor and detector is
@@ -513,7 +720,7 @@ in the channel, which chroma, etc.</p>
 </div>
 </div>
 <div class="section" id="determine-true-and-false-positive-rates">
-<h2><a class="toc-backref" href="#id11">Determine true and false positive rates</a><a class="headerlink" href="#determine-true-and-false-positive-rates" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Determine true and false positive rates</a><a class="headerlink" href="#determine-true-and-false-positive-rates" title="Permalink to this headline">¶</a></h2>
 <p>We can query the exported data frames to determine the true and false
 positive rates. Note: optodes cover a greater region than just the
 motor cortex, so we dont expect 100% of channels to detect responses to
@@ -549,6 +756,7 @@ the tapping, but we do expect 5% or less for the false positive rate.</p>
     <tr>
       <th></th>
       <th></th>
+      <th>se</th>
       <th>theta</th>
       <th>Significant</th>
     </tr>
@@ -557,10 +765,12 @@ the tapping, but we do expect 5% or less for the false positive rate.</p>
       <th></th>
       <th>mean</th>
       <th>mean</th>
+      <th>mean</th>
     </tr>
     <tr>
       <th>condition</th>
       <th>Chroma</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -569,33 +779,39 @@ the tapping, but we do expect 5% or less for the false positive rate.</p>
     <tr>
       <th rowspan="2" valign="top">Control</th>
       <th>hbo</th>
+      <td>1.127638e-06</td>
       <td>-9.066196e-08</td>
       <td>0.00</td>
     </tr>
     <tr>
       <th>hbr</th>
+      <td>7.197006e-07</td>
       <td>6.750751e-09</td>
       <td>0.00</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">Tapping/Left</th>
       <th>hbo</th>
+      <td>1.139741e-06</td>
       <td>7.249248e-06</td>
       <td>0.85</td>
     </tr>
     <tr>
       <th>hbr</th>
+      <td>7.274707e-07</td>
       <td>-3.190265e-06</td>
       <td>0.75</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">Tapping/Right</th>
       <th>hbo</th>
+      <td>1.141163e-06</td>
       <td>8.276313e-06</td>
       <td>0.90</td>
     </tr>
     <tr>
       <th>hbr</th>
+      <td>7.282221e-07</td>
       <td>-3.095988e-06</td>
       <td>0.80</td>
     </tr>
@@ -603,7 +819,7 @@ the tapping, but we do expect 5% or less for the false positive rate.</p>
 </table>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  30.912 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  35.473 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-10-hrf-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5d7784c7a4d7e581cc48ca0671986fdb/plot_10_hrf.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_10_hrf.py</span></code></a></p>

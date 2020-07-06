@@ -46,17 +46,20 @@ This GLM analysis is a wrapper over the excellent
     # License: BSD (3-clause)
 
     import os
+    import numpy as np
+    import pandas as pd
     import matplotlib.pyplot as plt
+
     import mne
     import mne_nirs
-    import numpy as np
 
     from mne_nirs.experimental_design import make_first_level_design_matrix
-    from mne_nirs.statistics import run_GLM
+    from mne_nirs.statistics import run_GLM, glm_region_of_interest
     from mne_nirs.visualisation import plot_glm_topo
+    from mne_nirs.channels import (get_long_channels, get_short_channels,
+                                   picks_pair_to_idx)
 
     from nilearn.reporting import plot_design_matrix
-    from mne_nirs.channels import get_long_channels, get_short_channels
     from mne_nirs.utils._io import glm_to_tidy, _tidy_long_to_wide
 
 
@@ -113,7 +116,7 @@ to meet github memory constraints.
     Creating ~/mne_data
     Downloading archive MNE-fNIRS-motor-data.tgz to /github/home/mne_data
     Downloading https://files.osf.io/v1/resources/rxvq7/providers/osfstorage/5dbf84a9cfc96c000ec957eb?version=1&action=download&direct (17.1 MB)
-      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:02,    7.05MB/s]     15%|#4        | Downloading : 2.49M/17.1M [00:00<00:02,    7.28MB/s]     18%|#7        | Downloading : 2.99M/17.1M [00:00<00:01,    7.43MB/s]     20%|##        | Downloading : 3.49M/17.1M [00:00<00:01,    7.60MB/s]     23%|##3       | Downloading : 3.99M/17.1M [00:00<00:01,    7.79MB/s]     26%|##6       | Downloading : 4.49M/17.1M [00:00<00:01,    7.97MB/s]     29%|##9       | Downloading : 4.99M/17.1M [00:00<00:01,    8.19MB/s]     32%|###2      | Downloading : 5.49M/17.1M [00:00<00:01,    8.34MB/s]     35%|###5      | Downloading : 5.99M/17.1M [00:00<00:01,    8.47MB/s]     38%|###8      | Downloading : 6.49M/17.1M [00:00<00:01,    8.65MB/s]     41%|####1     | Downloading : 6.99M/17.1M [00:00<00:01,    8.78MB/s]     44%|####3     | Downloading : 7.49M/17.1M [00:00<00:01,    8.95MB/s]     47%|####6     | Downloading : 7.99M/17.1M [00:00<00:01,    9.10MB/s]     50%|####9     | Downloading : 8.49M/17.1M [00:00<00:00,    9.31MB/s]     53%|#####2    | Downloading : 8.99M/17.1M [00:00<00:00,    9.47MB/s]     56%|#####5    | Downloading : 9.49M/17.1M [00:00<00:00,    9.62MB/s]     59%|#####8    | Downloading : 9.99M/17.1M [00:00<00:00,    9.92MB/s]     62%|######1   | Downloading : 10.5M/17.1M [00:00<00:00,    10.1MB/s]     64%|######4   | Downloading : 11.0M/17.1M [00:00<00:00,    10.3MB/s]     67%|######7   | Downloading : 11.5M/17.1M [00:00<00:00,    10.4MB/s]     70%|#######   | Downloading : 12.0M/17.1M [00:01<00:00,    10.5MB/s]     73%|#######3  | Downloading : 12.5M/17.1M [00:01<00:00,    10.7MB/s]     76%|#######6  | Downloading : 13.0M/17.1M [00:01<00:00,    10.8MB/s]     79%|#######9  | Downloading : 13.5M/17.1M [00:01<00:00,    10.9MB/s]     82%|########2 | Downloading : 14.0M/17.1M [00:01<00:00,    11.1MB/s]     85%|########4 | Downloading : 14.5M/17.1M [00:01<00:00,    11.2MB/s]     88%|########7 | Downloading : 15.0M/17.1M [00:01<00:00,    11.2MB/s]     91%|######### | Downloading : 15.5M/17.1M [00:01<00:00,    11.4MB/s]     94%|#########3| Downloading : 16.0M/17.1M [00:01<00:00,    11.5MB/s]     97%|#########6| Downloading : 16.5M/17.1M [00:01<00:00,    11.6MB/s]    100%|#########9| Downloading : 17.0M/17.1M [00:01<00:00,    11.7MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:01<00:00,    12.8MB/s]
+      0%|          | Downloading : 0.00/17.1M [00:00<?,        ?B/s]     12%|#1        | Downloading : 1.99M/17.1M [00:00<00:02,    7.11MB/s]     15%|#4        | Downloading : 2.49M/17.1M [00:00<00:02,    7.35MB/s]     18%|#7        | Downloading : 2.99M/17.1M [00:00<00:01,    7.59MB/s]     20%|##        | Downloading : 3.49M/17.1M [00:00<00:01,    7.67MB/s]     23%|##3       | Downloading : 3.99M/17.1M [00:00<00:01,    7.62MB/s]     26%|##6       | Downloading : 4.49M/17.1M [00:00<00:01,    7.10MB/s]     29%|##9       | Downloading : 4.99M/17.1M [00:00<00:01,    7.32MB/s]     32%|###2      | Downloading : 5.49M/17.1M [00:00<00:01,    7.56MB/s]     35%|###5      | Downloading : 5.99M/17.1M [00:00<00:01,    7.78MB/s]     38%|###8      | Downloading : 6.49M/17.1M [00:00<00:01,    8.02MB/s]     41%|####1     | Downloading : 6.99M/17.1M [00:00<00:01,    8.25MB/s]     42%|####2     | Downloading : 7.24M/17.1M [00:00<00:01,    8.42MB/s]     44%|####3     | Downloading : 7.49M/17.1M [00:00<00:01,    8.60MB/s]     47%|####6     | Downloading : 7.99M/17.1M [00:00<00:01,    8.81MB/s]     48%|####8     | Downloading : 8.24M/17.1M [00:00<00:01,    9.01MB/s]     50%|####9     | Downloading : 8.49M/17.1M [00:00<00:00,    9.18MB/s]     51%|#####1    | Downloading : 8.74M/17.1M [00:01<00:01,    7.04MB/s]     53%|#####3    | Downloading : 9.12M/17.1M [00:01<00:01,    7.25MB/s]     55%|#####4    | Downloading : 9.37M/17.1M [00:01<00:01,    7.44MB/s]     56%|#####6    | Downloading : 9.62M/17.1M [00:01<00:01,    7.50MB/s]     58%|#####7    | Downloading : 9.87M/17.1M [00:01<00:00,    7.59MB/s]     59%|#####9    | Downloading : 10.1M/17.1M [00:01<00:00,    7.68MB/s]     61%|######    | Downloading : 10.4M/17.1M [00:01<00:00,    7.86MB/s]     62%|######2   | Downloading : 10.6M/17.1M [00:01<00:01,    6.22MB/s]     63%|######2   | Downloading : 10.7M/17.1M [00:01<00:01,    6.06MB/s]     65%|######5   | Downloading : 11.1M/17.1M [00:01<00:01,    6.17MB/s]     68%|######8   | Downloading : 11.6M/17.1M [00:01<00:00,    6.43MB/s]     71%|#######1  | Downloading : 12.1M/17.1M [00:01<00:00,    5.88MB/s]     75%|#######5  | Downloading : 12.9M/17.1M [00:01<00:00,    6.13MB/s]     78%|#######8  | Downloading : 13.4M/17.1M [00:01<00:00,    6.36MB/s]     81%|########1 | Downloading : 13.9M/17.1M [00:01<00:00,    6.57MB/s]     84%|########4 | Downloading : 14.4M/17.1M [00:01<00:00,    6.80MB/s]     87%|########7 | Downloading : 14.9M/17.1M [00:01<00:00,    7.00MB/s]     90%|######### | Downloading : 15.4M/17.1M [00:01<00:00,    7.09MB/s]     93%|#########3| Downloading : 15.9M/17.1M [00:02<00:00,    7.06MB/s]     96%|#########5| Downloading : 16.4M/17.1M [00:02<00:00,    6.49MB/s]     97%|#########7| Downloading : 16.6M/17.1M [00:02<00:00,    6.69MB/s]     99%|#########8| Downloading : 16.9M/17.1M [00:02<00:00,    6.88MB/s]    100%|##########| Downloading : 17.1M/17.1M [00:02<00:00,    7.78MB/s]
     Verifying hash c4935d19ddab35422a69f3326a01fef8.
     Decompressing the archive: /github/home/mne_data/MNE-fNIRS-motor-data.tgz
     (please be patient, this can take some time)
@@ -447,6 +450,7 @@ of a single source detector pair.
 
 
 
+
 We then display the results. Note that the control condition sits
 around zero.
 And that the HbO is positive and larger than the HbR, this is to be expected.
@@ -481,7 +485,7 @@ is seen in the epoching tutorial.
  .. code-block:: none
 
 
-    <matplotlib.collections.LineCollection object at 0x7f4a882b8e50>
+    <matplotlib.collections.LineCollection object at 0x7f9acfc64df0>
 
 
 
@@ -524,6 +528,235 @@ negative sof HbO as expected.
 
 
 
+Analyse regions of interest
+---------------------------
+
+Or alternatively we can summarise the responses across regions of interest
+for each condition.
+
+
+.. code-block:: default
+
+
+    left = [[1, 1], [1, 2], [1, 3], [2, 1], [2, 3],
+            [2, 4], [3, 2], [3, 3], [4, 3], [4, 4]]
+    right = [[5, 5], [5, 6], [5, 7], [6, 5], [6, 7],
+             [6, 8], [7, 6], [7, 7], [8, 7], [8, 8]]
+
+    groups = dict(Left_ROI=picks_pair_to_idx(raw_haemo, left),
+                  Right_ROI=picks_pair_to_idx(raw_haemo, right))
+
+    df = pd.DataFrame()
+    for idx, col in enumerate(design_matrix.columns[:3]):
+        df = df.append(glm_region_of_interest(glm_est, groups, idx, col))
+    df
+
+
+
+
+
+
+
+.. only:: builder_html
+
+    .. raw:: html
+
+        <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>Chroma</th>
+              <th>Condition</th>
+              <th>ROI</th>
+              <th>dfe</th>
+              <th>p</th>
+              <th>se</th>
+              <th>t</th>
+              <th>theta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>0</th>
+              <td>hbo</td>
+              <td>Control</td>
+              <td>Left_ROI</td>
+              <td>9.0</td>
+              <td>0.883756</td>
+              <td>0.972274</td>
+              <td>-0.150413</td>
+              <td>-0.146243</td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>hbr</td>
+              <td>Control</td>
+              <td>Left_ROI</td>
+              <td>9.0</td>
+              <td>0.780657</td>
+              <td>0.634913</td>
+              <td>0.286938</td>
+              <td>0.182181</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>hbo</td>
+              <td>Control</td>
+              <td>Right_ROI</td>
+              <td>9.0</td>
+              <td>0.918047</td>
+              <td>0.986590</td>
+              <td>0.105819</td>
+              <td>0.104399</td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>hbr</td>
+              <td>Control</td>
+              <td>Right_ROI</td>
+              <td>9.0</td>
+              <td>0.872387</td>
+              <td>0.636521</td>
+              <td>-0.165267</td>
+              <td>-0.105196</td>
+            </tr>
+            <tr>
+              <th>0</th>
+              <td>hbo</td>
+              <td>Tapping/Left</td>
+              <td>Left_ROI</td>
+              <td>9.0</td>
+              <td>0.000411</td>
+              <td>0.982716</td>
+              <td>5.440447</td>
+              <td>5.346417</td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>hbr</td>
+              <td>Tapping/Left</td>
+              <td>Left_ROI</td>
+              <td>9.0</td>
+              <td>0.011629</td>
+              <td>0.641765</td>
+              <td>-3.155758</td>
+              <td>-2.025255</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>hbo</td>
+              <td>Tapping/Left</td>
+              <td>Right_ROI</td>
+              <td>9.0</td>
+              <td>0.000005</td>
+              <td>0.997194</td>
+              <td>9.543235</td>
+              <td>9.516460</td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>hbr</td>
+              <td>Tapping/Left</td>
+              <td>Right_ROI</td>
+              <td>9.0</td>
+              <td>0.000120</td>
+              <td>0.643366</td>
+              <td>-6.433946</td>
+              <td>-4.139385</td>
+            </tr>
+            <tr>
+              <th>0</th>
+              <td>hbo</td>
+              <td>Tapping/Right</td>
+              <td>Left_ROI</td>
+              <td>9.0</td>
+              <td>0.000002</td>
+              <td>0.983927</td>
+              <td>10.506843</td>
+              <td>10.337964</td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>hbr</td>
+              <td>Tapping/Right</td>
+              <td>Left_ROI</td>
+              <td>9.0</td>
+              <td>0.000528</td>
+              <td>0.642436</td>
+              <td>-5.249642</td>
+              <td>-3.372560</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>hbo</td>
+              <td>Tapping/Right</td>
+              <td>Right_ROI</td>
+              <td>9.0</td>
+              <td>0.000110</td>
+              <td>0.998398</td>
+              <td>6.508918</td>
+              <td>6.498489</td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>hbr</td>
+              <td>Tapping/Right</td>
+              <td>Right_ROI</td>
+              <td>9.0</td>
+              <td>0.002742</td>
+              <td>0.644119</td>
+              <td>-4.083768</td>
+              <td>-2.630433</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <br />
+        <br />
+
+And we can visualise these summary statistics.
+
+
+.. code-block:: default
+
+
+    import seaborn as sns
+    sns.scatterplot(x="Condition", y="theta", hue="Chroma", style="ROI", s=100, data=df)
+
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_007.png
+    :alt: plot 10 hrf
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    <matplotlib.axes._subplots.AxesSubplot object at 0x7f9ad8086400>
+
+
+
 Compute contrasts
 -----------------
 
@@ -548,7 +781,7 @@ from tapping on the right hand.
 
 
 
-.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_007.png
+.. image:: /auto_examples/images/sphx_glr_plot_10_hrf_008.png
     :alt: hbo, hbr
     :class: sphx-glr-single-img
 
@@ -577,8 +810,9 @@ Export Results
 
    Wickham, Hadley. "Tidy data." Journal of Statistical Software 59.10 (2014): 1-23.
 
-Here we export the data in a tidy pandas data frame. Data is exported in
-long format by default.
+Here we export the data in a tidy pandas data frame.
+We export the GLM results for every channel and condition.
+Data is exported in long format by default.
 However, a helper function is also provided to convert the long data to wide format.
 The long to wide conversion also adds some additonal derived data, such as
 if a significant response (p<0.05) was observed, which sensor and detector is
@@ -586,7 +820,6 @@ in the channel, which chroma, etc.
 
 
 .. code-block:: default
-
 
 
     df = glm_to_tidy(raw_haemo, glm_est, design_matrix)
@@ -650,6 +883,7 @@ the tapping, but we do expect 5% or less for the false positive rate.
             <tr>
               <th></th>
               <th></th>
+              <th>se</th>
               <th>theta</th>
               <th>Significant</th>
             </tr>
@@ -658,10 +892,12 @@ the tapping, but we do expect 5% or less for the false positive rate.
               <th></th>
               <th>mean</th>
               <th>mean</th>
+              <th>mean</th>
             </tr>
             <tr>
               <th>condition</th>
               <th>Chroma</th>
+              <th></th>
               <th></th>
               <th></th>
             </tr>
@@ -670,33 +906,39 @@ the tapping, but we do expect 5% or less for the false positive rate.
             <tr>
               <th rowspan="2" valign="top">Control</th>
               <th>hbo</th>
+              <td>1.127638e-06</td>
               <td>-9.066196e-08</td>
               <td>0.00</td>
             </tr>
             <tr>
               <th>hbr</th>
+              <td>7.197006e-07</td>
               <td>6.750751e-09</td>
               <td>0.00</td>
             </tr>
             <tr>
               <th rowspan="2" valign="top">Tapping/Left</th>
               <th>hbo</th>
+              <td>1.139741e-06</td>
               <td>7.249248e-06</td>
               <td>0.85</td>
             </tr>
             <tr>
               <th>hbr</th>
+              <td>7.274707e-07</td>
               <td>-3.190265e-06</td>
               <td>0.75</td>
             </tr>
             <tr>
               <th rowspan="2" valign="top">Tapping/Right</th>
               <th>hbo</th>
+              <td>1.141163e-06</td>
               <td>8.276313e-06</td>
               <td>0.90</td>
             </tr>
             <tr>
               <th>hbr</th>
+              <td>7.282221e-07</td>
               <td>-3.095988e-06</td>
               <td>0.80</td>
             </tr>
@@ -709,7 +951,7 @@ the tapping, but we do expect 5% or less for the false positive rate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  30.912 seconds)
+   **Total running time of the script:** ( 0 minutes  35.473 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_10_hrf.py:
