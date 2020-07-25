@@ -277,8 +277,11 @@
                                      <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                      <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                      <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">)</span>
-        <span class="c1"># Set the title for this type</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="c1"># Sets axes title</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;hbo&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Oxyheamoglobin&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;hbr&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Deoxyheamoglobin&#39;</span><span class="p">)</span>
 
     <span class="c1"># Create a single colorbar for all types based on limits above</span>
     <span class="n">ax1_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
