@@ -6,7 +6,8 @@ import os
 import mne
 import mne_nirs
 import numpy as np
-from mne_nirs.experimental_design import make_first_level_design_matrix
+from mne_nirs.experimental_design import (make_first_level_design_matrix,
+                                          extract_isi)
 
 
 def _load_dataset():
@@ -68,3 +69,13 @@ def test_create_design():
     # Number of columns is number of conditions plus the drift plus constant
     assert design_matrix.shape[1] ==\
         len(np.unique(raw_intensity.annotations.description)) + 2
+
+
+def test_extract_isi():
+    raw_intensity = _load_dataset()
+    isi = extract_isi(raw_intensity)
+    assert len(isi) == 91
+    assert np.min(isi) > 24
+    assert np.min(isi) < 26
+    assert np.max(isi) > 39
+    assert np.max(isi) < 41

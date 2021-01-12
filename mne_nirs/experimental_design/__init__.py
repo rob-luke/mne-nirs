@@ -6,3 +6,4 @@
 
 from ._experimental_design import create_boxcar, \
     make_first_level_design_matrix
+from ._summary import extract_isi
